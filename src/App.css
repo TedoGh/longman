@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "HelveticaNeueLTGEO";
+  src: url("../src/assets/fonts/HelveticaNeueLTGEO-55Roman.otf");
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "HelveticaNeueLTGEO-bold";
+  src: url("../src/assets/fonts/HelveticaNeueLTGEO-75Bold.otf");
+  font-style: normal;
+  font-weight: normal;
+}
+
+@layer base {
+  body {
+    @apply font-helvetica;
+  }
+
+  h1 {
+    @apply font-case;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #04aa6d;
+}
+
+.font-case {
+  font-feature-settings: "case";
+}
+
+.swiper-pagination {
+  position: relative !important;
+  top: 38px !important;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #04aa6d !important;
+}
