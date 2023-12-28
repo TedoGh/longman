@@ -1,16 +1,16 @@
-import styled from 'styled-components';
-import { useTranslation } from 'react-i18next';
-import SwitchTrainImage from '../assets/images/switchTrain.svg';
-import Header from '../components/Header';
-import GuessCard from './../components/guessCard';
-import React, { useState, useEffect, useRef } from 'react';
-import { useCardsDataContext } from './Context/CardsContext';
-import { toast } from 'react-hot-toast';
+import styled from "styled-components";
+import { useTranslation } from "react-i18next";
+import SwitchTrainImage from "../assets/images/switchTrain.svg";
+import Header from "../components/Header";
+import GuessCard from "./../components/guessCard";
+import React, { useState, useEffect, useRef } from "react";
+import { useCardsDataContext } from "./Context/CardsContext";
+import { toast } from "react-hot-toast";
 
 const TrainContainer = styled.div`
   width: 100%;
   height: 618px;
-  background: url('src/assets/images/trainBackground.svg');
+  background: url("https://img.ge/images/62318667777440020532.png");
   position: fixed;
   top: 96px;
   display: flex;
@@ -24,27 +24,25 @@ const TrainText = styled.p`
   font-size: 42px;
   position: fixed;
   top: 199px;
-font-family: Helvetica;
-font-size: 42px;
-font-weight: 700;
-line-height: 48px;
-letter-spacing: 0em;
-text-align: left;
-
+  font-family: Helvetica;
+  font-size: 42px;
+  font-weight: 700;
+  line-height: 48px;
+  letter-spacing: 0em;
+  text-align: left;
 `;
 
 const ClickText = styled.p`
-  color: #FFF4A3;
-  
+  color: #fff4a3;
+
   position: fixed;
   top: 276px;
   font-family: Helvetica;
-font-size: 24px;
-font-weight: 700;
-line-height: 28px;
-letter-spacing: 0em;
-text-align: left;
-
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 28px;
+  letter-spacing: 0em;
+  text-align: left;
 `;
 
 const LanguageSwitchContainer = styled.div`
@@ -55,19 +53,18 @@ const LanguageSwitchContainer = styled.div`
 `;
 
 const LanguageText = styled.p`
-  color: ${(props) => (props.isActive ? '#04AA6D' :'#FFF4A3' )};
-font-family: Helvetica;
-font-size: 24px;
-font-weight: 700;
-line-height: 28px;
-letter-spacing: 0em;
-text-align: left;
-
+  color: ${(props) => (props.isActive ? "#04AA6D" : "#FFF4A3")};
+  font-family: Helvetica;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 28px;
+  letter-spacing: 0em;
+  text-align: left;
 `;
 
 const StartTrainButton = styled.button`
   color: white;
-  background: #04AA6D;
+  background: #04aa6d;
   padding: 2.5;
   border-radius: 30px;
   width: 294px;
@@ -75,12 +72,10 @@ const StartTrainButton = styled.button`
   position: fixed;
   top: 510px;
   font-family: Helvetica;
-font-size: 18px;
-font-weight: 400;
-line-height: 21px;
-letter-spacing: 0em;
-
-
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 21px;
+  letter-spacing: 0em;
 `;
 
 const SwitchTrainButton = styled.button`
@@ -100,26 +95,25 @@ const GridContainer = styled.div`
 `;
 
 const NumberButton = styled.button`
-  color: #8C8C8C;
+  color: #8c8c8c;
   font-weight: bold;
   font-size: 27px;
-  ${(props) => props.isSelected && 'color: #04AA6D;'}
+  ${(props) => props.isSelected && "color: #04AA6D;"}
 `;
 
 const Train = () => {
   const { t } = useTranslation();
   const [active, setActive] = useState(false);
   const [selectedNumber, setSelectedNumber] = useState(20);
-  const [languageState, setLanguageState] = useState('GEO');
+  const [languageState, setLanguageState] = useState("GEO");
   const modalRef = useRef(null);
-  const {cards} = useCardsDataContext();
+  const { cards } = useCardsDataContext();
 
- 
   const handleClick = () => {
-    if(cards.length >= selectedNumber) {
-    setActive(true)}
-    else {
-      toast.error(t('notEnaughCards'))
+    if (cards.length >= selectedNumber) {
+      setActive(true);
+    } else {
+      toast.error(t("notEnaughCards"));
     }
   };
 
@@ -128,23 +122,29 @@ const Train = () => {
   };
 
   const languageSwitch = () => {
-    if(languageState === 'GEO')
-    {setLanguageState("ENG")}
-    if(languageState === 'ENG')
-    {setLanguageState("GEO")}
+    if (languageState === "GEO") {
+      setLanguageState("ENG");
+    }
+    if (languageState === "ENG") {
+      setLanguageState("GEO");
+    }
   };
-
- 
 
   return (
     <TrainContainer>
-      <TrainText>{t('trainPageTrainText')}</TrainText>
-      <ClickText>{t('trainPageClickText')}</ClickText>
+      <TrainText>{t("trainPageTrainText")}</TrainText>
+      <ClickText>{t("trainPageClickText")}</ClickText>
       <LanguageSwitchContainer>
-        <LanguageText isActive={languageState === "GEO"}>{t('trainPageGeoLangText')}</LanguageText>
-        <LanguageText isActive={languageState === "ENG"}>{t('trainPageEngLangText')}</LanguageText>
+        <LanguageText isActive={languageState === "GEO"}>
+          {t("trainPageGeoLangText")}
+        </LanguageText>
+        <LanguageText isActive={languageState === "ENG"}>
+          {t("trainPageEngLangText")}
+        </LanguageText>
       </LanguageSwitchContainer>
-      <StartTrainButton onClick={handleClick}>{t('trainPageStartTrainBNText')}</StartTrainButton>
+      <StartTrainButton onClick={handleClick}>
+        {t("trainPageStartTrainBNText")}
+      </StartTrainButton>
       <SwitchTrainButton onClick={languageSwitch} />
       <GridContainer>
         <NumberButton
@@ -167,11 +167,17 @@ const Train = () => {
         </NumberButton>
       </GridContainer>
 
-      {active && <GuessCard active={active} setActive={setActive} cards = {cards} selectedNumber = {selectedNumber} languageState ={languageState} />}
+      {active && (
+        <GuessCard
+          active={active}
+          setActive={setActive}
+          cards={cards}
+          selectedNumber={selectedNumber}
+          languageState={languageState}
+        />
+      )}
     </TrainContainer>
   );
 };
-
-
 
 export default Train;
