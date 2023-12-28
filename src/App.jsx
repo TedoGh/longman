@@ -1,7 +1,5 @@
 import "./App.css";
-
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
 import Homepage from "./pages/Homepage";
 import About from "./pages/About";
 import AddCard from "./pages/AddCard";
@@ -12,7 +10,8 @@ import GetStarted from "./pages/GetStarted";
 import PageNotFound from "./pages/PageNotFound";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import { Toaster } from "react-hot-toast";
+import Faq from "./pages/Faq";
+import TermsAndConditions from "./pages/TermsAndConditions";
 
 function App() {
   return (
@@ -26,11 +25,12 @@ function App() {
         <Route path="longman/train" element={<Train />} />
         <Route path="longman/progress" element={<Progress />} />
         <Route path="longman/start" element={<GetStarted />} />
+        <Route path="longman/faq" element={<Faq />} />
+        <Route path="longman/terms" element={<TermsAndConditions />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
       <Footer />
     </BrowserRouter>
-    
   );
 }
 
