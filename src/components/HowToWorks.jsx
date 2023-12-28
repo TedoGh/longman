@@ -11,8 +11,8 @@ const HowToWorks = () => {
           <div className="max-w-[340px] mx-auto text-center border-solid border-2 border-[#D9EEE1] rounded-xl">
             <div className="m-7">
               <div className="flex justify-center">
-                <div className="w-[100px] h-[100px] rounded-[55px] bg-[#0fa968] flex justify-center items-center">
-                  <img src="https://svgshare.com/i/10aE.svg" />
+                <div className="w-[100px] h-[100px] rounded-[55px] bg-[#D9EEE1] flex justify-center items-center">
+                  <img src="https://svgshare.com/i/11GH.svg" />
                 </div>
               </div>
               <h1 className="mt-6 mb-8 text-darkBlue dark:text-[#fff] text-2xl font-bold">
@@ -26,30 +26,30 @@ const HowToWorks = () => {
           <div className="max-w-[340px] mx-auto text-center border-solid border-2 border-[#D9EEE1] rounded-xl">
             <div className="m-7">
               <div className="flex justify-center">
-                <div className="w-[100px] h-[100px] rounded-[55px] bg-[#0fa968] flex justify-center items-center">
-                  <img src="https://svgshare.com/i/10aE.svg" />
+                <div className="w-[100px] h-[100px] rounded-[55px] bg-[#D9EEE1] flex justify-center items-center">
+                  <img src="https://svgshare.com/i/11GZ.svg" />
                 </div>
               </div>
               <h1 className="mt-6 mb-8 text-darkBlue text-2xl font-bold">
-                შექმენით ბარათები
+                გაიარეთ ტესტი
               </h1>
               <p className="text-lg">
-                შექმენით პერსონალური ფლეშ ბარათები თქვენი ენის მიზნებისთვის
+                შექმენით პერსონალური ფლეშ ბარათები და გაიარეთ სახალისო ტესტი
               </p>
             </div>
           </div>
           <div className="max-w-[340px] mx-auto text-center border-solid border-2 border-[#D9EEE1] rounded-xl">
             <div className="m-7">
               <div className="flex justify-center">
-                <div className="w-[100px] h-[100px] rounded-[55px] bg-[#0fa968] flex justify-center items-center">
-                  <img src="https://svgshare.com/i/10aE.svg" />
+                <div className="w-[100px] h-[100px] rounded-[55px] bg-[#D9EEE1] flex justify-center items-center">
+                  <img src="https://svgshare.com/i/11HM.svg" />
                 </div>
               </div>
               <h1 className="mt-6 mb-8 text-darkBlue text-2xl font-bold">
-                შექმენით ბარათები
+                შეამოწმეთ პროგრესი
               </h1>
               <p className="text-lg">
-                შექმენით პერსონალური ფლეშ ბარათები თქვენი ენის მიზნებისთვის
+                ტესტის გავლის შემდეგ თქვენ გაქვთ წვდომა თქვენს პროგრესთან
               </p>
             </div>
           </div>

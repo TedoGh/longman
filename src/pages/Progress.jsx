@@ -1,10 +1,13 @@
-import Header from "../components/Header";
+import { useState } from "react";
+import Pagination from "../components/Pagination";
+import ProgressHistoryLists from "../components/ProgressHistoryLists";
+import ProgressHistory from "../components/ProgressHistory";
 
 export default function Progress() {
   return (
     <div>
       <div className="max-w-[1200px] mx-auto">
-        <div className="h-screen">
+        <div>
           <h1 className="mt-8 text-darkBlue text-3xl font-bold">
             ჩემი პროგრესი
           </h1>
@@ -48,6 +51,7 @@ export default function Progress() {
               </div>
             </div>
           </div>
+          <ProgressHistory />
         </div>
       </div>
     </div>
