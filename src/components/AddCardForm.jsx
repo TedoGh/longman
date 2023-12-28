@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useRef, useEffect } from "react";
+import { set } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { useTranslation } from "react-i18next";
 import { styled } from "styled-components";
@@ -35,7 +36,7 @@ const AddCardForm = ({ modal, modalOpen, setModalOpen }) => {
     georgian: "",
   });
 
-  function generateUniqueId() {
+ async function generateUniqueId() {
     const timestamp = new Date().getTime();
     const randomNum = Math.floor(Math.random() * 10);
     return `${timestamp}-${randomNum}`;
@@ -54,46 +55,42 @@ const AddCardForm = ({ modal, modalOpen, setModalOpen }) => {
   const {addCardsContext} = useCardsDataContext();
 
   const generateId = async () => {
-    const uniqueId = generateUniqueId();
-    setFormData((prevData) => ({ ...prevData, id: uniqueId }));
-  }
+    try {
+      const uniqueId = await generateUniqueId();
+      setFormData((prevData) => ({ ...prevData, id: uniqueId }));
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
+  
     
 
-  const handleSubmit = (e) => {
-    
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setValidationError({ firstInput: false, secondInput: false });
-    
-    
-    
+  
     if (formData.georgian.trim().length < 1) {
       setValidationError((prev) => ({ ...prev, firstInput: true }));
     }
-
+  
     if (formData.english.trim().length < 1) {
       setValidationError((prev) => ({ ...prev, secondInput: true }));
     }
-    if (
-      formData.georgian.trim().length >= 1 &&
-      formData.english.trim().length >= 1
-      
-    ) {
-      generateId().then(() => {
-      addCardsContext(formData);
-      toast.success(t('cardsSucessfullyAdded'));
-      })
-      
+  
+    if (formData.georgian.trim().length >= 1 && formData.english.trim().length >= 1) {
+      try {
+        const id = await generateUniqueId(); 
+        const updatedFormData = { ...formData, id }; 
+        addCardsContext(updatedFormData);
+        toast.success(t("cardsSucessfullyAdded"));
+      } catch (error) {
+        toast.error(error.message);
+      }
+      finally{(setFormData((prev) => ({...prev, georgian:'', english: ''})))}
     }
   };
-
-  const handleClickOutside = (e) => {
-    if (modal && modalRef.current && !modalRef.current.contains(e.target)) {
-      setModalOpen(false);
-      console.log("outside");
-    }
-
-    
-  };
+  
+  
 
   useEffect(() => {
     if (modalOpen) {
@@ -172,33 +169,4 @@ const AddCardForm = ({ modal, modalOpen, setModalOpen }) => {
 
 export default AddCardForm;
 
-//   try {
-//     const response = await fetch(`${API}`, {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify(formData),
-//     });
 
-//     if (response.ok) {
-//       await fetchCards();
-//       setFormData({
-//         date: "",
-//         flag: "",
-//         title: "",
-//         scores: "",
-//         english: "",
-//         georgian: "",
-//         category: "",
-//         progress: "",
-//         notes: "",
-//       });
-//     } else {
-//       console.error("Failed to add card");
-//     }
-//   } catch (error) {
-//     console.error(error);
-//   }
-// }
-// };

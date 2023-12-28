@@ -129,8 +129,8 @@ export default function AllCards() {
       : Math.ceil(
           cards.filter(
             (card) =>
-              card.georgian.startsWith(inputValue) ||
-              card.english.startsWith(inputValue)
+              card.georgian.toLowerCase().startsWith(inputValue) ||
+              card.english.toLowerCase().startsWith(inputValue)
           ).length / 5
         );
   const [searchParams, setSearchParams] = useSearchParams();
@@ -151,50 +151,77 @@ export default function AllCards() {
   };
 
   const handleInputChange = () => {
-    setInputValue(searchRef.current.value);
+    searchParams.set("page", '1');
+    setSearchParams(searchParams);
+    setInputValue(searchRef.current.value.toLowerCase());
   };
 
   const handleDeleteCard = (card) => {
-    // Use the updateCards function from context to update cards
+   
     const newCards = cards.filter((c) => c.id !== card.id);
     updateCardsContext(newCards);
   };
 
   useEffect(() => {
+    
     for (let i = 1; i <= columns; i++) {
       if (inputValue === "") {
         const array = cards.slice((i - 1) * 5, i * 5);
         dividedCardsArr.push(array);
       }
       if (inputValue !== "") {
-        const array = cards
+       if(language === 'GEO') {const array = cards
           .filter(
             (card) =>
-              card.georgian.startsWith(inputValue) ||
-              card.english.startsWith(inputValue)
+            card.georgian.toLowerCase().startsWith(inputValue) 
+            
           )
           .slice((i - 1) * 5, i * 5);
-        dividedCardsArr.push(array);
+        dividedCardsArr.push(array);}
+       if(language === 'ENG') {const array = cards
+          .filter(
+            (card) =>
+            
+            card.english.toLowerCase().startsWith(inputValue)
+          )
+          .slice((i - 1) * 5, i * 5);
+        dividedCardsArr.push(array);}
       }
     }
 
     setCardsOnCurrentPage(
       dividedCardsArr.slice((currentPage - 1) * 3, currentPage * 3)
-    );
-  }, [inputValue, currentPage, cards]);
+    )
+
+   
+  }, [inputValue, cards, currentPage]);
+
+
+  useEffect(() => {
+    if(currentPage > pages) {
+    searchParams.set("page", pages);
+    setSearchParams(searchParams);
+    }
+  }, [pages])
+
+  
 
   const nextPage = () => {
     if (currentPage !== pages)
       searchParams.set("page", (currentPage + 1).toString());
     setSearchParams(searchParams);
+   
+    
   };
 
   const prevPage = () => {
     if (currentPage !== 1)
       searchParams.set("page", (currentPage - 1).toString());
     setSearchParams(searchParams);
+    
   };
 
+  
   return (
     <div>
       <MainDiv>

@@ -44,7 +44,24 @@
   "english" : "English",
   "georgian": "Georgian",
   "cardsNotAdded": "Cards are not added yet",
-  "cardsSucessfullyAdded": "Card successfully added"
+  "cardsSucessfullyAdded": "Card successfully added",
+  "notEnaughCards":  "There is not enaugh cards added",
+  "cancelTrainingPromptText": "Are you sure to finish training?",
+  "resultsNotSavedText": "Results will not be saved",
+  "guessCard": "Guess the card",
+  "confirm": "Confirm",
+  "next": "Next",
+  "continue": "Continue",
+  "leave": "Leave",
+  "sessionFinished": "Train Session Done",
+  "numOfQuestions": "Number of questions",
+  "correct": "Correct",
+  "wrong": "Wrong",
+  "checkAnswers": "Review Answers",
+  "finish": "Finish"
+  
+
+
 
 
 
