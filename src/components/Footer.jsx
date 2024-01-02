@@ -1,24 +1,26 @@
 import { useTranslation } from "react-i18next";
 import Logo from "../components/Logo";
-import { Link } from "react-router-dom";
+import SocialMedia from "./SocialMedia";
+import { Link, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { FaAngleUp } from "react-icons/fa";
+import { FaAngleDown } from "react-icons/fa";
+import { footerData } from "../data/FooterData";
+
 export default function Footer() {
   const { t } = useTranslation();
   const Year = new Date().getFullYear();
+  const location = useLocation();
+  const [showMobile, setShowMobile] = useState(false);
 
-  const footerData = [
-    {
-      title: "მთავარი",
-      lists: ["მთავარი", "ყველა ქარდი", "ვარჯიში", "პროგრესი"],
-    },
-    {
-      title: "ჩვენ შესახებ",
-      lists: ["ჩვენს შესახებ", "პროექტის შესახებ", "ბლოგი"],
-    },
-    {
-      title: "დამატებით",
-      lists: ["წესები და პირობები", "ფორუმი", "კონტაქტი", "FAQ"],
-    },
-  ];
+  const handleShowFooter = (id) => {
+    setShowMobile((prevId) => (prevId === id ? true : id));
+  };
+
+  useEffect(() => {
+    setShowMobile(false);
+    window.scrollTo(0, 0);
+  }, [location]);
 
   return (
     <footer className="border-t border-footerBorder">
@@ -33,10 +35,7 @@ export default function Footer() {
                 პერსონალური ფლეშ ბარათები.
               </p>
               <div className="flex gap-4">
-                <span>linkedin</span>
-                <span>reddit</span>
-                <span>facebook</span>
-                <span>github</span>
+                <SocialMedia />
               </div>
             </div>
             <div className="flex gap-24 mt-8">
@@ -50,8 +49,8 @@ export default function Footer() {
                       {item.lists.map((listItem, index) => (
                         <ul key={index}>
                           <li className="flex flex-col text-[#8C8C8C]">
-                            <Link to={"/"} className="mb-3">
-                              {listItem}
+                            <Link to={listItem.path} className="mb-3">
+                              {listItem.menuTitle}
                             </Link>
                           </li>
                         </ul>
@@ -61,6 +60,54 @@ export default function Footer() {
                 );
               })}
             </div>
+          </div>
+        </div>
+        <div className="p-4 lg:hidden">
+          {footerData.map((item) => {
+            return (
+              <div className="mb-7" key={item.id}>
+                <div
+                  className="flex justify-between"
+                  onClick={() => handleShowFooter(item.id)}
+                >
+                  <h1 className="font-bold">{item.title}</h1>
+                  {showMobile === item.id ? (
+                    <FaAngleUp color="#8C8C8C" size={18} />
+                  ) : (
+                    <FaAngleDown color="#8C8C8C" size={18} />
+                  )}
+                </div>
+                {showMobile === item.id ? (
+                  <div
+                    className={
+                      showMobile === item.id
+                        ? "mt-4 block animate__animated animate__fadeInDown"
+                        : null
+                    }
+                  >
+                    <ul>
+                      {item.lists.map((listItem) => (
+                        <li className="text-[#8C8C8C] mb-3" key={listItem.id}>
+                          <Link
+                            to={listItem.path}
+                            className={
+                              location.pathname === listItem.path
+                                ? "text-green"
+                                : ""
+                            }
+                          >
+                            {listItem.menuTitle}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : null}
+              </div>
+            );
+          })}
+          <div className="flex gap-4">
+            <SocialMedia />
           </div>
         </div>
       </div>

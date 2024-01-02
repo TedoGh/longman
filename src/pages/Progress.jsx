@@ -19,11 +19,11 @@ export default function Progress() {
                   ამ გვერდზე ნაჩვენებია მომხმარებლის პროგრესი,რომელიც ნახლდება
                   ყოველი გავლილი ვარჯიშის შემდეგ.
                 </p>
-                <p className="mb-4 text-lg text-[#AFAFAF] w-[690px]">
-                  ამ გვერდზე ნაჩვენებია მომხმარებლის პროგრესი,რომელიც ნახლდება
-                  ყოველი გავლილი ვარჯიშის შემდეგ.
+                <p className="mb-4 text-lg text-[#AFAFAF] w-[650px]">
+                  თუ თქვენ გსურთ პროგრესის გაუმჯობესება, ახლავე დაიტყეთ ტესტის
+                  გავლა.
                 </p>
-                <button className="bg-[#1ACD81] hover:bg-[#0fa968] text-darkBlue font-bold rounded-[30px] w-[294px] h-[47px]  p-[10px] gap-[10px]">
+                <button className="bg-[#1ACD81] hover:bg-[#0fa968] text-[#fff] font-bold rounded-[30px] w-[294px] h-[47px]  p-[10px] gap-[10px]">
                   ვარჯიშის დაწყება
                 </button>
               </div>
@@ -41,7 +41,7 @@ export default function Progress() {
                       <div className="absolute rotate-[-223deg] top-0 left-0 w-[180px] h-[180px] rounded-[50%] border-[10px] border-[#f7f7f7] border-b-green border-r-green"></div>
                     </div>
                     <h1 className="mt-[-60px] text-darkBlue text-4xl font-bold">
-                      20<span className="text-lg font-normal">/40</span>
+                      50<span className="text-lg font-normal">/100%</span>
                     </h1>
                     <p className="text-[#A2A2A2] text-base text-center mb-5">
                       ქულები
@@ -51,8 +51,8 @@ export default function Progress() {
               </div>
             </div>
           </div>
-          <ProgressHistory />
         </div>
+        <ProgressHistory />
       </div>
     </div>
   );

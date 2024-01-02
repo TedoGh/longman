@@ -4,10 +4,10 @@ const TermsAndConditions = () => {
   return (
     <div>
       <div className="max-w-[1200px] mx-auto">
-        <div>
+        <div className="px-5 lg:px-0">
           <h1 className="text-2xl font-bold">გამოყენების წესები და პირობები</h1>
           <div className="mt-16">
-            <div className="px-8 py-9 border-solid border-2 border-[#D9EEE1] rounded-xl mb-10">
+            <div className="px-8 py-9 mb-10">
               <h2 className="text-darkBlue text-2xl font-bold mb-5">
                 წესები და პირობები
               </h2>
@@ -28,7 +28,7 @@ const TermsAndConditions = () => {
                 თქვენ აგზავნით, აქვეყნებთ ან აჩვენებთ სერვისი.
               </p>
             </div>
-            <div className="px-8 py-9 border-solid border-2 border-[#D9EEE1] rounded-xl mb-10">
+            <div className="px-8 py-9 mb-10">
               <h2 className="text-darkBlue text-2xl font-bold mb-5">
                 წესები და პირობები
               </h2>
@@ -49,7 +49,7 @@ const TermsAndConditions = () => {
                 თქვენ აგზავნით, აქვეყნებთ ან აჩვენებთ სერვისი.
               </p>
             </div>
-            <div className="px-8 py-9 border-solid border-2 border-[#D9EEE1] rounded-xl mb-10">
+            <div className="px-8 py-9 mb-10">
               <h2 className="text-darkBlue text-2xl font-bold mb-5">
                 წესები და პირობები
               </h2>

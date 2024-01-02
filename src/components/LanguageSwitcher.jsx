@@ -19,7 +19,11 @@ export default function LanguageSwitcher() {
 
   return (
     <div>
-      <button style={{paddingTop:'10px'}} onClick={toggleLanguage} className="text-green">
+      <button
+        style={{ paddingTop: "10px" }}
+        onClick={toggleLanguage}
+        className="text-green"
+      >
         {currentLanguageCode === "ka" ? "ENG" : "GEO"}
       </button>
     </div>

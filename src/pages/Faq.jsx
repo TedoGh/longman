@@ -20,7 +20,7 @@ const Faq = () => {
             </div>
             <div className="px-8 py-9 border-solid border-2 border-[#D9EEE1] rounded-xl mb-10">
               <h2 className="text-darkBlue text-2xl font-bold mb-5">
-                რა არის FlashcardPro?
+                როგორ ვიხმაროთ FlascardPro?
               </h2>
               <p>
                 ფლეშ ბარათები ჰგავს ცოდნის ზომის პაკეტებს, რომლებიც შეგიძლიათ
