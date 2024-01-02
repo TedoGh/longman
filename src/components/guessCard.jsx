@@ -11,6 +11,12 @@ const StyledModalContainer = styled.div`
   z-index: 50;
   border-radius: 10px;
   overflow: hidden;
+  @media(max-width: 1024px) {
+    border-radius: 7.52px;
+  }
+  @media(max-width: 767px) {
+    border-radius: 10px;
+  }
 `;
 
 const StyledModalContent = styled.div`
@@ -23,6 +29,18 @@ const StyledModalContent = styled.div`
   align-items: center;
   border-radius: 10px;
   padding: 20px;
+  @media(max-width: 1024px) {
+    height: 410px;
+    width: 380px;
+    border-radius: 10px;
+  
+  }
+  @media(max-width: 767px) {
+    height: 385px;
+    width: 358px;
+    border-radius: 10px;
+  padding: 20px;
+  }
 `;
 
 const StyledStepIndicator = styled.div`
@@ -33,9 +51,10 @@ const StyledStepIndicator = styled.div`
   text-align: center;
   display: flex;
   align-items: center;
-  margin-top: 25px;
+  margin-top: 18px;
   font-family: Helvetica;
   font-size: 22px;
+  
 
   & .text-xl {
     font-size: 22px;
@@ -44,16 +63,53 @@ const StyledStepIndicator = styled.div`
     letter-spacing: 0em;
     text-align: left;
   }
+
+  @media(max-width: 1024px) {
+    font-size: 14px;
+    left: 33px;
+    margin-top: 18px;
+
+    & .text-xl {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 23px;
+
+    }
+  }
+  @media(max-width: 767px) {
+    font-size: 11px;
+    left: 20px;
+    margin-top: 14px;
+
+    & .text-xl {
+      font-size: 11px;
+      font-weight: 400;
+      line-height: 18px;
+     
+    }
+  }
+
+  
 `;
 
 const StyledTitle = styled.div`
   font-family: Helvetica;
-  font-size: 30px;
+  font-size: 24.3px;
   font-weight: 700;
-  line-height: 35px;
+  line-height: 28px;
   letter-spacing: 0em;
   text-align: left;
   margin-top: 25px;
+  @media(max-width: 1024px) {
+  font-size: 16px;
+  line-height: 18px;
+  margin-top: 18px;
+  }
+  @media(max-width: 767px) {
+  font-size: 15px;
+  line-height: 18px;
+  margin-top: 14px;
+  }
 `;
 
 const StyledAnswerButton = styled.div`
@@ -69,12 +125,34 @@ const StyledAnswerButton = styled.div`
   border-radius: 7.61px;
   margin-top: 51px;
   margin-bottom: 61px;
+  @media(max-width: 1024px) {
+    width: 227px;
+    height: 66px;
+    font-size: 20px;
+  border-radius: 6px;
+  margin-top: 42px;
+  margin-bottom: 26px;
+  }
+  @media(max-width: 767px) {
+    width: 214px;
+    height: 63px;
+    font-size: 19.52px;
+  border-radius: 4.1px;
+  margin-top: 29px;
+  margin-bottom: 33px;
+  }
 `;
 
 const StyledAnswerGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 21px;
+  @media(max-width: 1024px) {
+    gap: 14px;
+  }
+  @media(max-width: 767px) {
+    gap: 12px;
+  }
 `;
 
 const StyledAnswerOption = styled.button`
@@ -116,6 +194,22 @@ const StyledAnswerOption = styled.button`
     }
     return "#E7E7E7";
   }};
+  @media(max-width: 1024px) {
+    height: 50px;
+  width: 162px;
+  border-radius: 7px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 15px;
+  }
+  @media(max-width: 767px) {
+    height: 52px;
+  width: 152px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 14px;
+  }
 `;
 
 const StyledButtonContainer = styled.div`
@@ -129,6 +223,12 @@ const StyledButtonContainer = styled.div`
 
   & .confirmbtn {
     background-color: #04aa6d;
+  }
+  @media(max-width: 1024px) {
+    gap: 13px;
+  }
+  @media(max-width: 767px) {
+    gap: 12px;
   }
 `;
 
@@ -146,6 +246,28 @@ const StyledButton = styled.button`
   letter-spacing: 0em;
   text-align: center;
   margin-top: 60px;
+  @media(max-width: 1024px) {
+    padding: 2.5;
+    border-radius: 30px;
+    width: 162px;
+    height: 35px;
+    cursor: pointer;
+    font-size: 13px;
+  font-weight: 400;
+  line-height: 14px;
+  margin-top: 30px;
+  }
+  @media(max-width: 767px) {
+    padding: 2.5;
+    border-radius: 16px;
+    width: 152px;
+    height: 34px;
+    cursor: pointer;
+    font-size: 12px;
+  font-weight: 400;
+  line-height: 13px;
+  margin-top: 32px;
+  }
 `;
 
 const GuessCard = ({

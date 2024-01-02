@@ -8,13 +8,14 @@ height: 75px;
 width: 225px;
 display: flex;
 flex-direction: row;
+alijustify-self: flex-end;
 color: #FFFFFF;
 background-color: #393C49;
 align-items: center;
 justify-content: center;
-margin-top: 100px;
-position: absolute;
-left: 550px;
+margin-top: 60px;
+margin-bottom: 50px;
+border-radius: 7px;
 
 & p {
 font-size: 24px;
@@ -34,6 +35,33 @@ justify-self: flex-start;
     color: #04AA6D;
   }
 }
+
+@media(max-width: 1024px) {
+height: 60px;
+width: 182px;
+margin-top: 60px;
+left: 406px;
+
+& p {
+font-size: 19.41px;
+line-height: 22.3px;
+font-weight: 700;
+
+margin-left: 20px;
+margin-right: 20px;
+
+}
+
+& button {
+ 
+  font-size: 19.41px;
+
+}
+}
+
+
+  
+ } 
 
 `
 const AllCardsPagination = ({pages, currentPage, searchParams, setSearchParams , prevPage, nextPage}) => {

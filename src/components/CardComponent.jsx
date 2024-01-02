@@ -39,6 +39,43 @@ background-color: ${({mainSide}) => mainSide ? '#04AA6D' : '#FFF4A3' };
   right: 20px;
   color: ${({mainSide}) => mainSide ? '#FFFFFF' : '#282A35'}
 }
+
+
+
+@media(max-width: 1024px) {
+  height: 59px;
+  width: 201px;
+border-radius: 4px;
+  & p {
+    font-size: 18px;
+  font-weight: 700;
+
+  }
+  & button {
+    width: 17.5px;
+    height: 3.5px;
+    top: 10px;
+    right: 20px;
+  }
+}
+
+@media(max-width: 767px) {
+  height: 79px;
+  width: 261px;
+border-radius: 4px;
+  & p {
+    font-size: 24px;
+  font-weight: 700;
+  line-height: 27px;
+
+  }
+  & button {
+    width: 17.5px;
+    height: 3.5px;
+    top: 10px;
+    right: 20px;
+  }
+}
 `
 
 const MenuDiv = styled.div`
@@ -47,12 +84,15 @@ padding-top: 5px;
 height: 106px;
 width: 175px;
 position: absolute;
-right: -135px;
+right: ${(props) => {
+  return props.index === 2 ? '40px' : '-135px';
+}};
 top: 30px;
 display: flex;
 flex-direction: column;
 gap: 5px;
 z-index: 40;
+border-radius: 5px;
 
 
 & button {
@@ -86,6 +126,49 @@ position: relative;
   position: absolute;
   right: 20px;
   top: 5px;
+}
+
+@media (max-width: 1024px) {
+  & button {
+    font-size: 18px;
+    font-weight: 400; 
+    
+  }
+  
+  & .editBtn {
+  left: 35px;
+  }
+  
+  & .editIcon {
+   
+    right: 20px;
+    top: 5px;
+  
+  }
+  
+  & .deleteBtn {
+  left: 35px;
+  top: 40px;
+ 
+ 
+  }
+  
+  & .deleteIcon {
+    right: 20px;
+    top: 5px;
+  }
+}
+
+@media (max-width: 767px) {
+  right: -50px;
+  
+  & button {
+    font-size: 18px;
+    font-weight: 400; 
+    
+  }
+  
+  
 }
 
 `
@@ -129,6 +212,44 @@ left: 40px;
   left: 40px;
 }
 
+@media(max-width: 1024px) {
+  & input {
+    position: absolute;
+    top: -40px;
+    left: -134px;
+    height: 40px;
+    width: 265px;
+    background-color: ${({mainSide}) => mainSide ? '#04AA6D' : '#FFF4A3' };
+    color: ${({mainSide}) => mainSide ? '#FFFFFF' : '#282A35'};
+    border: none;
+    padding-left: 100px;
+    font-size: 18px;
+    letter-spacing: 2px;
+   
+  }
+  
+  
+  
+  & button {
+  position: absolute;
+  top: 5px;
+  font-size: 30px;
+  }
+  
+  & div {
+    position: relative;
+  }
+  
+  & .cancelBtn {
+  position: absolute;
+  left: 40px;
+  }
+  
+  & .editBtn {
+    left: 40px;
+  }
+}
+
 `
 
 const ModalDiv = styled.div`
@@ -136,8 +257,9 @@ const ModalDiv = styled.div`
   position: absolute;
   width: 678px;
   height: 400px;
-  top: 300px;
-  left: 381px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   background-color: white;
   z-index: 40;
   display: flex;
@@ -227,9 +349,110 @@ background-color: #E10000;
   z-index: 12;
   backdrop-filter: blur(2px); 
   }
+  @media(max-width: 1024px) {
+    & .mainDiv {
+      position: absolute;
+      width: 378px;
+      height: 255px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      z-index: 40;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;;
+      justify-items: center;
+      align-items: center;
+      padding-top: 32px;
+      border-radius: 5px;
+    
+      & h2 {
+        
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 20px;
+        letter-spacing: 0em;
+        text-align: left;
+        color: #282A35;
+        padding-top: 11px;
+        
+      }
+    
+      & p {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 16px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #8C8C8C;
+    padding-top: 13px;
+    
+      }
+    
+      & .buttonsDiv {
+        padding-top: 20px;
+        display: flex;
+        flex-direction: row;
+        gap: 16px;
+    
+        & button {
+    font-family: Helvetica;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 14px;
+    letter-spacing: 0em;
+    text-align: left;
+    width: 164px;
+    height: 35px;
+    border-radius: 35px;
+    text-align: center;
+        }
+    
+        & .back {
+    
+    color: #FFFFFF;
+    background-color: #ACACAC;
+    
+     }
+    
+       & .delete {
+    color: #FFFFFF;
+    background-color: #E10000;
+    
+        }
+    
+      }
+    
+        & .Circle {
+          width: 75px;
+          height: 75px;
+        }
+    
+        & .RecycleBin {
+          position: absolute;
+          top: 47px;
+          width: 45px;
+          height: 45px;
+          
+        }
+    
+      }
+    
+      & .overlay {
+      width: 100vw; 
+      height: 100vh; 
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 12;
+      backdrop-filter: blur(2px); 
+      }
+
+  }
 `;
 
-const CardComponent = ({CardObject, onDelete, language}) => {
+const CardComponent = ({CardObject, onDelete, language, index}) => {
   const {t} = useTranslation();
   const[side, setSide] = useState(language);
   const [mainSide, setMainSide] = useState(true);
@@ -258,8 +481,10 @@ const CardComponent = ({CardObject, onDelete, language}) => {
 
   const handleClickMenu = (e) => {
     if(menuBtnRef.current.contains(e.target)) setMenuOpen(prev => !prev)
+    console.log(index);
   }
 
+  
   const handleClickOutsideMenu = (e) => {
     if(!menuDivRef.current.contains(e.target)) setMenuOpen(false);
   }
@@ -342,7 +567,7 @@ const CardComponent = ({CardObject, onDelete, language}) => {
     <div>
     <CardDiv onClick={(e) => handleRotate(e)} mainSide={mainSide}  >
       <button onClick={(e)=> handleClickMenu(e)} ref={menuBtnRef} disabled={editSession}><SlOptions /></button>
-      {menuOpen && <MenuDiv ref={menuDivRef} >
+      {menuOpen && <MenuDiv index = {index} ref={menuDivRef} >
         <button onClick={handleEditClick}  className='editBtn'><FiEdit2 className='editIcon' />{t('edit')} </button>
         <button className='deleteBtn' onClick={handleClickOnDelete}> <RiDeleteBinLine className='deleteIcon'/> {t('deleteCard')}</button>
       </MenuDiv>}
