@@ -9,7 +9,7 @@ const Hero = () => {
   const { t } = useTranslation();
   return (
     <div>
-      <div className="py-[70px] max-[768px]:bg-[url('https://img.ge/images/84407112189770370131.png')] bg-darkBlue dark:bg-[#000]">
+      <div className="py-[70px] max-[768px]:bg-[url('https://img.ge/images/84407112189770370131.png')] bg-darkBlue">
         <div className="max-w-[1200px] mx-auto px-8">
           <div className="lg:grid grid-cols-2 gap-16">
             <div className="max-[768px]:text-center">

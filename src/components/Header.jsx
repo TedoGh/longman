@@ -1,27 +1,26 @@
 import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import LanguageSwitcher from "./LanguageSwitcher";
-import ThemeSwitcher from "./ThemeSwitcher";
 import Logo from "./Logo";
 import AuthorizationBtns from "./AuthorizationBtns";
 import { useEffect, useState } from "react";
 import Burger from "../assets/images/burger.svg";
+import HeaderData from "../data/HeaderData";
 
 export default function Header() {
   const { t } = useTranslation();
   const location = useLocation();
   const [showMenu, setShowMenu] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(false);
-  const [signInModal, setSignInModal] = useState();
+  const [activeButton, setActiveButton] = useState();
   const [signUpModal, setSignUpModal] = useState();
 
   const toggleMenu = () => {
-    setShowMenu((prevState) => !prevState);
+    setShowMenu(!showMenu);
   };
 
   useEffect(() => {
     setShowMenu(false);
-  }, [location, t, isDarkMode]);
+  }, [location]);
 
   const routerData = [
     {
@@ -64,26 +63,20 @@ export default function Header() {
           <div className="flex gap-6 max-[1024px]:hidden">
             {/* desktop menu */}
             <ul className="flex gap-5 items-center">
-              {routerData.map((item) => {
-                return (
-                  <li key={item.id}>
-                    <Link
-                      to={`${item.path}`}
-                      className={
-                        location.pathname === `${item.path}` ? "text-green" : ""
-                      }
-                    >
-                      {item.name}
-                    </Link>
-                  </li>
-                );
-              })}
+              {routerData.map((item) => (
+                <li key={item.id}>
+                  <Link
+                    to={`${item.path}`}
+                    className={
+                      location.pathname === `${item.path}` ? "text-green" : ""
+                    }
+                  >
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
             </ul>
             <div className="flex gap-8">
-              <ThemeSwitcher
-                isDarkMode={isDarkMode}
-                setIsDarkMode={setIsDarkMode}
-              />
               <LanguageSwitcher />
               <AuthorizationBtns />
             </div>
@@ -94,47 +87,36 @@ export default function Header() {
               className="lg:hidden block cursor-pointer"
               onClick={toggleMenu}
             >
-              {showMenu ? "" : <img src={Burger} />}
+              {showMenu ? "" : <img src={Burger} alt="Burger Icon" />}
             </div>
             {/* Mobile Menu */}
-            {showMenu ? (
-              <div
-                className={
-                  showMenu
-                    ? "flex fixed flex-col w-3/4 h-screen top-0 right-full left-0 pl-7 justify-center bg-[#fff] gap-3 z-10 lg:hidden animate__animated animate__bounceInLeft"
-                    : "hidden"
-                }
-              >
+            {showMenu && (
+              <div className="flex fixed flex-col w-3/4 h-screen top-0 right-full left-0 pl-7 justify-center bg-[#fff] gap-3 z-10 lg:hidden animate__animated animate__bounceInLeft">
                 <div className="relative bottom-16">
-                  <AuthorizationBtns />
+                  <AuthorizationBtns setShowMenu={setShowMenu} />
                 </div>
                 <ul>
-                  {routerData.map((item) => {
-                    return (
-                      <li className={showMenu ? "py-4" : null} key={item.id}>
-                        <Link
-                          to={`${item.path}`}
-                          className={
-                            location.pathname === `${item.path}`
-                              ? "text-green"
-                              : ""
-                          }
-                        >
-                          {item.name}
-                        </Link>
-                      </li>
-                    );
-                  })}
+                  {routerData.map((item) => (
+                    <li className="py-4" key={item.id}>
+                      <Link
+                        to={`${item.path}`}
+                        className={
+                          location.pathname === `${item.path}`
+                            ? "text-green"
+                            : ""
+                        }
+                      >
+                        {item.name}
+                      </Link>
+                    </li>
+                  ))}
                 </ul>
-                <div className="flex flex-col gap-5">
-                  <LanguageSwitcher />
-                  <ThemeSwitcher
-                    isDarkMode={isDarkMode}
-                    setIsDarkMode={setIsDarkMode}
-                  />
+                <LanguageSwitcher />
+                <div>
+                  <button onClick={() => setShowMenu(false)}>X</button>
                 </div>
               </div>
-            ) : null}
+            )}
           </div>
         </div>
       </div>

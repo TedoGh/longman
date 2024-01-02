@@ -1,78 +1,72 @@
-import React, {useState, useRef, useEffect} from 'react'
-import { styled } from 'styled-components'
-import LogoMain from '../assets/images/LogoMain.png'
-import { useTranslation } from 'react-i18next'
-
-
-
-
-
- 
-
+import React, { useState, useRef, useEffect } from "react";
+import { styled } from "styled-components";
+import LogoMain from "../assets/images/LogoMain.png";
+import { useTranslation } from "react-i18next";
 
 const ErrorText = styled.p`
-  font-family: 'Helvetica', sans-serif;
+  font-family: "Helvetica", sans-serif;
   font-weight: 400;
   font-size: 15px;
   line-height: 17.25px;
-  color: #E10000;
-  padding-top: 5px
-`
+  color: #e10000;
+  padding-top: 5px;
+`;
 
 const SignInBtn = styled.button`
-background-color: #04AA6D;
-width: 389px;
-height: 45.15px;
-color: white;
-border-radius: 22.55px;
-`
+  background-color: #04aa6d;
+  width: 389px;
+  height: 45.15px;
+  color: white;
+  border-radius: 22.55px;
+`;
 
 const Input = styled.input`
-border: ${({error}) => error ? '1px solid red' : '' };
-`
+  border: ${({ error }) => (error ? "1px solid red" : "")};
+`;
 
 const ForgotPasswordBtn = styled.button`
-align-self: flex-start;
-margin-left: 24px;
-color: #04AA6D;
-font-weight: 400;
-font-size: 16.6px;
-`
+  align-self: flex-start;
+  margin-left: 24px;
+  color: #04aa6d;
+  font-weight: 400;
+  font-size: 16.6px;
+`;
 
 const Img = styled.img`
-padding-top: 20px;
-justify-self: flex-start;
-`
+  padding-top: 20px;
+  justify-self: flex-start;
+`;
 
 const TextDiv = styled.div`
-display: flex;
-flex-direction: row;
-gap: 5px;
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
 
-& p {
-  color: #ACACAC;
-  font-weight: 400;
-  font-size: 16.59px;
+  & p {
+    color: #acacac;
+    font-weight: 400;
+    font-size: 16.59px;
+  }
 
-}
+  & button {
+    color: #04aa6d;
+    border: none;
+    background: none;
+  }
+`;
 
-& button {
-  color: #04AA6D;
-  border: none;
-  background: none;
-}
-
-`
-
-const SignInModal = ({setAuthorizationModal, authorizationModal}) => {
-  const {t} = useTranslation();
-  const modalRef = useRef(null)
-  const [validationError, setValidationError] = useState({emailInput: false, passwordInput: false})
+const SignInModal = ({ setAuthorizationModal, authorizationModal }) => {
+  const { t } = useTranslation();
+  const modalRef = useRef(null);
+  const [validationError, setValidationError] = useState({
+    emailInput: false,
+    passwordInput: false,
+  });
 
   const [formData, setFormData] = useState({
-    Email: '',
-    Password: ''
-  }); 
+    Email: "",
+    Password: "",
+  });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -83,89 +77,96 @@ const SignInModal = ({setAuthorizationModal, authorizationModal}) => {
     e.preventDefault();
     setValidationError({ emailInput: false, passwordInput: false });
 
+    if (formData.Email.trim().length < 1) {
+      setValidationError((prev) => ({ ...prev, emailInput: true }));
+    }
+
+    if (formData.Password.trim().length < 1) {
+      setValidationError((prev) => ({ ...prev, passwordInput: true }));
+    }
     if (
-      formData.Email.trim().length < 1
+      formData.georgian.trim().length >= 1 &&
+      formData.english.trim().length >= 1
     ) {
-      setValidationError((prev) => ({...prev, emailInput: true}))
-     
-    }
-
-    if(
-      formData.Password.trim().length < 1
-    ) {
-      setValidationError((prev) => ({...prev, passwordInput: true}))
-      
-    } if( formData.georgian.trim().length >= 1 && formData.english.trim().length  >= 1) {
-
-    try {
-      const response = await fetch(`${API}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (response.ok) {
-        await fetchCards();
-        setFormData({
-         Email: '',
-         Password: ''
+      try {
+        const response = await fetch(`${API}`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
         });
-      } else {
-        console.error("Failed to add card");
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  }
-  };
- 
-  
 
+        if (response.ok) {
+          await fetchCards();
+          setFormData({
+            Email: "",
+            Password: "",
+          });
+        } else {
+          console.error("Failed to add card");
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  };
 
   const handleClickOutside = (e) => {
-    if(modalRef.current && !modalRef.current.contains(e.target)) {
-      setAuthorizationModal('')
-      console.log('outside')
+    if (modalRef.current && !modalRef.current.contains(e.target)) {
+      setAuthorizationModal("");
+      console.log("outside");
     }
 
-    console.log('inside')
-  }
-  
+    console.log("inside");
+  };
+
   useEffect(() => {
-    if(authorizationModal === 'signIn') {
-      document.addEventListener('mousedown', handleClickOutside);
+    if (authorizationModal === "signIn") {
+      document.addEventListener("mousedown", handleClickOutside);
 
       return () => {
-        document.removeEventListener('mousedown', handleClickOutside)
-      }
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
     }
-
-  }, [authorizationModal])
+  }, [authorizationModal]);
 
   return (
     <div>
-      <div className='w-screen h-screen fixed top-0 left-0 z-40 backdrop-filter backdrop-blur-sm'></div>
-    <div className= 'fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50  rounded-lg overflow-hidden'
->
-      <form onSubmit={handleSubmit}
-          className= 'w-[435px] h-[480px] bg-[white] flex flex-col justify-start gap-6 items-center rounded-lg'
-          ref={modalRef}>
-      <Img src={LogoMain} alt="" />
-      <Input className='rounded-lg border-bgPlaceBorder border-solid border placeholder:text-bgPlaceBorder focus:outline-none focus:border-green w-[389px] h-[52px] p-2' type="text" placeholder={t('mail')} onChange={handleChange} name= 'Email' value={formData.Email} />
-      <Input className='rounded-lg border-bgPlaceBorder border-solid border placeholder:text-bgPlaceBorder focus:outline-none focus:border-green w-[389px] h-[52px] p-2' type="password" placeholder={t('password')} onChange={handleChange}  name='Password' value={formData.Password}  />
-      <ForgotPasswordBtn>{t('forgotPassword')}</ForgotPasswordBtn>
-      <SignInBtn>{t('login')}</SignInBtn>
-      <TextDiv>
-        <p>{t('notRegisteredText')}</p>
-        <button>{t('signUp')}</button>
-      </TextDiv>
-      </form>
-
+      <div className="w-screen h-screen fixed top-0 left-0 z-40 backdrop-filter backdrop-blur-sm"></div>
+      <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50  rounded-lg overflow-hidden max-w-[768px]:mx-4">
+        <form
+          onSubmit={handleSubmit}
+          className="w-[435px] h-[480px] bg-[white] flex flex-col justify-start gap-6 items-center rounded-lg"
+          ref={modalRef}
+        >
+          <Img src={LogoMain} alt="" />
+          <Input
+            className="rounded-lg border-bgPlaceBorder border-solid border placeholder:text-bgPlaceBorder focus:outline-none focus:border-green w-[389px] h-[52px] p-2"
+            type="text"
+            placeholder={t("mail")}
+            onChange={handleChange}
+            name="Email"
+            value={formData.Email}
+          />
+          <Input
+            className="rounded-lg border-bgPlaceBorder border-solid border placeholder:text-bgPlaceBorder focus:outline-none focus:border-green w-[389px] h-[52px] p-2"
+            type="password"
+            placeholder={t("password")}
+            onChange={handleChange}
+            name="Password"
+            value={formData.Password}
+          />
+          <ForgotPasswordBtn>{t("forgotPassword")}</ForgotPasswordBtn>
+          <SignInBtn>{t("login")}</SignInBtn>
+          <TextDiv>
+            <p>{t("notRegisteredText")}</p>
+            <button>{t("signUp")}</button>
+          </TextDiv>
+        </form>
+      </div>
     </div>
-    </div>
-  )
-}
+  );
+};
 
-export default SignInModal
+export default SignInModal;
