@@ -17,6 +17,15 @@ const TrainContainer = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  @media(max-width: 1024px) {
+    height: 400px;
+    top: 90px;
+  }
+  @media(max-width: 767px) {
+    height: 480px;
+   
+  }
+
 `;
 
 const TrainText = styled.p`
@@ -30,6 +39,17 @@ const TrainText = styled.p`
   line-height: 48px;
   letter-spacing: 0em;
   text-align: left;
+  @media(max-width: 1024px) {
+    font-size: 24px;
+    line-height: 28px;
+    top: 151px;
+
+  }
+  @media(max-width: 767px) {
+    font-size: 30px;
+    line-height: 34px;
+    top: 180px;
+  }
 `;
 
 const ClickText = styled.p`
@@ -43,6 +63,16 @@ const ClickText = styled.p`
   line-height: 28px;
   letter-spacing: 0em;
   text-align: left;
+  @media(max-width: 1024px) {
+    font-size: 14px;
+    line-height: 16px;
+    top: 200px;
+  }
+  @media(max-width: 767px) {
+    font-size: 18px;
+    line-height: 20px;
+    top: 240px;
+  }
 `;
 
 const LanguageSwitchContainer = styled.div`
@@ -50,6 +80,14 @@ const LanguageSwitchContainer = styled.div`
   gap: 128px;
   position: fixed;
   top: 370px;
+  @media(max-width: 1024px) {
+    top: 260px;
+    gap: 100px;
+  }
+  @media(max-width: 767px) {
+    top: 315px;
+    gap: 140px;
+  }
 `;
 
 const LanguageText = styled.p`
@@ -60,6 +98,14 @@ const LanguageText = styled.p`
   line-height: 28px;
   letter-spacing: 0em;
   text-align: left;
+  @media(max-width: 1024px) {
+    font-size: 14px;
+    line-height: 16px;
+  }
+  @media(max-width: 767px) {
+    font-size: 18px;
+    line-height: 20px;
+  }
 `;
 
 const StartTrainButton = styled.button`
@@ -76,6 +122,23 @@ const StartTrainButton = styled.button`
   font-weight: 400;
   line-height: 21px;
   letter-spacing: 0em;
+  @media(max-width: 1024px) {
+    border-radius: 30px;
+    width: 170px;
+    height: 27px;
+    font-size: 11px;
+    font-weight: 400;
+    top: 390px;
+  }
+  @media(max-width: 767px) {
+    border-radius: 30px;
+    width: 202px;
+    height: 38px;
+    font-size: 16px;
+    font-weight: 400;
+    top: 440px;
+    padding-bottom: 4px;
+  }
 `;
 
 const SwitchTrainButton = styled.button`
@@ -84,6 +147,16 @@ const SwitchTrainButton = styled.button`
   height: 24px;
   position: fixed;
   top: 380px;
+  @media(max-width: 1024px) {
+  width: 23px;
+  height: 24px;
+  top: 260px;
+  }
+  @media(max-width: 767px) {
+    width: 23px;
+    height: 24px;
+    top: 315px;
+  }
 `;
 
 const GridContainer = styled.div`
@@ -92,6 +165,14 @@ const GridContainer = styled.div`
   grid-template-columns: repeat(3, 1fr);
   position: fixed;
   top: 440px;
+  @media(max-width: 1024px) {
+    gap: 60px;
+    top: 330px;
+  }
+  @media(max-width: 767px) {
+    gap: 130px;
+    top: 380px;
+  }
 `;
 
 const NumberButton = styled.button`
@@ -99,6 +180,14 @@ const NumberButton = styled.button`
   font-weight: bold;
   font-size: 27px;
   ${(props) => props.isSelected && "color: #04AA6D;"}
+  @media(max-width: 1024px) {
+    font-size: 18px;
+    line-height: 16px;
+  }
+  @media(max-width: 767px) {
+    font-size: 18px;
+    line-height: 20px;
+  }
 `;
 
 const Train = () => {
