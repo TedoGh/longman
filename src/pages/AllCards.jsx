@@ -322,6 +322,30 @@ const EmptyDiv = styled.div`
   }
   }
 `;
+
+const P = styled.p`
+font-family: Helvetica;
+font-size: 24px;
+font-weight: 700;
+line-height: 28px;
+letter-spacing: 0em;
+text-align: left;
+color: #B6B6B9;
+margin-top: 260px;
+@media(max-width: 1024px) {
+  margin-top: 209px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 16px;
+}
+
+@media(max-width: 767px) {
+ margin-top: 203px;
+ font-size: 18px;
+font-weight: 700;
+line-height: 20px;
+}
+`
 export default function AllCards() {
   const { cards, updateCardsContext } = useCardsDataContext();
   const { t } = useTranslation();
@@ -501,7 +525,7 @@ export default function AllCards() {
           <button onClick={handleLanguageChange}>
             {language} {t("mainLanguage")}
           </button>
-          {cardsOnCurrentPage.length === 0 && <p className="notFound">{t('cardsNotFound')}</p>}
+          {cardsOnCurrentPage.length === 0 && inputValue !== '' && <p className="notFound">{t('cardsNotFound')}</p>}
         </SecondaryDiv>
         <CardsDiv cardsOnCurrentPage={cardsOnCurrentPage}>
           {cardsOnCurrentPage.map((innerArray, index) => (
@@ -529,13 +553,14 @@ export default function AllCards() {
             pages={pages}
           />
         )}
-      </MainDiv>
-      {cards.length === 0 && (
-        <EmptyDiv>
+        {cards.length === 0 && (
+        <div>
           <div> </div>
-          <p>{t("cardsNotAdded")}</p>
-        </EmptyDiv>
+          <P>{t("cardsNotAdded")}</P>
+        </div>
       )}
+      </MainDiv>
+      
       
     </div>
   );

@@ -90,7 +90,9 @@ const AddCardForm = ({ modal, modalOpen, setModalOpen }) => {
     }
   };
   
-  
+  const handleClickOutside = (e) => {
+    if(!modalRef.current.contains(e.target)) setModalOpen(false);
+  }
 
   useEffect(() => {
     if (modalOpen) {

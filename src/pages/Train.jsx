@@ -7,19 +7,20 @@ import React, { useState, useEffect, useRef } from "react";
 import { useCardsDataContext } from "./Context/CardsContext";
 import { toast } from "react-hot-toast";
 
+
 const TrainContainer = styled.div`
   width: 100%;
   height: 618px;
   background: url("https://img.ge/images/62318667777440020532.png");
-  position: fixed;
-  top: 96px;
+ 
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  
   align-items: center;
   flex-direction: column;
   @media(max-width: 1024px) {
     height: 400px;
-    top: 90px;
+    
   }
   @media(max-width: 767px) {
     height: 480px;
@@ -31,8 +32,8 @@ const TrainContainer = styled.div`
 const TrainText = styled.p`
   color: white;
   font-size: 42px;
-  position: fixed;
-  top: 199px;
+  
+  margin-top: 105px;
   font-family: Helvetica;
   font-size: 42px;
   font-weight: 700;
@@ -42,21 +43,23 @@ const TrainText = styled.p`
   @media(max-width: 1024px) {
     font-size: 24px;
     line-height: 28px;
-    top: 151px;
+    margin-top: 52px;
+   
 
   }
   @media(max-width: 767px) {
     font-size: 30px;
     line-height: 34px;
-    top: 180px;
+    margin-top: 92px;
+    
   }
 `;
 
 const ClickText = styled.p`
   color: #fff4a3;
+  margin-top: 29px;
 
-  position: fixed;
-  top: 276px;
+ 
   font-family: Helvetica;
   font-size: 24px;
   font-weight: 700;
@@ -66,27 +69,32 @@ const ClickText = styled.p`
   @media(max-width: 1024px) {
     font-size: 14px;
     line-height: 16px;
-    top: 200px;
+    margin-top: 17.6px;
+    
   }
   @media(max-width: 767px) {
     font-size: 18px;
     line-height: 20px;
-    top: 240px;
+    margin-top: 29px;
+   
   }
 `;
 
 const LanguageSwitchContainer = styled.div`
   display: flex;
-  gap: 128px;
-  position: fixed;
-  top: 370px;
+  gap: 42px;
+  margin-top: 66px;
+  margin-bottom: 42px;
+  
   @media(max-width: 1024px) {
-    top: 260px;
-    gap: 100px;
+    margin-top: 43px;
+  margin-bottom: 41px;
+    gap: 44px;
   }
   @media(max-width: 767px) {
-    top: 315px;
-    gap: 140px;
+    margin-top: 38px;
+    margin-bottom: 46px;
+    gap: 67px;
   }
 `;
 
@@ -115,8 +123,8 @@ const StartTrainButton = styled.button`
   border-radius: 30px;
   width: 294px;
   height: 47px;
-  position: fixed;
-  top: 510px;
+  
+ 
   font-family: Helvetica;
   font-size: 18px;
   font-weight: 400;
@@ -128,7 +136,7 @@ const StartTrainButton = styled.button`
     height: 27px;
     font-size: 11px;
     font-weight: 400;
-    top: 390px;
+    
   }
   @media(max-width: 767px) {
     border-radius: 30px;
@@ -136,7 +144,7 @@ const StartTrainButton = styled.button`
     height: 38px;
     font-size: 16px;
     font-weight: 400;
-    top: 440px;
+    
     padding-bottom: 4px;
   }
 `;
@@ -145,17 +153,17 @@ const SwitchTrainButton = styled.button`
   background: url(${SwitchTrainImage});
   width: 23px;
   height: 24px;
-  position: fixed;
-  top: 380px;
+ 
+  
   @media(max-width: 1024px) {
   width: 23px;
   height: 24px;
-  top: 260px;
+  
   }
   @media(max-width: 767px) {
     width: 23px;
     height: 24px;
-    top: 315px;
+    
   }
 `;
 
@@ -163,15 +171,16 @@ const GridContainer = styled.div`
   display: grid;
   gap: 120px;
   grid-template-columns: repeat(3, 1fr);
-  position: fixed;
-  top: 440px;
+  margin-bottom: 42px;
+
+  
   @media(max-width: 1024px) {
-    gap: 60px;
-    top: 330px;
+    gap: 87px;
+    
   }
   @media(max-width: 767px) {
-    gap: 130px;
-    top: 380px;
+    gap: 108px;
+    
   }
 `;
 
@@ -227,14 +236,12 @@ const Train = () => {
         <LanguageText isActive={languageState === "GEO"}>
           {t("trainPageGeoLangText")}
         </LanguageText>
+        <SwitchTrainButton onClick={languageSwitch} />
         <LanguageText isActive={languageState === "ENG"}>
           {t("trainPageEngLangText")}
         </LanguageText>
       </LanguageSwitchContainer>
-      <StartTrainButton onClick={handleClick}>
-        {t("trainPageStartTrainBNText")}
-      </StartTrainButton>
-      <SwitchTrainButton onClick={languageSwitch} />
+     
       <GridContainer>
         <NumberButton
           isSelected={selectedNumber === 10}
@@ -255,6 +262,9 @@ const Train = () => {
           30
         </NumberButton>
       </GridContainer>
+      <StartTrainButton onClick={handleClick}>
+        {t("trainPageStartTrainBNText")}
+      </StartTrainButton>
 
       {active && (
         <GuessCard

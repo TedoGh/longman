@@ -3,6 +3,9 @@ import { styled } from "styled-components";
 import LogoMain from "../assets/images/LogoMain.png";
 import { useTranslation } from "react-i18next";
 
+
+
+
 const ErrorText = styled.p`
   font-family: "Helvetica", sans-serif;
   font-weight: 400;
