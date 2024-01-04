@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 import ConfirmationModal from "./ConfirmationModal";
+import { AiOutlineClose } from "react-icons/ai";
 
 const StyledModalContainer = styled.div`
   position: fixed;
@@ -28,18 +29,41 @@ const StyledModalContent = styled.div`
   justify-content: flex-start;
   align-items: center;
   border-radius: 10px;
-  padding: 20px;
+ 
+  position: relative;
+
+
+  & .x {
+    font-size: 30px;
+    position: absolute;
+    right: 35px;
+    top: 16px;
+    color: #8c8c8c;
+    
+  }
   @media(max-width: 1024px) {
     height: 410px;
     width: 380px;
     border-radius: 10px;
+
+    & .x {
+      font-size: 22px;
+      right: 28px;
+      top: 11px;
+          }
   
   }
   @media(max-width: 767px) {
     height: 385px;
     width: 358px;
     border-radius: 10px;
-  padding: 20px;
+ 
+
+  & .x {
+    font-size: 17px;
+    right: 25px;
+    top: 10px;
+        }
   }
 `;
 
@@ -51,7 +75,7 @@ const StyledStepIndicator = styled.div`
   text-align: center;
   display: flex;
   align-items: center;
-  margin-top: 18px;
+  margin-top: 12px;
   font-family: Helvetica;
   font-size: 22px;
   
@@ -67,7 +91,7 @@ const StyledStepIndicator = styled.div`
   @media(max-width: 1024px) {
     font-size: 14px;
     left: 33px;
-    margin-top: 18px;
+    margin-top: 12px;
 
     & .text-xl {
       font-size: 14px;
@@ -79,12 +103,12 @@ const StyledStepIndicator = styled.div`
   @media(max-width: 767px) {
     font-size: 11px;
     left: 20px;
-    margin-top: 14px;
+    margin-top: 12px;
 
     & .text-xl {
       font-size: 11px;
       font-weight: 400;
-      line-height: 18px;
+      line-height: 14px;
      
     }
   }
@@ -99,16 +123,16 @@ const StyledTitle = styled.div`
   line-height: 28px;
   letter-spacing: 0em;
   text-align: left;
-  margin-top: 25px;
+  margin-top: 18px;
   @media(max-width: 1024px) {
   font-size: 16px;
   line-height: 18px;
-  margin-top: 18px;
+  margin-top: 14px;
   }
   @media(max-width: 767px) {
   font-size: 15px;
   line-height: 18px;
-  margin-top: 14px;
+  margin-top: 10px;
   }
 `;
 
@@ -444,15 +468,20 @@ const GuessCard = ({
       <div className="w-screen h-screen fixed top-0 left-0 z-40 backdrop-filter backdrop-blur-sm" />
       {!exitModalOpen && !examFinished && (
         <StyledModalContainer>
+          
           <StyledModalContent ref={modalRef}>
+            <div style={{display: 'flex', flexDirection: 'row'}}>
             <StyledStepIndicator>
               <div className="text-xl">{questionIndex + 1}</div>/
               {selectedNumber}
             </StyledStepIndicator>
             <StyledTitle>{t("guessCard")}</StyledTitle>
+            <button className="x" onClick={() => setExitModalOpen(true)}><AiOutlineClose /></button>
+            </div>
             <StyledAnswerButton>
               {currentQuestion ? currentQuestion.question : ""}
             </StyledAnswerButton>
+            
             <StyledAnswerGrid>
               <StyledAnswerOption
                 disabled={questionsArray[questionIndex]?.submited === true}

@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import LanguageSwitcher from "./LanguageSwitcher";
 import Logo from "./Logo";
 import AuthorizationBtns from "./AuthorizationBtns";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Burger from "../assets/images/burger.svg";
 import HeaderData from "../data/HeaderData";
 
@@ -13,6 +13,7 @@ export default function Header() {
   const [showMenu, setShowMenu] = useState(false);
   const [activeButton, setActiveButton] = useState();
   const [signUpModal, setSignUpModal] = useState();
+  const menuRef = useRef(null);
 
   const toggleMenu = () => {
     setShowMenu(!showMenu);
@@ -55,6 +56,24 @@ export default function Header() {
     },
   ];
 
+  const handleClickOutside = (e) => {
+    if (menuRef.current && !menuRef.current.contains(e.target)) {
+      setShowMenu(false);
+      
+    }
+
+  };
+
+  useEffect(() => {
+    
+      document.addEventListener("mousedown", handleClickOutside);
+
+      return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    
+  }, []);
+
   return (
     <header className="p-5">
       <div className="max-w-[1200px] mx-auto">
@@ -78,7 +97,7 @@ export default function Header() {
             </ul>
             <div className="flex gap-8">
               <LanguageSwitcher />
-              <AuthorizationBtns />
+              <AuthorizationBtns/>
             </div>
           </div>
           <div>
@@ -91,8 +110,8 @@ export default function Header() {
             </div>
             {/* Mobile Menu */}
             {showMenu && (
-              <div className="flex fixed flex-col w-3/4 h-screen top-0 right-full left-0 pl-7 justify-center bg-[#fff] gap-3 z-10 lg:hidden animate__animated animate__bounceInLeft">
-                <div className="relative bottom-16">
+              <div ref={menuRef} className="flex fixed flex-col w-3/4 h-screen top-0 right-full left-0 pl-7 justify-center bg-[#fff] gap-3 z-10 lg:hidden animate__animated animate__bounceInLeft">
+                <div className="relative w-full bottom-16">
                   <AuthorizationBtns setShowMenu={setShowMenu} />
                 </div>
                 <ul>
