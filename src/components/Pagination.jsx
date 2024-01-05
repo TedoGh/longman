@@ -13,7 +13,7 @@ const Pagination = ({ data, itemsPerPage, setCurrentPage, currentPage }) => {
   };
 
   return (
-    <div>
+    <>
       <div className="flex gap-5">
         <button
           className="text-[#1d2939] font-bold"
@@ -45,7 +45,7 @@ const Pagination = ({ data, itemsPerPage, setCurrentPage, currentPage }) => {
           {">>"}
         </button>
       </div>
-    </div>
+    </>
   );
 };
 

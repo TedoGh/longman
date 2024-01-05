@@ -7,76 +7,62 @@ import React, { useState, useEffect, useRef } from "react";
 import { useCardsDataContext } from "./Context/CardsContext";
 import { toast } from "react-hot-toast";
 
-
 const TrainContainer = styled.div`
   width: 100%;
   height: 618px;
   background: url("https://img.ge/images/62318667777440020532.png");
- 
+
   display: flex;
   flex-direction: column;
-  
+
   align-items: center;
   flex-direction: column;
-  @media(max-width: 1024px) {
+  @media (max-width: 1024px) {
     height: 400px;
-    
   }
-  @media(max-width: 767px) {
+  @media (max-width: 767px) {
     height: 480px;
-   
   }
-
 `;
 
 const TrainText = styled.p`
   color: white;
   font-size: 42px;
-  
   margin-top: 105px;
-  font-family: Helvetica;
   font-size: 42px;
   font-weight: 700;
   line-height: 48px;
   letter-spacing: 0em;
   text-align: left;
-  @media(max-width: 1024px) {
+  @media (max-width: 1024px) {
     font-size: 24px;
     line-height: 28px;
     margin-top: 52px;
-   
-
   }
-  @media(max-width: 767px) {
+  @media (max-width: 767px) {
     font-size: 30px;
     line-height: 34px;
     margin-top: 92px;
-    
   }
 `;
 
 const ClickText = styled.p`
   color: #fff4a3;
   margin-top: 29px;
-
- 
-  font-family: Helvetica;
   font-size: 24px;
   font-weight: 700;
   line-height: 28px;
   letter-spacing: 0em;
   text-align: left;
-  @media(max-width: 1024px) {
+  @media (max-width: 1024px) {
     font-size: 14px;
     line-height: 16px;
     margin-top: 17.6px;
-    
   }
-  @media(max-width: 767px) {
+  @media (max-width: 767px) {
     font-size: 18px;
     line-height: 20px;
     margin-top: 29px;
-   
   }
 `;
 
@@ -85,13 +71,13 @@ const LanguageSwitchContainer = styled.div`
   gap: 42px;
   margin-top: 66px;
   margin-bottom: 42px;
-  
-  @media(max-width: 1024px) {
+
+  @media (max-width: 1024px) {
     margin-top: 43px;
-  margin-bottom: 41px;
+    margin-bottom: 41px;
     gap: 44px;
   }
-  @media(max-width: 767px) {
+  @media (max-width: 767px) {
     margin-top: 38px;
     margin-bottom: 46px;
     gap: 67px;
@@ -100,17 +86,16 @@ const LanguageSwitchContainer = styled.div`
 
 const LanguageText = styled.p`
   color: ${(props) => (props.isActive ? "#04AA6D" : "#FFF4A3")};
-  font-family: Helvetica;
   font-size: 24px;
   font-weight: 700;
   line-height: 28px;
   letter-spacing: 0em;
   text-align: left;
-  @media(max-width: 1024px) {
+  @media (max-width: 1024px) {
     font-size: 14px;
     line-height: 16px;
   }
-  @media(max-width: 767px) {
+  @media (max-width: 767px) {
     font-size: 18px;
     line-height: 20px;
   }
@@ -123,28 +108,24 @@ const StartTrainButton = styled.button`
   border-radius: 30px;
   width: 294px;
   height: 47px;
-  
- 
-  font-family: Helvetica;
   font-size: 18px;
   font-weight: 400;
   line-height: 21px;
   letter-spacing: 0em;
-  @media(max-width: 1024px) {
+  @media (max-width: 1024px) {
     border-radius: 30px;
     width: 170px;
     height: 27px;
     font-size: 11px;
     font-weight: 400;
-    
   }
-  @media(max-width: 767px) {
+  @media (max-width: 767px) {
     border-radius: 30px;
     width: 202px;
     height: 38px;
     font-size: 16px;
     font-weight: 400;
-    
+
     padding-bottom: 4px;
   }
 `;
@@ -153,17 +134,14 @@ const SwitchTrainButton = styled.button`
   background: url(${SwitchTrainImage});
   width: 23px;
   height: 24px;
- 
-  
-  @media(max-width: 1024px) {
-  width: 23px;
-  height: 24px;
-  
-  }
-  @media(max-width: 767px) {
+
+  @media (max-width: 1024px) {
     width: 23px;
     height: 24px;
-    
+  }
+  @media (max-width: 767px) {
+    width: 23px;
+    height: 24px;
   }
 `;
 
@@ -173,14 +151,11 @@ const GridContainer = styled.div`
   grid-template-columns: repeat(3, 1fr);
   margin-bottom: 42px;
 
-  
-  @media(max-width: 1024px) {
+  @media (max-width: 1024px) {
     gap: 87px;
-    
   }
-  @media(max-width: 767px) {
+  @media (max-width: 767px) {
     gap: 108px;
-    
   }
 `;
 
@@ -193,7 +168,7 @@ const NumberButton = styled.button`
     font-size: 18px;
     line-height: 16px;
   }
-  @media(max-width: 767px) {
+  @media (max-width: 767px) {
     font-size: 18px;
     line-height: 20px;
   }
@@ -241,7 +216,7 @@ const Train = () => {
           {t("trainPageEngLangText")}
         </LanguageText>
       </LanguageSwitchContainer>
-     
+
       <GridContainer>
         <NumberButton
           isSelected={selectedNumber === 10}

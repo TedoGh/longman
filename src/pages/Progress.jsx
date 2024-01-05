@@ -1,7 +1,5 @@
-import { useState } from "react";
-import Pagination from "../components/Pagination";
-import ProgressHistoryLists from "../components/ProgressHistoryLists";
 import ProgressHistory from "../components/ProgressHistory";
+import { Link } from "react-router-dom";
 
 export default function Progress() {
   return (
@@ -24,7 +22,7 @@ export default function Progress() {
                   გავლა.
                 </p>
                 <button className="bg-[#1ACD81] hover:bg-[#0fa968] text-[#fff] font-bold rounded-[30px] w-[294px] h-[47px]  p-[10px] gap-[10px]">
-                  ვარჯიშის დაწყება
+                  <Link to={"/longman/train"}>ვარჯიშის დაწყება</Link>
                 </button>
               </div>
             </div>
