@@ -1,13 +1,7 @@
 import React, { useState } from "react";
 import Pagination from "./Pagination";
 
-const ProgressHistoryLists = () => {
-  // const itemsPerPage = 3;
-  // const [currentPage, setCurrentPage] = useState(1);
-  // const startIndex = (currentPage - 1) * itemsPerPage;
-  // const endIndex = startIndex + itemsPerPage;
-  // const currentItems = data.slice(startIndex, endIndex);
-
+const ProgressHistoryList = () => {
   const dataList = [
     { id: 1, result: 67, resultTime: "09/09/2023" },
     { id: 2, result: 67, resultTime: "09/09/2023" },
@@ -17,9 +11,15 @@ const ProgressHistoryLists = () => {
     { id: 6, result: 67, resultTime: "09/09/2023" },
   ];
 
+  const itemsPerPage = 3;
+  const [currentPage, setCurrentPage] = useState(1);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentItems = dataList.slice(startIndex, endIndex);
+
   return (
     <>
-      {dataList.map((item) => {
+      {currentItems.map((item) => {
         return (
           <div
             className={
@@ -42,26 +42,16 @@ const ProgressHistoryLists = () => {
           </div>
         );
       })}
-
-      {/* <div className="flex justify-center">
+      <div className="flex justify-center">
         <Pagination
           data={dataList}
           itemsPerPage={itemsPerPage}
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}
         />
-      </div> */}
+      </div>
     </>
   );
 };
 
-export default ProgressHistoryLists;
-
-{
-  /* <Pagination
-        data={data}
-        itemsPerPage={itemsPerPage}
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-      /> */
-}
+export default ProgressHistoryList;

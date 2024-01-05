@@ -13,10 +13,9 @@ const MainDiv = styled.div`
   height: 1077px;
   background-color: #282a35;
   position: relative;
-  display:flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
- 
 
   @media (max-width: 1024px) {
     height: 980px;
@@ -25,9 +24,6 @@ const MainDiv = styled.div`
   @media (max-width: 767px) {
     height: 1050px;
   }
-
-  
-  
 `;
 
 const SecondaryDiv = styled.div`
@@ -45,7 +41,6 @@ const SecondaryDiv = styled.div`
   }
 
   & p {
-    font-family: Helvetica;
     font-size: 24px;
     font-weight: 700;
     line-height: 28px;
@@ -57,41 +52,39 @@ const SecondaryDiv = styled.div`
   @media (max-width: 1024px) {
     padding-top: 57px;
     line-height: 27.6px;
-  & h1 {
-    font-size: 24px;
-    font-weight: 700;
-    line-height: 27.6px;
-    
-  }
-  & p {
-    font-size: 14px;
-    line-height: 16px;
-    margin-bottom: 36px;
-  }
+    & h1 {
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 27.6px;
+    }
+    & p {
+      font-size: 14px;
+      line-height: 16px;
+      margin-bottom: 36px;
+    }
   }
 
-  & .notFound{
+  & .notFound {
     margin-top: 100px;
   }
 
   @media (max-width: 767px) {
     padding-top: 83px;
-   
-  & h1 {
-    font-size: 30px;
-    font-weight: 700;
-    line-height: 34.6px;
-    margin-bottom: 26px;
-    
-  }
-  & p {
-    font-size: 14px;
-    line-height: 16px;
-    margin-bottom: 37px;
-  }
+
+    & h1 {
+      font-size: 30px;
+      font-weight: 700;
+      line-height: 34.6px;
+      margin-bottom: 26px;
+    }
+    & p {
+      font-size: 14px;
+      line-height: 16px;
+      margin-bottom: 37px;
+    }
   }
 
-  & .notFound{
+  & .notFound {
     margin-top: 209px;
   }
 `;
@@ -129,143 +122,113 @@ const SearchDiv = styled.div`
     margin-top: 13px;
   }
 
-  
-
-  @media(max-width: 1024px) {
+  @media (max-width: 1024px) {
     width: 431px;
     height: 46px;
     border-radius: 26px;
-  
+
     border-radius: 25.96px;
     gap: 6.92px;
     padding-left: 20px;
 
     & input {
-      font-family: Helvetica;
       font-weight: 400;
       line-height: 18px;
       letter-spacing: 0em;
       text-align: left;
       font-size: 16px;
       padding-bottom: 2px;
-
     }
 
     & .searchIcon {
-      
       font-size: 20px;
-      
     }
-
   }
 
-  @media(max-width: 767px) {
+  @media (max-width: 767px) {
     width: 356px;
     height: 46px;
     border-radius: 21px;
-    
-    
+
     gap: 6px;
     padding-left: 10px;
 
     & input {
-      font-family: Helvetica;
       font-weight: 400;
       line-height: 16px;
       letter-spacing: 0em;
       text-align: left;
       font-size: 14px;
       padding-bottom: 10px;
-      
-
     }
 
     & .searchIcon {
       align-self: flex-start;
       font-size: 14px;
-      
     }
-
   }
 `;
 
 const CardsDiv = styled.div`
   display: flex;
   flex-direction: row;
-  align-self: ${(props) => { return props.cardsOnCurrentPage.length > 1 ? 'center' : 'flex-start'}};
+  align-self: ${(props) => {
+    return props.cardsOnCurrentPage.length > 1 ? "center" : "flex-start";
+  }};
   justify-content: flex-start;
   gap: 160px;
   margin-top: 43px;
   margin-left: 100px;
   margin-right: 100px;
-  positionj-fixed;
 
- @media(max-width:1241px) {
-  gap: 100px;
-
- } 
-
- @media(max-width:1241px) {
-  gap: 90px;
-
- } 
-
-
- @media(max-width:1124px) {
-  gap: 80px;
- 
-  
- } 
-
- @media(max-width:1077px) {
-  gap: 70px;
-  
-  
- } 
-
-
-
-  @media(max-width: 1024px) {
-  gap: 200px;
-  margin-top: 60px;
-  margin-left: 136px;
-  margin-right: 136px;
+  @media (max-width: 1241px) {
+    gap: 100px;
   }
 
-  @media(max-width:1000px) {
-    gap: 150px;
-   
-    
-   } 
-
-   @media(max-width:1000px) {
-    gap: 120px;
-    
-    
-   } 
-
-   @media(max-width: 885px) {
+  @media (max-width: 1241px) {
     gap: 90px;
-    
-    
-    
-   } 
+  }
 
-   @media(max-width: 845px) {
+  @media (max-width: 1124px) {
+    gap: 80px;
+  }
+
+  @media (max-width: 1077px) {
     gap: 70px;
-   
-  
-   }
-   @media(max-width: 767px) {
+  }
+
+  @media (max-width: 1024px) {
+    gap: 200px;
+    margin-top: 60px;
+    margin-left: 136px;
+    margin-right: 136px;
+  }
+
+  @media (max-width: 1000px) {
+    gap: 150px;
+  }
+
+  @media (max-width: 1000px) {
+    gap: 120px;
+  }
+
+  @media (max-width: 885px) {
+    gap: 90px;
+  }
+
+  @media (max-width: 845px) {
+    gap: 70px;
+  }
+  @media (max-width: 767px) {
     align-self: center;
-   }
+  }
 `;
 
 const CardColumnDiv = styled.div`
   display: flex;
   flex-direction: column;
   gap: 50px;
-  @media(max-width: 1024px) {
+  @media (max-width: 1024px) {
     gap: 30px;
   }
 `;
@@ -287,65 +250,61 @@ const EmptyDiv = styled.div`
 
   & p {
     margin-top: 50px;
-    font-family: Helvetica;
     font-size: 24px;
     font-weight: 700;
     line-height: 28px;
     letter-spacing: 0em;
-
     color: #b6b6b9;
   }
-  @media(max-width: 1024px) {
+  @media (max-width: 1024px) {
     position: absolute;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  top: 400px;
-  left: 455px;
-  & div {
-    width: 250px;
-    height: 250px;
-    border-radius: 126px;
-    background-color: #393c49;
-  }
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    top: 400px;
+    left: 455px;
+    & div {
+      width: 250px;
+      height: 250px;
+      border-radius: 126px;
+      background-color: #393c49;
+    }
 
-  & p {
-    margin-top: 50px;
-    font-family: Helvetica;
-    font-size: 24px;
-    font-weight: 700;
-    line-height: 28px;
-    letter-spacing: 0em;
+    & p {
+      margin-top: 50px;
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 28px;
+      letter-spacing: 0em;
 
-    color: #b6b6b9;
-  }
+      color: #b6b6b9;
+    }
   }
 `;
 
 const P = styled.p`
-font-family: Helvetica;
-font-size: 24px;
-font-weight: 700;
-line-height: 28px;
-letter-spacing: 0em;
-text-align: left;
-color: #B6B6B9;
-margin-top: 260px;
-@media(max-width: 1024px) {
-  margin-top: 209px;
-  font-size: 14px;
+  font-size: 24px;
   font-weight: 700;
-  line-height: 16px;
-}
+  line-height: 28px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #b6b6b9;
+  margin-top: 260px;
+  @media (max-width: 1024px) {
+    margin-top: 209px;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 16px;
+  }
 
-@media(max-width: 767px) {
- margin-top: 203px;
- font-size: 18px;
-font-weight: 700;
-line-height: 20px;
-}
-`
+  @media (max-width: 767px) {
+    margin-top: 203px;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 20px;
+  }
+`;
 export default function AllCards() {
   const { cards, updateCardsContext } = useCardsDataContext();
   const { t } = useTranslation();
@@ -366,8 +325,8 @@ export default function AllCards() {
   const [cardsOnCurrentPage, setCardsOnCurrentPage] = useState([]);
   const [language, setLanguage] = useState("ENG");
   // const pages = Math.ceil(columns / 3);
-  const [pages,setPages] = useState();
-  const [screenWidth,setScreenWidth] = useState(window.innerWidth);
+  const [pages, setPages] = useState();
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   let currentPage = searchParams.get("page")
     ? Number(searchParams.get("page"))
     : 1;
@@ -382,58 +341,49 @@ export default function AllCards() {
   };
 
   const handleInputChange = () => {
-    searchParams.set("page", '1');
+    searchParams.set("page", "1");
     setSearchParams(searchParams);
     setInputValue(searchRef.current.value.toLowerCase());
   };
 
   const handleDeleteCard = (card) => {
-   
     const newCards = cards.filter((c) => c.id !== card.id);
     updateCardsContext(newCards);
   };
 
   const handleResize = () => {
-    setScreenWidth(window.innerWidth)
-  }
-
-  useEffect(()=> {
-    window.addEventListener('resize',handleResize)
-    console.log(screenWidth)
-    return() => {
-      window.removeEventListener('resize',handleResize)
-    }
-
-  },[window.innerWidth])
-
-  
-
-
+    setScreenWidth(window.innerWidth);
+  };
 
   useEffect(() => {
-    
+    window.addEventListener("resize", handleResize);
+    console.log(screenWidth);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [window.innerWidth]);
+
+  useEffect(() => {
     for (let i = 1; i <= columns; i++) {
       if (inputValue === "") {
         const array = cards.slice((i - 1) * 5, i * 5);
         dividedCardsArr.push(array);
       }
       if (inputValue !== "") {
-       if(language === 'GEO') {const array = cards
-          .filter(
-            (card) =>
-            card.georgian.toLowerCase().startsWith(inputValue) 
-            
-          )
-          .slice((i - 1) * 5, i * 5);
-        dividedCardsArr.push(array);}
-       if(language === 'ENG') {const array = cards
-          .filter(
-            (card) =>
-            
-            card.english.toLowerCase().startsWith(inputValue)
-          )
-          .slice((i - 1) * 5, i * 5);
-        dividedCardsArr.push(array);}
+        if (language === "GEO") {
+          const array = cards
+            .filter((card) =>
+              card.georgian.toLowerCase().startsWith(inputValue)
+            )
+            .slice((i - 1) * 5, i * 5);
+          dividedCardsArr.push(array);
+        }
+        if (language === "ENG") {
+          const array = cards
+            .filter((card) => card.english.toLowerCase().startsWith(inputValue))
+            .slice((i - 1) * 5, i * 5);
+          dividedCardsArr.push(array);
+        }
       }
     }
 
@@ -441,26 +391,24 @@ export default function AllCards() {
     //   dividedCardsArr.slice((currentPage - 1) * 3, currentPage * 3)
     // )
 
-    if(screenWidth > 1024) {
-      setPages(Math.ceil(columns / 3))
+    if (screenWidth > 1024) {
+      setPages(Math.ceil(columns / 3));
       setCardsOnCurrentPage(
         dividedCardsArr.slice((currentPage - 1) * 3, currentPage * 3)
-      )
+      );
     }
-    if(screenWidth <= 1024 && screenWidth > 767) {
-      setPages(Math.ceil(columns / 2))
+    if (screenWidth <= 1024 && screenWidth > 767) {
+      setPages(Math.ceil(columns / 2));
       setCardsOnCurrentPage(
         dividedCardsArr.slice((currentPage - 1) * 2, currentPage * 2)
-      )
+      );
     }
-    if(screenWidth <= 767) {
-      setPages(Math.ceil(columns))
+    if (screenWidth <= 767) {
+      setPages(Math.ceil(columns));
       setCardsOnCurrentPage(
         dividedCardsArr.slice((currentPage - 1) * 1, currentPage * 1)
-      )
+      );
     }
-
-   
   }, [inputValue, cards, currentPage, screenWidth]);
 
   // useEffect(()=> {
@@ -481,35 +429,28 @@ export default function AllCards() {
   //   }
   // },[screenWidth])
 
-
   useEffect(() => {
-    if(currentPage > pages) {
-    searchParams.set("page", pages);
-    setSearchParams(searchParams);
+    if (currentPage > pages) {
+      searchParams.set("page", pages);
+      setSearchParams(searchParams);
     }
-  }, [pages])
-
-  
+  }, [pages]);
 
   const nextPage = () => {
     if (currentPage !== pages)
       searchParams.set("page", (currentPage + 1).toString());
     setSearchParams(searchParams);
-   
-    
   };
 
   const prevPage = () => {
     if (currentPage !== 1)
       searchParams.set("page", (currentPage - 1).toString());
     setSearchParams(searchParams);
-    
   };
 
-  
   return (
     <div>
-      <MainDiv >
+      <MainDiv>
         <SecondaryDiv>
           <h1>{t("allCardsText")}</h1>
           <p>{t("allCardsPressCardText")}</p>
@@ -525,11 +466,13 @@ export default function AllCards() {
           <button onClick={handleLanguageChange}>
             {language} {t("mainLanguage")}
           </button>
-          {cardsOnCurrentPage.length === 0 && inputValue !== '' && <p className="notFound">{t('cardsNotFound')}</p>}
+          {cardsOnCurrentPage.length === 0 && inputValue !== "" && (
+            <p className="notFound">{t("cardsNotFound")}</p>
+          )}
         </SecondaryDiv>
         <CardsDiv cardsOnCurrentPage={cardsOnCurrentPage}>
           {cardsOnCurrentPage.map((innerArray, index) => (
-            <CardColumnDiv  key={index}>
+            <CardColumnDiv key={index}>
               {innerArray.map((card) => (
                 <CardComponent
                   index={index}
@@ -554,14 +497,12 @@ export default function AllCards() {
           />
         )}
         {cards.length === 0 && (
-        <div>
-          <div> </div>
-          <P>{t("cardsNotAdded")}</P>
-        </div>
-      )}
+          <div>
+            <div> </div>
+            <P>{t("cardsNotAdded")}</P>
+          </div>
+        )}
       </MainDiv>
-      
-      
     </div>
   );
 }

@@ -17,7 +17,7 @@
   "trainPageGeoLangText": "Georgian",
   "trainPageEngLangText": "English",
   "trainPageStartTrainBNText": "Start train",
-  "validationError" : "Input field is empty",
+  "validationError": "Input field is empty",
   "mail": "E-mail",
   "password": "Password",
   "login": "Log in",
@@ -38,14 +38,14 @@
   "searchCard": "Search Card",
   "deleteCardText": "Delete Confirmation",
   "deleteCautionText": "After deleting the card data will be lost",
-  "backText" : "Go Back",
+  "backText": "Go Back",
   "delete": "Delete",
   "mainLanguage": "is selected as front side language",
-  "english" : "English",
+  "english": "English",
   "georgian": "Georgian",
   "cardsNotAdded": "Cards are not added yet",
   "cardsSucessfullyAdded": "Card successfully added",
-  "notEnaughCards":  "There is not enaugh cards added",
+  "notEnaughCards": "There is not enaugh cards added",
   "cancelTrainingPromptText": "Are you sure to finish training?",
   "resultsNotSavedText": "Results will not be saved",
   "guessCard": "Guess the card",
@@ -59,11 +59,22 @@
   "wrong": "Wrong",
   "checkAnswers": "Review Answers",
   "finish": "Finish",
-  "cardsNotFound": "Cards Not Found"
-  
-
-
-
-
-
+  "cardsNotFound": "Cards Not Found",
+  "historyOurSite": "History of our site",
+  "historyOurSitePart1": "Welcome to FlashCard, where words transform minds. Our journey began with a simple but powerful idea: to make learning new words an enjoyable and effective experience for everyone.",
+  "historyOurSitePart2": "Founded by a passionate team of language enthusiasts, FlashCard emerged as an answer to the need for innovative, user-friendly platforms that prioritize dynamic vocabulary acquisition. We envisioned a space where students could escape the monotony of traditional memorization methods and experience the joy of discovering and mastering new words.",
+  "historyOurSitePart3": "Over the years, FlashCard has developed into an active community of students, teachers and language enthusiasts. We are proud of our commitment to providing a top-notch flashcard experience, customized learning paths, and a supportive environment for language learning.",
+  "historyOurSitePart4": "As we look back on our journey, we are grateful for the countless users who have made FlashCard their goal to expand their vocabulary. Our story is woven through the threads of curiosity, dedication and a shared love of language.",
+  "historyOurSitePart5": "Join us as we continue to write the next chapters of FlashCard history. Thank you for being a part of our language learning adventure!",
+  "purposeOurSite": "Purpose of our site",
+  "purposeOurSitePart1": "Welcome to FlashCard, where words transform minds. Our journey began with a simple but powerful idea: to make learning new words an enjoyable and effective experience for everyone.",
+  "purposeOurSitePart2": "Founded by a passionate team of language enthusiasts, FlashCard emerged as an answer to the need for innovative, user-friendly platforms that prioritize dynamic vocabulary acquisition. We envisioned a space where students could escape the monotony of traditional memorization methods and experience the joy of discovering and mastering new words.",
+  "purposeOurSitePart3": "Over the years, FlashCard has developed into an active community of students, teachers and language enthusiasts. We are proud of our commitment to providing a top-notch flashcard experience, customized learning paths, and a supportive environment for language learning.",
+  "howToWorks": "How it Works?",
+  "howToWorksCard1": "Create cards",
+  "howToWorksCard1Desc": "Create custom flashcards for your language goals",
+  "howToWorksCard2": "Take the test",
+  "howToWorksCard2Desc": "Create your own flashcards and take a fun quiz",
+  "howToWorksCard3": "Check the progress",
+  "howToWorksCard3Desc": "After passing the test you have access to your progress"
 }

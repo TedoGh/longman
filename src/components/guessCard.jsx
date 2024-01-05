@@ -12,10 +12,10 @@ const StyledModalContainer = styled.div`
   z-index: 50;
   border-radius: 10px;
   overflow: hidden;
-  @media(max-width: 1024px) {
+  @media (max-width: 1024px) {
     border-radius: 7.52px;
   }
-  @media(max-width: 767px) {
+  @media (max-width: 767px) {
     border-radius: 10px;
   }
 `;
@@ -29,9 +29,8 @@ const StyledModalContent = styled.div`
   justify-content: flex-start;
   align-items: center;
   border-radius: 10px;
- 
-  position: relative;
 
+  position: relative;
 
   & .x {
     font-size: 30px;
@@ -39,9 +38,8 @@ const StyledModalContent = styled.div`
     right: 35px;
     top: 16px;
     color: #8c8c8c;
-    
   }
-  @media(max-width: 1024px) {
+  @media (max-width: 1024px) {
     height: 410px;
     width: 380px;
     border-radius: 10px;
@@ -50,20 +48,18 @@ const StyledModalContent = styled.div`
       font-size: 22px;
       right: 28px;
       top: 11px;
-          }
-  
+    }
   }
-  @media(max-width: 767px) {
+  @media (max-width: 767px) {
     height: 385px;
     width: 358px;
     border-radius: 10px;
- 
 
-  & .x {
-    font-size: 17px;
-    right: 25px;
-    top: 10px;
-        }
+    & .x {
+      font-size: 17px;
+      right: 25px;
+      top: 10px;
+    }
   }
 `;
 
@@ -76,9 +72,7 @@ const StyledStepIndicator = styled.div`
   display: flex;
   align-items: center;
   margin-top: 12px;
-  font-family: Helvetica;
   font-size: 22px;
-  
 
   & .text-xl {
     font-size: 22px;
@@ -88,7 +82,7 @@ const StyledStepIndicator = styled.div`
     text-align: left;
   }
 
-  @media(max-width: 1024px) {
+  @media (max-width: 1024px) {
     font-size: 14px;
     left: 33px;
     margin-top: 12px;
@@ -97,10 +91,9 @@ const StyledStepIndicator = styled.div`
       font-size: 14px;
       font-weight: 400;
       line-height: 23px;
-
     }
   }
-  @media(max-width: 767px) {
+  @media (max-width: 767px) {
     font-size: 11px;
     left: 20px;
     margin-top: 12px;
@@ -109,30 +102,26 @@ const StyledStepIndicator = styled.div`
       font-size: 11px;
       font-weight: 400;
       line-height: 14px;
-     
     }
   }
-
-  
 `;
 
 const StyledTitle = styled.div`
-  font-family: Helvetica;
   font-size: 24.3px;
   font-weight: 700;
   line-height: 28px;
   letter-spacing: 0em;
   text-align: left;
   margin-top: 18px;
-  @media(max-width: 1024px) {
-  font-size: 16px;
-  line-height: 18px;
-  margin-top: 14px;
+  @media (max-width: 1024px) {
+    font-size: 16px;
+    line-height: 18px;
+    margin-top: 14px;
   }
-  @media(max-width: 767px) {
-  font-size: 15px;
-  line-height: 18px;
-  margin-top: 10px;
+  @media (max-width: 767px) {
+    font-size: 15px;
+    line-height: 18px;
+    margin-top: 10px;
   }
 `;
 
@@ -149,21 +138,21 @@ const StyledAnswerButton = styled.div`
   border-radius: 7.61px;
   margin-top: 51px;
   margin-bottom: 61px;
-  @media(max-width: 1024px) {
+  @media (max-width: 1024px) {
     width: 227px;
     height: 66px;
     font-size: 20px;
-  border-radius: 6px;
-  margin-top: 42px;
-  margin-bottom: 26px;
+    border-radius: 6px;
+    margin-top: 42px;
+    margin-bottom: 26px;
   }
-  @media(max-width: 767px) {
+  @media (max-width: 767px) {
     width: 214px;
     height: 63px;
     font-size: 19.52px;
-  border-radius: 4.1px;
-  margin-top: 29px;
-  margin-bottom: 33px;
+    border-radius: 4.1px;
+    margin-top: 29px;
+    margin-bottom: 33px;
   }
 `;
 
@@ -171,10 +160,10 @@ const StyledAnswerGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 21px;
-  @media(max-width: 1024px) {
+  @media (max-width: 1024px) {
     gap: 14px;
   }
-  @media(max-width: 767px) {
+  @media (max-width: 767px) {
     gap: 12px;
   }
 `;
@@ -186,7 +175,6 @@ const StyledAnswerOption = styled.button`
   height: 80px;
   width: 223px;
   border-radius: 7px;
-  font-family: Helvetica;
   font-size: 24px;
   font-weight: 700;
   line-height: 28px;
@@ -218,21 +206,21 @@ const StyledAnswerOption = styled.button`
     }
     return "#E7E7E7";
   }};
-  @media(max-width: 1024px) {
+  @media (max-width: 1024px) {
     height: 50px;
-  width: 162px;
-  border-radius: 7px;
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 15px;
+    width: 162px;
+    border-radius: 7px;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 15px;
   }
-  @media(max-width: 767px) {
+  @media (max-width: 767px) {
     height: 52px;
-  width: 152px;
-  border-radius: 4px;
-  font-size: 13px;
-  font-weight: 700;
-  line-height: 14px;
+    width: 152px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 14px;
   }
 `;
 
@@ -248,10 +236,10 @@ const StyledButtonContainer = styled.div`
   & .confirmbtn {
     background-color: #04aa6d;
   }
-  @media(max-width: 1024px) {
+  @media (max-width: 1024px) {
     gap: 13px;
   }
-  @media(max-width: 767px) {
+  @media (max-width: 767px) {
     gap: 12px;
   }
 `;
@@ -263,34 +251,33 @@ const StyledButton = styled.button`
   width: 193px;
   height: 44px;
   cursor: pointer;
-  font-family: Helvetica;
   font-size: 18px;
   font-weight: 400;
   line-height: 21px;
   letter-spacing: 0em;
   text-align: center;
   margin-top: 60px;
-  @media(max-width: 1024px) {
+  @media (max-width: 1024px) {
     padding: 2.5;
     border-radius: 30px;
     width: 162px;
     height: 35px;
     cursor: pointer;
     font-size: 13px;
-  font-weight: 400;
-  line-height: 14px;
-  margin-top: 30px;
+    font-weight: 400;
+    line-height: 14px;
+    margin-top: 30px;
   }
-  @media(max-width: 767px) {
+  @media (max-width: 767px) {
     padding: 2.5;
     border-radius: 16px;
     width: 152px;
     height: 34px;
     cursor: pointer;
     font-size: 12px;
-  font-weight: 400;
-  line-height: 13px;
-  margin-top: 32px;
+    font-weight: 400;
+    line-height: 13px;
+    margin-top: 32px;
   }
 `;
 
@@ -326,9 +313,11 @@ const GuessCard = ({
   useEffect(() => {
     if (active) {
       document.addEventListener("mousedown", handleClickOutside);
+      document.body.style.overflow = "hidden";
 
       return () => {
         document.removeEventListener("mousedown", handleClickOutside);
+        document.body.style.overflow = "visible";
       };
     }
   }, [active]);
@@ -468,20 +457,21 @@ const GuessCard = ({
       <div className="w-screen h-screen fixed top-0 left-0 z-40 backdrop-filter backdrop-blur-sm" />
       {!exitModalOpen && !examFinished && (
         <StyledModalContainer>
-          
           <StyledModalContent ref={modalRef}>
-            <div style={{display: 'flex', flexDirection: 'row'}}>
-            <StyledStepIndicator>
-              <div className="text-xl">{questionIndex + 1}</div>/
-              {selectedNumber}
-            </StyledStepIndicator>
-            <StyledTitle>{t("guessCard")}</StyledTitle>
-            <button className="x" onClick={() => setExitModalOpen(true)}><AiOutlineClose /></button>
+            <div style={{ display: "flex", flexDirection: "row" }}>
+              <StyledStepIndicator>
+                <div className="text-xl">{questionIndex + 1}</div>/
+                {selectedNumber}
+              </StyledStepIndicator>
+              <StyledTitle>{t("guessCard")}</StyledTitle>
+              <button className="x" onClick={() => setExitModalOpen(true)}>
+                <AiOutlineClose />
+              </button>
             </div>
             <StyledAnswerButton>
               {currentQuestion ? currentQuestion.question : ""}
             </StyledAnswerButton>
-            
+
             <StyledAnswerGrid>
               <StyledAnswerOption
                 disabled={questionsArray[questionIndex]?.submited === true}
