@@ -173,7 +173,7 @@ const CardsDiv = styled.div`
   display: flex;
   flex-direction: row;
   align-self: ${(props) => {
-    return props.cardsOnCurrentPage.length > 1 ? "center" : "flex-start";
+    return props.cardsOnCurrentPage.length > 2 ? "center" : "flex-start";
   }};
   justify-content: flex-start;
   gap: 160px;
@@ -200,8 +200,7 @@ const CardsDiv = styled.div`
   @media (max-width: 1024px) {
     gap: 200px;
     margin-top: 60px;
-    margin-left: 136px;
-    margin-right: 136px;
+    align-self: center;
   }
 
   @media (max-width: 1000px) {
