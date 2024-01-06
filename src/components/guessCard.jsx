@@ -228,24 +228,10 @@ const StyledButtonContainer = styled.div`
   display: flex;
   justify-content: space-around;
   gap: 24px;
+ 
 
-  & .backbtn {
-    background-color: #acacac;
-  }
-
-  & .confirmbtn {
-    background-color: #04aa6d;
-  }
-  @media (max-width: 1024px) {
-    gap: 13px;
-  }
-  @media (max-width: 767px) {
-    gap: 12px;
-  }
-`;
-
-const StyledButton = styled.button`
-  color: #fff;
+  & button {
+    color: #fff;
   padding: 2.5;
   border-radius: 30px;
   width: 193px;
@@ -257,6 +243,7 @@ const StyledButton = styled.button`
   letter-spacing: 0em;
   text-align: center;
   margin-top: 60px;
+  
   @media (max-width: 1024px) {
     padding: 2.5;
     border-radius: 30px;
@@ -279,7 +266,52 @@ const StyledButton = styled.button`
     line-height: 13px;
     margin-top: 32px;
   }
+  }
+
+  & .backbtn {
+    width: 233px;
+    height: 53px;
+    color: ${(props) => props.questionIndex === 0 ? "#A3A3A3" : "#04AA6D"};
+    background-color: white;
+    border: ${(props) =>
+      props.questionIndex === 0 ? "1px solid #A3A3A3" : "1px solid #04AA6D"};
+    
+  }
+
+  & .confirmbtn {
+    width: 233px;
+    height: 53px;
+    color: white;
+    background-color: ${(props) =>
+      props.submited === false ? "#A4A4A4" : "#04AA6D"};
+   
+  }
+  
+  @media (max-width: 1024px) {
+    gap: 13px;
+    & .backbtn {
+      width: 162px;
+      height: 35px;
+    }
+    & .confirmbtn {
+      width: 162px;
+      height: 35px;
+    }
+  }
+  @media (max-width: 767px) {
+    gap: 12px;
+    & .backbtn {
+      width: 152px;
+      height: 34px;
+    }
+    & .confirmbtn {
+      width: 152px;
+      height: 34px;
+    }
+  }
 `;
+
+
 
 const GuessCard = ({
   active,
@@ -326,13 +358,14 @@ const GuessCard = ({
     let indexArr = [];
     const questions = [];
     for (let i = 0; i < selectedNumber; i++) {
-      let index = Math.floor(Math.random() * selectedNumber + 1);
+      let index = Math.floor(Math.random() * selectedNumber);
       if (!indexArr.includes(index)) {
         indexArr.push(index);
       } else {
         i = i - 1;
       }
     }
+    console.log(indexArr);
 
     indexArr.forEach((i) => questionCards.push(cards[i]));
 
@@ -448,9 +481,7 @@ const GuessCard = ({
     setExamFinished(false);
   };
 
-  useEffect(() => {
-    console.log(wrongAnswers, correctAnswers);
-  }, [questionIndex]);
+ 
 
   return (
     <div>
@@ -518,20 +549,21 @@ const GuessCard = ({
                 {currentQuestion ? currentQuestion.options[3] : ""}
               </StyledAnswerOption>
             </StyledAnswerGrid>
-            <StyledButtonContainer>
-              <StyledButton className="backbtn" onClick={back}>
+            <StyledButtonContainer submited={currentQuestion?.submited === true || typeof(questionsArray[questionIndex]?.checkedAnswerOption) === 'number' } questionIndex={questionIndex} >
+              <button className="backbtn" onClick={back} disabled={questionIndex === 0} >
                 {t("backText")}
-              </StyledButton>
-              <StyledButton
+              </button>
+              <button
                 disabled={
                   questionsArray[questionIndex]?.checkedAnswerOption ===
                   undefined
                 }
                 className="confirmbtn"
                 onClick={confirmNext}
+                
               >
                 {currentQuestion?.submited === true ? t("next") : t("confirm")}
-              </StyledButton>
+              </button>
             </StyledButtonContainer>
           </StyledModalContent>
         </StyledModalContainer>

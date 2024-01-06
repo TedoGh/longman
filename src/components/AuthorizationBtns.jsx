@@ -19,6 +19,7 @@ const Button = styled.button`
   border: none;
   cursor: pointer;
   color: white;
+  color: ${(props) => (props.active ? "white" : "black")};
   border-radius: 30px;
   background-color: ${(props) => (props.active ? "#04AA6D" : "#D9EEE1")};
   z-index: 10;
