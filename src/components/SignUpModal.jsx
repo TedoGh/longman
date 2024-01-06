@@ -26,6 +26,9 @@ const SignUpBtn = styled.button`
   color: white;
   border-radius: 22.55px;
   margin-top: 10px;
+  @media (max-width: 767px) {
+    width: 330px;
+  }
 `;
 
 const TextDiv = styled.div`
@@ -40,6 +43,9 @@ const TextDiv = styled.div`
     border: none;
     background: none;
     font-size: 16.59px;
+  }
+  @media (max-width: 767px) {
+    text-align: center;
   }
 `;
 
@@ -126,9 +132,11 @@ const SignUpModal = ({ setAuthorizationModal, authorizationModal }) => {
   useEffect(() => {
     if (authorizationModal === "signUp") {
       document.addEventListener("mousedown", handleClickOutside);
+      document.body.style.overflow = "hidden";
 
       return () => {
         document.removeEventListener("mousedown", handleClickOutside);
+        document.body.style.overflow = "visible";
       };
     }
   }, [authorizationModal]);
@@ -136,23 +144,23 @@ const SignUpModal = ({ setAuthorizationModal, authorizationModal }) => {
   return (
     <div>
       <div className="w-screen h-screen fixed top-0 left-0 z-40 backdrop-filter backdrop-blur-sm"></div>
-      <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50  rounded-lg overflow-hidden max-[768px]:mx-20">
+      <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50  rounded-lg overflow-hidden">
         <form
-          className="w-[455px] h-[538px] bg-[white] flex flex-col justify-start items-center gap-5 rounded-lg max-[768px]:w-[430px]"
+          className="w-[455px] h-[538px] bg-[white] flex flex-col justify-start items-center gap-5 rounded-lg max-[768px]:w-[365px]"
           onSubmit={handleSubmit}
           ref={modalRef}
         >
           <Img src={LogoMain} alt="" />
-          <div className="flex flex-row gap-3">
+          <div className="flex flex-row gap-3 max-[768px]:flex-col">
             <input
-              className="rounded-lg border-bgPlaceBorder border-solid border placeholder:text-bgPlaceBorder focus:outline-none focus:border-green w-[187px] h-[47px] p-2"
+              className="rounded-lg border-bgPlaceBorder border-solid border placeholder:text-bgPlaceBorder focus:outline-none focus:border-green w-[187px] h-[47px] p-2 max-[768px]:w-[330px]"
               type="text"
               placeholder={t("firstName")}
               name="Name"
               value={formData.Name}
             />
             <input
-              className="rounded-lg border-bgPlaceBorder border-solid border placeholder:text-bgPlaceBorder focus:outline-none focus:border-green w-[187px] h-[47px] p-2"
+              className="rounded-lg border-bgPlaceBorder border-solid border placeholder:text-bgPlaceBorder focus:outline-none focus:border-green w-[187px] h-[47px] p-2 max-[768px]:w-[330px]"
               type="text"
               placeholder={t("surname")}
               name="Surname"
@@ -160,14 +168,14 @@ const SignUpModal = ({ setAuthorizationModal, authorizationModal }) => {
             />
           </div>
           <input
-            className="rounded-lg border-bgPlaceBorder border-solid border placeholder:text-bgPlaceBorder focus:outline-none focus:border-green w-[388px] h-[47px] p-2"
+            className="rounded-lg border-bgPlaceBorder border-solid border placeholder:text-bgPlaceBorder focus:outline-none focus:border-green w-[388px] h-[47px] p-2 max-[768px]:w-[330px]"
             type="text"
             placeholder={t("mail")}
             name="Email"
             value={formData.Email}
           />
           <input
-            className="rounded-lg border-bgPlaceBorder border-solid border placeholder:text-bgPlaceBorder focus:outline-none focus:border-green w-[388px] h-[47px] p-2"
+            className="rounded-lg border-bgPlaceBorder border-solid border placeholder:text-bgPlaceBorder focus:outline-none focus:border-green w-[388px] h-[47px] p-2 max-[768px]:w-[330px]"
             type="text"
             placeholder={t("password")}
             name="Password"
