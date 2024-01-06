@@ -3,9 +3,6 @@ import { styled } from "styled-components";
 import LogoMain from "../assets/images/LogoMain.png";
 import { useTranslation } from "react-i18next";
 
-
-
-
 const ErrorText = styled.p`
   font-family: "Helvetica", sans-serif;
   font-weight: 400;
@@ -21,6 +18,10 @@ const SignInBtn = styled.button`
   height: 45.15px;
   color: white;
   border-radius: 22.55px;
+
+  @media (max-width: 767px) {
+    width: 330px;
+  }
 `;
 
 const Input = styled.input`
@@ -127,9 +128,11 @@ const SignInModal = ({ setAuthorizationModal, authorizationModal }) => {
   useEffect(() => {
     if (authorizationModal === "signIn") {
       document.addEventListener("mousedown", handleClickOutside);
+      document.body.style.overflow = "hidden";
 
       return () => {
         document.removeEventListener("mousedown", handleClickOutside);
+        document.body.style.overflow = "visible";
       };
     }
   }, [authorizationModal]);
@@ -137,15 +140,15 @@ const SignInModal = ({ setAuthorizationModal, authorizationModal }) => {
   return (
     <div>
       <div className="w-screen h-screen fixed top-0 left-0 z-40 backdrop-filter backdrop-blur-sm"></div>
-      <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50  rounded-lg overflow-hidden max-w-[768px]:mx-4">
+      <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50  rounded-lg overflow-hidden">
         <form
           onSubmit={handleSubmit}
-          className="w-[435px] h-[480px] bg-[white] flex flex-col justify-start gap-6 items-center rounded-lg"
+          className="w-[435px] h-[480px] bg-[white] flex flex-col justify-start gap-6 items-center rounded-lg max-[768px]:w-[365px]"
           ref={modalRef}
         >
           <Img src={LogoMain} alt="" />
           <Input
-            className="rounded-lg border-bgPlaceBorder border-solid border placeholder:text-bgPlaceBorder focus:outline-none focus:border-green w-[389px] h-[52px] p-2"
+            className="rounded-lg border-bgPlaceBorder border-solid border placeholder:text-bgPlaceBorder focus:outline-none focus:border-green w-[389px] h-[52px] p-2 max-[768px]:w-[330px]"
             type="text"
             placeholder={t("mail")}
             onChange={handleChange}
@@ -153,7 +156,7 @@ const SignInModal = ({ setAuthorizationModal, authorizationModal }) => {
             value={formData.Email}
           />
           <Input
-            className="rounded-lg border-bgPlaceBorder border-solid border placeholder:text-bgPlaceBorder focus:outline-none focus:border-green w-[389px] h-[52px] p-2"
+            className="rounded-lg border-bgPlaceBorder border-solid border placeholder:text-bgPlaceBorder focus:outline-none focus:border-green w-[389px] h-[52px] p-2 max-[768px]:w-[330px]"
             type="password"
             placeholder={t("password")}
             onChange={handleChange}

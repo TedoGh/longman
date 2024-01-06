@@ -43,8 +43,6 @@ const AuthorizationBtns = ({ setShowMenu }) => {
   const handleClick = (button) => {
     setActiveButton(button);
     setAuthorizationModal(button);
-    
-    
   };
 
   return (

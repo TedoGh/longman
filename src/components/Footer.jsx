@@ -41,7 +41,7 @@ export default function Footer() {
             <div className="flex gap-24 mt-8">
               {footerData.map((item) => {
                 return (
-                  <div key={item.title}>
+                  <div key={item.id}>
                     <div>
                       <h1 className="text-lg mb-4 text-[#282A35] font-bold">
                         {item.title}

@@ -6,7 +6,7 @@ export default function About() {
   return (
     <div>
       <div className="max-w-[1200px] mx-auto">
-        <h1 className="text-3xl text-darkBlue font-bold mb-9 px-4 lg:px-0">
+        <h1 className="text-3xl text-darkBlue font-bold my-6 px-4 lg:px-0">
           {t("aboutText")}
         </h1>
       </div>

@@ -7,10 +7,15 @@ export default function LanguageSwitcher() {
     Cookies.get("i18next") || "ka"
   );
 
+  const updateLanguage = (newLanguageCode) => {
+    i18next.changeLanguage(newLanguageCode);
+    setCurrentLanguageCode(newLanguageCode);
+    Cookies.set("i18next", newLanguageCode);
+  };
+
   const toggleLanguage = () => {
-    const changeLanguageCode = currentLanguageCode === "ka" ? "en" : "ka";
-    i18next.changeLanguage(changeLanguageCode);
-    setCurrentLanguageCode(changeLanguageCode);
+    const newLanguageCode = currentLanguageCode === "ka" ? "en" : "ka";
+    updateLanguage(newLanguageCode);
   };
 
   useEffect(() => {
@@ -18,14 +23,10 @@ export default function LanguageSwitcher() {
   }, [currentLanguageCode]);
 
   return (
-    <div>
-      <button
-        style={{ paddingTop: "10px" }}
-        onClick={toggleLanguage}
-        className="text-green"
-      >
+    <>
+      <button onClick={toggleLanguage} className="text-green">
         {currentLanguageCode === "ka" ? "ENG" : "GEO"}
       </button>
-    </div>
+    </>
   );
 }
