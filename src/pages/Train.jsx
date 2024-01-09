@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import { useTranslation } from "react-i18next";
 import SwitchTrainImage from "../assets/images/switchTrain.svg";
-import GuessCard from "../components/GuessCard";
 import React, { useState, useEffect, useRef } from "react";
 import { useCardsDataContext } from "./Context/CardsContext";
 import { toast } from "react-hot-toast";
+import GuessCard from "../components/GuessCard";
 
 const TrainContainer = styled.div`
   width: 100%;
