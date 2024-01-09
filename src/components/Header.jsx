@@ -5,6 +5,7 @@ import Logo from "./Logo";
 import AuthorizationBtns from "./AuthorizationBtns";
 import { useEffect, useState, useRef } from "react";
 import Burger from "../assets/images/burger.svg";
+import { FaAngleRight } from "react-icons/fa";
 import HeaderData from "../data/HeaderData";
 
 export default function Header() {
@@ -14,7 +15,7 @@ export default function Header() {
   const menuRef = useRef(null);
 
   const toggleMenu = () => {
-    setShowMenu(true);
+    setShowMenu((prevState) => !prevState);
   };
 
   useEffect(() => {
@@ -120,7 +121,10 @@ export default function Header() {
               >
                 <ul>
                   {routerData.map((item) => (
-                    <li className="py-4" key={item.id}>
+                    <li
+                      className="py-4 flex justify-between pr-8"
+                      key={item.id}
+                    >
                       <Link
                         to={`${item.path}`}
                         className={
@@ -131,6 +135,7 @@ export default function Header() {
                       >
                         {item.name}
                       </Link>
+                      <FaAngleRight color="#A5A5A5" size={16} />
                     </li>
                   ))}
                 </ul>

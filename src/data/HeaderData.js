@@ -6,32 +6,32 @@ const HeaderData = () => {
   return [
     {
       id: 1,
-      name: t("homeText"),
+      name: `${t("homeText")}`,
       path: "/longman",
     },
     {
       id: 2,
-      name: t("aboutText"),
+      name: `${t("aboutText")}`,
       path: "/longman/about",
     },
     {
       id: 3,
-      name: t("addCardText"),
+      name: `${t("addCardText")}`,
       path: "/longman/addcard",
     },
     {
       id: 4,
-      name: t("allCardsText"),
+      name: `${t("allCardsText")}`,
       path: "/longman/cards",
     },
     {
       id: 5,
-      name: t("trainText"),
+      name: `${t("trainText")}`,
       path: "/longman/train",
     },
     {
       id: 6,
-      name: t("myProgressText"),
+      name: `${t("myProgressText")}`,
       path: "/longman/progress",
     },
   ];
