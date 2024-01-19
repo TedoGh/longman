@@ -36,7 +36,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       />
     </CardsDataProvider>
   </AuthorizationProvider>
-=======
+
   <CardsDataProvider>
     <BrowserRouter>
       <App />
