@@ -7,6 +7,7 @@ import { useEffect, useState, useRef } from "react";
 import Burger from "../assets/images/burger.svg";
 import { FaAngleRight } from "react-icons/fa";
 import HeaderData from "../data/HeaderData";
+import UserProfile from "./UserProfile";
 
 export default function Header() {
   const { t } = useTranslation();
@@ -15,20 +16,12 @@ export default function Header() {
   const menuRef = useRef(null);
 
   const toggleMenu = () => {
-    setShowMenu((prevState) => !prevState);
+    setShowMenu(true);
   };
 
   useEffect(() => {
     setShowMenu(false);
   }, [location, t]);
-
-  useEffect(() => {
-    if (showMenu) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "visible";
-    }
-  }, [showMenu]);
 
   const handleClickOutside = (e) => {
     if (menuRef.current && !menuRef.current.contains(e.target)) {
@@ -37,12 +30,16 @@ export default function Header() {
   };
 
   useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
+    if (showMenu) {
+      document.addEventListener("mousedown", handleClickOutside);
+      document.body.style.overflow = "hidden";
+    }
 
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
+      document.body.style.overflow = "visible";
     };
-  }, []);
+  }, [showMenu]);
 
   const routerData = [
     {
@@ -50,11 +47,11 @@ export default function Header() {
       name: `${t("homeText")}`,
       path: "/longman",
     },
-    {
-      id: 2,
-      name: `${t("aboutText")}`,
-      path: "/longman/about",
-    },
+    // {
+    //   id: 2,
+    //   name: `${t("aboutText")}`,
+    //   path: "/longman/about",
+    // },
     {
       id: 3,
       name: `${t("addCardText")}`,
@@ -82,7 +79,7 @@ export default function Header() {
       <div className="max-w-[1200px] mx-auto">
         <div className="lg:flex-row flex justify-between items-center flex-row-reverse">
           <Logo />
-          <div className="flex gap-6">
+          <div className="hidden lg:flex">
             {/* desktop menu */}
             <ul className="flex gap-5 items-center max-[1024px]:hidden">
               {routerData.map((item) => (
@@ -98,12 +95,15 @@ export default function Header() {
                 </li>
               ))}
             </ul>
-            <div className="flex gap-8 items-center">
-              <div className="max-[1024px]:hidden">
-                <LanguageSwitcher />
-              </div>
+          </div>
+          <div className="flex gap-8 items-center">
+            <div className="max-[1024px]:hidden">
+              <LanguageSwitcher />
+            </div>
+            <div style={{ display: "none" }}>
               <AuthorizationBtns />
             </div>
+            <UserProfile />
           </div>
           <div>
             {/* Hamburger */}

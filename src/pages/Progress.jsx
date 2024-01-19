@@ -27,7 +27,7 @@ export default function Progress() {
               </div>
             </div>
             <div className="relative">
-              <div className="h-[600px] w-96 p-7 text-center rounded-md absolute left-[-470px] top-[-35px] bg-lightBlue">
+              <div className="w-[400px] h-[448px] p-7 text-center absolute right-16 bg-[#fff] border-[4px] border-[#DEE2E6] rounded-md">
                 <h1 className="text-darkBlue text-2xl mb-4">მოგესალმებით!</h1>
                 <p className="text-[#A2A2A2] text-lg text-center mb-5">
                   თქვენი ქულა!

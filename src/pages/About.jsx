@@ -1,3 +1,4 @@
+import AboutImg from "../assets/images/about-page.png";
 import { useTranslation } from "react-i18next";
 
 export default function About() {
@@ -11,15 +12,12 @@ export default function About() {
         </h1>
       </div>
       <div>
-        <img
-          className="w-full"
-          src="https://img.ge/images/25546027428267935986.png"
-        />
+        <img className="w-full" src={AboutImg} />
       </div>
       <div className="max-w-[1200px] mx-auto">
         <div className="my-12">
           <div className="mb-8">
-            <div id="aboutproject" className="px-8">
+            <div className="px-8">
               <h1 className="text-2xl text-darkBlue font-bold mb-10">
                 {t("historyOurSite")}
               </h1>

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useTranslation } from "react-i18next";
 import SwitchTrainImage from "../assets/images/switchTrain.svg";
+import TrainImg from "../assets/images/train-page.png";
 import GuessCard from "../components/guessCard";
 import React, { useState, useEffect, useRef } from "react";
 import { useCardsDataContext } from "./Context/CardsContext";
@@ -9,7 +10,7 @@ import { toast } from "react-hot-toast";
 const TrainContainer = styled.div`
   width: 100%;
   height: 618px;
-  background: url("https://img.ge/images/62318667777440020532.png");
+  background: url(${TrainImg});
 
   display: flex;
   flex-direction: column;
