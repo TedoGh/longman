@@ -44,7 +44,7 @@ export const AuthorizationProvider = ({ children }) => {
       });
   }, [trigger]);
 
-  // Provide the context value to the entire app
+  
   const contextValue = {
    loggedIn, setLoggedIn,response,setUser,setTrigger, user
   };
