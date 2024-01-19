@@ -11,7 +11,7 @@
   "addCardBNText": "Add Card",
   "addCardPlaceGeoText": "Type in georgian...",
   "addCardPlaceEngText": "Type in english...",
-  "footerRights": "Longman Flashcards Pro. All rights reserved",
+  "footerRights": "All rights reserved",
   "trainPageTrainText": "It's Time to Train",
   "trainPageClickText": "Click to cards and learn new words.",
   "trainPageGeoLangText": "Georgian",
@@ -77,6 +77,7 @@
   "howToWorksCard2Desc": "Create your own flashcards and take a fun quiz",
   "howToWorksCard3": "Check the progress",
   "howToWorksCard3Desc": "After passing the test you have access to your progress",
+
   "fieldRequired": "Field is required",
   "minSymbolsRequired": "Minimum symbols required:",
   "mailMissingSymbols": "Email should contain symbols: @ and .",
@@ -88,4 +89,55 @@
   "cardSucessfullyDeleted": "Card deleted succesfully",
   "cardSucessfullyEdited": "Card succesfully edited",
   "resultAppliedToProgress": "Training result successfully added to progress data"
+
+  "testimonialsText": "Testimonials",
+
+  "faqSectionTitle": "What is FlashcardPro?",
+  "faqText": "Flashcards are like bite-sized packets of knowledge that you can carry around. They are a fantastic way to enhance learning and memory. As a rule, flash cards consist of questions",
+
+  "termsAndConditionsText": "Terms and Conditions",
+  "termsOfService": "Terms of Service",
+  "acceptanceOfTerms": "Acceptance of Terms",
+  "acceptanceOfTermsText": "By accessing or using FlashCard, you agree to comply with and be bound by these Terms of Service. If you do not agree with any part of these Terms, please do not use our Services.",
+  "useOfTheService": "Use of the service",
+  "useOfTheServiceText": "FlashCard provides a platform to learn new words through interactive flash cards. You agree not to misuse the Service, engage in any activity that may compromise the security of the Site or interfere with the proper functioning of the Platform.",
+  "userAccounts": "User accounts",
+  "userAccountsText": "To access certain FlashCard features, you may need to create a user account. You are responsible for maintaining the confidentiality of your account information and are fully responsible for all activities that occur under your account.",
+  "ownerShipContent": "Ownership of Content",
+  "ownerShipContentText": "Flashcards, decks, and other content available on FlashCard are either owned by the site or used with permission. You agree not to reproduce, distribute, modify or create derivative works based on our content without our express consent.",
+
+  "privacyPolicy": "Privacy Policy",
+  "informationWeCollect": "Information we collect",
+  "informationWeCollectText": "We collect personal information such as name and email address when you create an account on FlashCard. In addition, we may collect usage data and other non-personal information to improve our services.",
+  "howWeUseyourinformation": "How we use your information",
+  "howWeUseyourinformationText": "We use the information we collect to provide, maintain and improve FlashCard. This includes personalizing content, communicating with users, and developing new features.",
+
+  "dataSecurity": "Data security",
+  "dataSecurityText": "We take reasonable steps to protect your personal information from unauthorized access or disclosure. However, no method of online or electronic storage is 100% secure and we cannot guarantee absolute security.",
+  "thirdPartyServices": "Third Party Services",
+  "thirdPartyServicesText": "FlashCard may use third party services for analytics, advertising or other purposes. These services may have their own privacy policies, and your interactions with them will be governed by those policies.",
+  "changesToThePrivacyPolicy": "Changes to the Privacy Policy",
+  "changesToThePrivacyPolicyText": "We reserve the right to update our privacy policy. We will notify users of any changes by posting the new policy on the Site. It is your responsibility to periodically review this Privacy Policy.",
+
+  "footerDesc": "FlashCard: Personalized Learning and the Global Community. Improve your language skills effortlessly. Create your own flashcards.",
+  "mainSection": "Main",
+  "homePage": "Home",
+  "allCardPage": "All Cards",
+  "trainPage": "Train",
+  "progressPage": "Progress",
+  "aboutSection": "About",
+  "aboutPage": "About",
+  "aboutProjectPage": "About Project",
+  "blogPage": "Blog",
+  "additionallySection": "Additionally",
+  "termsAndConditionsPage": "Terms and Conditions",
+  "forumPage": "Forum",
+  "contactPage": "Contact",
+  "faqPage": "FAQ",
+  "pageNotFoundText": "Page Not Found",
+  "pageNotFoundDesc": "Looks like the page you requested for could not be found. Please check the URL address.",
+  "pageNotFoundHomePage": "Back To Home Page",
+
+  "loadingText": "Loading..."
+
 }

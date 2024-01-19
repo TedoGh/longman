@@ -138,6 +138,7 @@ const StyledAnswerButton = styled.div`
   color: #fff;
   font-weight: bold;
   font-size: 32.52px;
+  font-size: 30.52px;
   border-radius: 7.61px;
   margin-top: 51px;
   margin-bottom: 41px;
@@ -179,11 +180,11 @@ const StyledAnswerOption = styled.button`
   height: 70px;
   width: 210px;
   border-radius: 7px;
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 700;
   line-height: 28px;
   letter-spacing: 0em;
-  text-align: left;
+  text-align: center;
 
   color: ${(props) => {
     if (props.isCorrect || props.isWrong) {

@@ -1,3 +1,5 @@
+import { useTranslation } from "react-i18next";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
@@ -6,12 +8,14 @@ import "swiper/css/pagination";
 import { Autoplay, Pagination } from "swiper/modules";
 
 const Testimonials = () => {
+  const { t } = useTranslation();
+
   return (
     <div>
       <div className="py-[50px] animate__animated animate__fadeInDown">
         <div className="max-w-[1200px] mx-auto">
           <h1 className="text-darkBlue text-2xl font-bold text-center font-case">
-            გამოხმაურება
+            {t("testimonialsText")}
           </h1>
           <div className="my-16">
             <Swiper

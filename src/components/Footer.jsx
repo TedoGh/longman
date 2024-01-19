@@ -5,7 +5,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { FaAngleUp } from "react-icons/fa";
 import { FaAngleDown } from "react-icons/fa";
-import { footerData } from "../data/FooterData";
+import FooterData from "../data/FooterData";
 
 export default function Footer() {
   const { t } = useTranslation();
@@ -30,16 +30,14 @@ export default function Footer() {
             <div className="my-6">
               <Logo />
               <p className="max-w-[314px] mx-auto text-lg text-[#8C8C8C] mt-5 mb-6">
-                FlashCard: პერსონალიზებული სწავლა და გლობალური საზოგადოება.
-                აიმაღლეთ თქვენი ენის ცოდნა ძალისხმევის გარეშე. შექმენით
-                პერსონალური ფლეშ ბარათები.
+                {t("footerDesc")}
               </p>
               <div className="flex gap-4">
                 <SocialMedia />
               </div>
             </div>
             <div className="flex gap-24 mt-8">
-              {footerData.map((item) => {
+              {FooterData().map((item) => {
                 return (
                   <div key={item.id}>
                     <div>
@@ -63,7 +61,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="p-4 lg:hidden">
-          {footerData.map((item) => {
+          {FooterData().map((item) => {
             return (
               <div className="mb-7" key={item.id}>
                 <div
