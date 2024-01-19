@@ -23,7 +23,7 @@ const StyledModalContainer = styled.div`
 `;
 
 const StyledModalContent = styled.div`
-  width: 35%
+  width: 35%;
   height: 50%;
   background: white;
   display: flex;
@@ -75,7 +75,6 @@ const StyledStepIndicator = styled.div`
   align-items: center;
   margin-top: 14px;
   font-size: 17px;
-  
 
   & .text-xl {
     font-size: 16px;
@@ -233,54 +232,52 @@ const StyledButtonContainer = styled.div`
   display: flex;
   justify-content: space-around;
   gap: 24px;
- 
 
   & button {
     color: #fff;
-  padding: 2.5;
-  border-radius: 30px;
-  width: 193px;
-  height: 35px;
-  cursor: pointer;
-  font-size: 18px;
-  font-weight: 400;
-  line-height: 21px;
-  letter-spacing: 0em;
-  text-align: center;
-  margin-top: 40px;
-  
-  @media (max-width: 1024px) {
     padding: 2.5;
     border-radius: 30px;
-    width: 162px;
+    width: 193px;
     height: 35px;
     cursor: pointer;
-    font-size: 13px;
+    font-size: 18px;
     font-weight: 400;
-    line-height: 14px;
-    margin-top: 30px;
-  }
-  @media (max-width: 767px) {
-    padding: 2.5;
-    border-radius: 16px;
-    width: 152px;
-    height: 34px;
-    cursor: pointer;
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 13px;
-    margin-top: 32px;
-  }
+    line-height: 21px;
+    letter-spacing: 0em;
+    text-align: center;
+    margin-top: 40px;
+
+    @media (max-width: 1024px) {
+      padding: 2.5;
+      border-radius: 30px;
+      width: 162px;
+      height: 35px;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 14px;
+      margin-top: 30px;
+    }
+    @media (max-width: 767px) {
+      padding: 2.5;
+      border-radius: 16px;
+      width: 152px;
+      height: 34px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 13px;
+      margin-top: 32px;
+    }
   }
 
   & .backbtn {
     width: 233px;
     height: 48px;
-    color: ${(props) => props.questionIndex === 0 ? "#A3A3A3" : "#04AA6D"};
+    color: ${(props) => (props.questionIndex === 0 ? "#A3A3A3" : "#04AA6D")};
     background-color: white;
     border: ${(props) =>
       props.questionIndex === 0 ? "1px solid #A3A3A3" : "1px solid #04AA6D"};
-    
   }
 
   & .confirmbtn {
@@ -289,9 +286,8 @@ const StyledButtonContainer = styled.div`
     color: white;
     background-color: ${(props) =>
       props.submited === false ? "#A4A4A4" : "#04AA6D"};
-   
   }
-  
+
   @media (max-width: 1024px) {
     gap: 13px;
     & .backbtn {
@@ -308,7 +304,6 @@ const StyledButtonContainer = styled.div`
     & .backbtn {
       width: 152px;
       height: 34px;
-
     }
     & .confirmbtn {
       width: 152px;
@@ -318,125 +313,103 @@ const StyledButtonContainer = styled.div`
 `;
 
 const ResultContainer = styled.div`
-display: flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
- & h2{
-  font-family: Helvetica;
-  font-size: 42px;
-  font-weight: 700;
-  line-height: 48px;
-  letter-spacing: 0em;
-  text-align: left;
-  margin-bottom: 52px;
-  color: white;
-  margin-top: 100px;
-  
- }
+  & h2 {
+    font-family: Helvetica;
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 48px;
+    letter-spacing: 0em;
+    text-align: left;
+    margin-bottom: 52px;
+    color: white;
+    margin-top: 100px;
+  }
 
- & p {
-  font-family: Helvetica;
-  font-size: 24px;
-  font-weight: 700;
-  line-height: 28px;
-  letter-spacing: 0em;
-  text-align: left;
-  margin-bottom: 35px;
-  color: #FFF4A3;
-  
- }
-
- & button {
-  font-family: Helvetica;
-  font-size: 18px;
-  font-weight: 400;
-  line-height: 21px;
-  letter-spacing: 0em;
-  text-align: left;
-  margin-top: 5px;
-  color: white;
-  background-color: #04AA6D;
-  width: 280px;
-  height: 40px;
-  border-radius: 30px;
-  text-align: center;
-  
- }
-
- & .correct {
-  color: #04AA6D;
- }
-
- @media (max-width: 767px) {
- 
- & h2{
- 
-  font-size: 30px;
-  line-height: 34px;
-  margin-bottom: 37px;
-  margin-top: 90px;
-  
- }
-
- & p {
-  
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 20px;
-  margin-bottom: 23px;
-  
-  
- }
-
- & button {
-  font-size: 15px;
-  font-weight: 400;
-  line-height: 17px;
-  margin-top: 5px;
-  width: 202px;
-  height: 36px;
-  border-radius: 25px;
-  
- }
-
- 
- }
-
- @media (max-width: 1024px) {
-  & h2{
- 
+  & p {
+    font-family: Helvetica;
     font-size: 24px;
-    line-height: 27px;
-    margin-bottom: 26px;
-    margin-top: 85px;
-    
-   }
-  
-   & p {
-    
-    font-size: 14px;
-    line-height: 16px;
-    margin-bottom: 20px;
-    
-    
-   }
-  
-   & button {
-    font-size: 10px;
-    line-height: 11px;
+    font-weight: 700;
+    line-height: 28px;
+    letter-spacing: 0em;
+    text-align: left;
+    margin-bottom: 35px;
+    color: #fff4a3;
+  }
+
+  & button {
+    font-family: Helvetica;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 21px;
+    letter-spacing: 0em;
+    text-align: left;
     margin-top: 5px;
-    width: 170px;
-    height: 27px;
-    border-radius: 17px;
-   }
-  
-   
-   }
- }
-`
+    color: white;
+    background-color: #04aa6d;
+    width: 280px;
+    height: 40px;
+    border-radius: 30px;
+    text-align: center;
+  }
 
+  & .correct {
+    color: #04aa6d;
+  }
 
+  @media (max-width: 767px) {
+    & h2 {
+      font-size: 30px;
+      line-height: 34px;
+      margin-bottom: 37px;
+      margin-top: 90px;
+    }
+
+    & p {
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 20px;
+      margin-bottom: 23px;
+    }
+
+    & button {
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 17px;
+      margin-top: 5px;
+      width: 202px;
+      height: 36px;
+      border-radius: 25px;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    & h2 {
+      font-size: 24px;
+      line-height: 27px;
+      margin-bottom: 26px;
+      margin-top: 85px;
+    }
+
+    & p {
+      font-size: 14px;
+      line-height: 16px;
+      margin-bottom: 20px;
+    }
+
+    & button {
+      font-size: 10px;
+      line-height: 11px;
+      margin-top: 5px;
+      width: 170px;
+      height: 27px;
+      border-radius: 17px;
+    }
+  }
+`;
 
 const GuessCard = ({
   active,
@@ -445,11 +418,10 @@ const GuessCard = ({
   selectedNumber,
   languageState,
   examFinished,
-  setExamFinished
-  
+  setExamFinished,
 }) => {
   const modalRef = useRef(null);
-  
+
   const { t } = useTranslation();
   const [currentQuestion, setCurrentQuestion] = useState();
   const [exitModalOpen, setExitModalOpen] = useState(false);
@@ -458,17 +430,15 @@ const GuessCard = ({
   const [correctAnswers, setCorrectAnswers] = useState(0);
   const [wrongAnswers, setWrongAnswers] = useState(0);
   const questionCards = [];
-  const {user} = useAuthorizationContext();
+  const { user } = useAuthorizationContext();
   const [userObject, setUserObject] = useState();
   const [lastSessionResult, setLastSessionResult] = useState();
-  const{updateUser} = useRequest();
+  const { updateUser } = useRequest();
 
   const handleClickOutside = (e) => {
     if (modalRef.current && !modalRef.current.contains(e.target)) {
       setExitModalOpen(true);
     }
-
-  
   };
 
   function formatDate(date) {
@@ -477,10 +447,10 @@ const GuessCard = ({
     const year = date.getFullYear();
     const hours = addLeadingZero(date.getHours());
     const minutes = addLeadingZero(date.getMinutes());
-  
+
     return `${day}/${month}/${year} ${hours}:${minutes}`;
   }
-  
+
   function addLeadingZero(value) {
     return value < 10 ? `0${value}` : value;
   }
@@ -488,12 +458,12 @@ const GuessCard = ({
   function handleRecordResult() {
     const currentDate = new Date();
     const formattedDate = formatDate(currentDate);
-    setLastSessionResult(({
-    date: formattedDate,
-    correct: correctAnswers,
-    wrong: wrongAnswers,
-    total: selectedNumber,
-    }))
+    setLastSessionResult({
+      date: formattedDate,
+      correct: correctAnswers,
+      wrong: wrongAnswers,
+      total: selectedNumber,
+    });
   }
 
   useEffect(() => {
@@ -521,12 +491,16 @@ const GuessCard = ({
     }
     console.log(indexArr);
 
-    indexArr.forEach((i) => questionCards.push(user ? user.cards[i] : cards[i]));
+    indexArr.forEach((i) =>
+      questionCards.push(user ? user.cards[i] : cards[i])
+    );
 
     questionCards.forEach((card, i) => {
       const randomCardsArr = [];
       let randomOptionsArr = [];
-      const excludedCardsArr = user ? user.cards.filter((item) => card?.id !== item?.id) : cards?.filter((item) => card?.id !== item?.id);
+      const excludedCardsArr = user
+        ? user.cards.filter((item) => card?.id !== item?.id)
+        : cards?.filter((item) => card?.id !== item?.id);
       for (let i = 0; i < 3; i++) {
         let index = Math.floor(Math.random() * excludedCardsArr.length);
         if (!randomOptionsArr.includes(index)) {
@@ -589,18 +563,23 @@ const GuessCard = ({
     setQuestionIndex((prev) => prev - 1);
   };
 
- useEffect(()=>{
-  if(userObject && user) {
-    updateUser(userObject,userObject._uuid,'training')
-  }
- },[userObject])
+  useEffect(() => {
+    if (userObject && user) {
+      updateUser(userObject, userObject._uuid, "training");
+    }
+  }, [userObject]);
 
- useEffect(()=>{
-  if(lastSessionResult && user) {
-    const copiedObject = JSON.parse(JSON.stringify(user));
-    setUserObject(({...copiedObject, trainingData: copiedObject.trainingData ? [...copiedObject.trainingData, lastSessionResult] : [lastSessionResult]}))
-  }
- },[lastSessionResult])
+  useEffect(() => {
+    if (lastSessionResult && user) {
+      const copiedObject = JSON.parse(JSON.stringify(user));
+      setUserObject({
+        ...copiedObject,
+        trainingData: copiedObject.trainingData
+          ? [...copiedObject.trainingData, lastSessionResult]
+          : [lastSessionResult],
+      });
+    }
+  }, [lastSessionResult]);
 
   const confirmNext = () => {
     if (
@@ -609,7 +588,6 @@ const GuessCard = ({
     ) {
       setExamFinished(true);
       handleRecordResult();
-      
     }
     if (questionsArray[questionIndex]?.submited === true) {
       setQuestionIndex((prev) => prev + 1);
@@ -644,23 +622,20 @@ const GuessCard = ({
   const handleFinishExam = () => {
     setExamFinished(false);
     setActive(false);
-
   };
 
-  
-
- 
-
   return (
-    
     <div>
-      {!examFinished && <div className="w-screen h-screen fixed top-0 left-0 z-40 backdrop-filter backdrop-blur-sm" />}
+      {!examFinished && (
+        <div className="w-screen h-screen fixed top-0 left-0 z-40 backdrop-filter backdrop-blur-sm" />
+      )}
       {!exitModalOpen && !examFinished && (
         <StyledModalContainer>
           <StyledModalContent ref={modalRef}>
             <div style={{ display: "flex", flexDirection: "row" }}>
               <StyledStepIndicator>
-                <div className="text-xl">{questionIndex + 1}</div>{`/`}
+                <div className="text-xl">{questionIndex + 1}</div>
+                {`/`}
                 {selectedNumber}
               </StyledStepIndicator>
               <StyledTitle>{t("guessCard")}</StyledTitle>
@@ -718,8 +693,19 @@ const GuessCard = ({
                 {currentQuestion ? currentQuestion.options[3] : ""}
               </StyledAnswerOption>
             </StyledAnswerGrid>
-            <StyledButtonContainer submited={currentQuestion?.submited === true || typeof(questionsArray[questionIndex]?.checkedAnswerOption) === 'number' } questionIndex={questionIndex} >
-              <button className="backbtn" onClick={back} disabled={questionIndex === 0} >
+            <StyledButtonContainer
+              submited={
+                currentQuestion?.submited === true ||
+                typeof questionsArray[questionIndex]?.checkedAnswerOption ===
+                  "number"
+              }
+              questionIndex={questionIndex}
+            >
+              <button
+                className="backbtn"
+                onClick={back}
+                disabled={questionIndex === 0}
+              >
                 {t("backText")}
               </button>
               <button
@@ -729,7 +715,6 @@ const GuessCard = ({
                 }
                 className="confirmbtn"
                 onClick={confirmNext}
-                
               >
                 {currentQuestion?.submited === true ? t("next") : t("confirm")}
               </button>
@@ -745,22 +730,20 @@ const GuessCard = ({
       )}
       {examFinished && (
         <ResultContainer>
-            <h2>{t("sessionFinished")}</h2>
-            <p>
-              {t("numOfQuestions")}:{selectedNumber}
-            </p>
-            <p className="correct">
-              {t("correct")}:{correctAnswers}
-            </p>
-            <p>
-              {t("wrong")}:{wrongAnswers}
-            </p>
-            <button onClick={handleFinishExam}>{t("finish")}</button>
+          <h2>{t("sessionFinished")}</h2>
+          <p>
+            {t("numOfQuestions")}:{selectedNumber}
+          </p>
+          <p className="correct">
+            {t("correct")}:{correctAnswers}
+          </p>
+          <p>
+            {t("wrong")}:{wrongAnswers}
+          </p>
+          <button onClick={handleFinishExam}>{t("finish")}</button>
         </ResultContainer>
       )}
     </div>
-    
-  
   );
 };
 

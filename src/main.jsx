@@ -8,27 +8,30 @@ import { AuthorizationProvider } from "./pages/Context/AuthorizationContext.jsx"
 import { Toaster } from "react-hot-toast";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-    <AuthorizationProvider>
+  <AuthorizationProvider>
     <CardsDataProvider>
-    <App />
-    <Toaster position="top-center" gutter={12} containerStyle={{margin: '8px'}} toastOptions={{
-        success: {
+      <App />
+      <Toaster
+        position="top-center"
+        gutter={12}
+        containerStyle={{ margin: "8px" }}
+        toastOptions={{
+          success: {
             duration: 3000,
-        },
+          },
 
-        error: {
+          error: {
             duration: 5000,
-        },
-        style: {
-            fontSize: '16px',
-            maxWidth: '500px',
-            padding: '16px 24px',
-            backgroundColor: 'black',
-            color: 'white',
-        }
-        
-    }} />
+          },
+          style: {
+            fontSize: "16px",
+            maxWidth: "500px",
+            padding: "16px 24px",
+            backgroundColor: "black",
+            color: "white",
+          },
+        }}
+      />
     </CardsDataProvider>
-    </AuthorizationProvider>
- 
+  </AuthorizationProvider>
 );
