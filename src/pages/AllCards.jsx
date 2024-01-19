@@ -8,6 +8,8 @@ import { useSearchParams } from "react-router-dom";
 import { useState, useRef } from "react";
 import { useEffect } from "react";
 import { useCardsDataContext } from "./Context/CardsContext";
+import { useAuthorizationContext } from "./Context/AuthorizationContext";
+import useRequest from "../hooks/useRequest";
 
 const MainDiv = styled.div`
   height: 1077px;
@@ -306,14 +308,20 @@ const P = styled.p`
 `;
 export default function AllCards() {
   const { cards, updateCardsContext } = useCardsDataContext();
+  const {user} = useAuthorizationContext();
+  const [userObject, setUserObject] = useState();
   const { t } = useTranslation();
   const dividedCardsArr = [];
   const searchRef = useRef(null);
   const [inputValue, setInputValue] = useState("");
   const columns =
     inputValue === ""
-      ? Math.ceil(cards.length / 5)
-      : Math.ceil(
+      ? Math.ceil(user ? user.cards?.length / 5 : cards?.length / 5)
+      : Math.ceil(user ? user.cards.filter(
+        (card) =>
+          card.georgian.toLowerCase().startsWith(inputValue) ||
+          card.english.toLowerCase().startsWith(inputValue)
+      ).length / 5 :
           cards.filter(
             (card) =>
               card.georgian.toLowerCase().startsWith(inputValue) ||
@@ -323,9 +331,9 @@ export default function AllCards() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [cardsOnCurrentPage, setCardsOnCurrentPage] = useState([]);
   const [language, setLanguage] = useState("ENG");
-  // const pages = Math.ceil(columns / 3);
   const [pages, setPages] = useState();
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  const {updateUser} = useRequest();
   let currentPage = searchParams.get("page")
     ? Number(searchParams.get("page"))
     : 1;
@@ -345,9 +353,22 @@ export default function AllCards() {
     setInputValue(searchRef.current.value.toLowerCase());
   };
 
-  const handleDeleteCard = (card) => {
+  useEffect(()=>{
+    if(userObject !== undefined && user) {
+      updateUser(userObject,userObject._uuid,'deleteCard')
+    }
+  },[userObject])
+
+  const handleDeleteCard = async (card) => {
+    if(user) {
+      const copiedObject = JSON.parse(JSON.stringify(user));
+      const filteredCards = user.cards.filter(c => card.id !== c.id )
+      setUserObject(({...copiedObject, cards: filteredCards}))
+          
+    } else {
     const newCards = cards.filter((c) => c.id !== card.id);
     updateCardsContext(newCards);
+    }
   };
 
   const handleResize = () => {
@@ -362,15 +383,22 @@ export default function AllCards() {
     };
   }, [window.innerWidth]);
 
+ 
   useEffect(() => {
+    
     for (let i = 1; i <= columns; i++) {
       if (inputValue === "") {
-        const array = cards.slice((i - 1) * 5, i * 5);
+        const array = user ? user.cards.slice((i - 1) * 5, i * 5) : cards.slice((i - 1) * 5, i * 5);
         dividedCardsArr.push(array);
       }
       if (inputValue !== "") {
         if (language === "GEO") {
-          const array = cards
+          const array = user ? user.cards
+          .filter((card) =>
+            card.georgian.toLowerCase().startsWith(inputValue)
+          )
+          .slice((i - 1) * 5, i * 5)
+         :  cards
             .filter((card) =>
               card.georgian.toLowerCase().startsWith(inputValue)
             )
@@ -378,7 +406,9 @@ export default function AllCards() {
           dividedCardsArr.push(array);
         }
         if (language === "ENG") {
-          const array = cards
+          const array = user ?  user.cards
+          .filter((card) => card.english.toLowerCase().startsWith(inputValue))
+          .slice((i - 1) * 5, i * 5) : cards
             .filter((card) => card.english.toLowerCase().startsWith(inputValue))
             .slice((i - 1) * 5, i * 5);
           dividedCardsArr.push(array);
@@ -386,10 +416,8 @@ export default function AllCards() {
       }
     }
 
-    // setCardsOnCurrentPage(
-    //   dividedCardsArr.slice((currentPage - 1) * 3, currentPage * 3)
-    // )
-
+    
+   
     if (screenWidth > 1024) {
       setPages(Math.ceil(columns / 3));
       setCardsOnCurrentPage(
@@ -408,25 +436,14 @@ export default function AllCards() {
         dividedCardsArr.slice((currentPage - 1) * 1, currentPage * 1)
       );
     }
-  }, [inputValue, cards, currentPage, screenWidth]);
 
-  // useEffect(()=> {
-  //   if(screenWidth > 1024) {
-  //     setCardsOnCurrentPage(
-  //       dividedCardsArr.slice((currentPage - 1) * 3, currentPage * 3)
-  //     )
-  //   }
-  //   if(screenWidth <= 1024 && screenWidth > 767) {
-  //     setCardsOnCurrentPage(
-  //       dividedCardsArr.slice((currentPage - 1) * 2, currentPage * 2)
-  //     )
-  //   }
-  //   if(screenWidth <= 767) {
-  //     setCardsOnCurrentPage(
-  //       dividedCardsArr.slice((currentPage - 1) * 1, currentPage * 1)
-  //     )
-  //   }
-  // },[screenWidth])
+    
+  
+  }, [inputValue, cards, currentPage, screenWidth, user]);
+
+  
+
+ 
 
   useEffect(() => {
     if (currentPage > pages) {

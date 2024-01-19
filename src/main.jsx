@@ -4,9 +4,11 @@ import App from "./App.jsx";
 import "animate.css";
 import "./i18n";
 import { CardsDataProvider } from "./pages/Context/CardsContext.jsx";
+import { AuthorizationProvider } from "./pages/Context/AuthorizationContext.jsx";
 import { Toaster } from "react-hot-toast";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
+    <AuthorizationProvider>
     <CardsDataProvider>
     <App />
     <Toaster position="top-center" gutter={12} containerStyle={{margin: '8px'}} toastOptions={{
@@ -27,5 +29,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         
     }} />
     </CardsDataProvider>
+    </AuthorizationProvider>
  
 );

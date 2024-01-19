@@ -50,7 +50,7 @@
   "next": "შემდეგი",
   "continue": "გაგრძელება",
   "leave": "დასრულება",
-  "sessionFinished": "სესია დასრულებულია",
+  "sessionFinished": "ტესტი დასრულდა",
   "numOfQuestions": "კითხვების რაოდენობა",
   "correct": "სწორი პასუხების რაოდენობა",
   "wrong": "არასწორი პასუხების რაოდენობა",
@@ -73,5 +73,17 @@
   "howToWorksCard2": "გაიარეთ ტესტი",
   "howToWorksCard2Desc": "შექმენით პერსონალური ფლეშ ბარათები და გაიარეთ სახალისო ტესტი",
   "howToWorksCard3": "შეამოწმეთ პროგრესი",
-  "howToWorksCard3Desc": "ტესტის გავლის შემდეგ თქვენ გაქვთ წვდომა თქვენს პროგრესთან"
+  "howToWorksCard3Desc": "ტესტის გავლის შემდეგ თქვენ გაქვთ წვდომა თქვენს პროგრესთან",
+  "fieldRequired": "ველის შევსება სავალდებულოა",
+  "minSymbolsRequired": "მინიმალური სიმბოლოების რაოდენობა:",
+  "mailMissingSymbols": "ელ-ფოსტა უნდა შეიცავდეს სიმბოლოებს: @ და .",
+  "mailAlreadyUsed": "მითითებული ელ-ფოსტა უკვე გამოყენებულია",
+  "mailOrPasswordIncorect": "ელ-ფოსტა ან პაროლი არასწორია",
+  "confirmPassword": "გაიმეორე პაროლი",
+  "incorrectConfirm": "გამეორებული პაროლი არასწორია",
+  "SuccessfulRegistration": "რეგისტრაცია წარმატებით დასრულდა",
+  "cardSucessfullyDeleted": "ბარათი წარმატებით წაიშალა",
+  "cardSucessfullyEdited": "ბარათი წარმატებით დარედაქტირდა",
+  "resultAppliedToProgress": "ტესტის შედეგი შენახულია წარმატებით"
+
 }

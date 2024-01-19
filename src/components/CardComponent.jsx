@@ -12,7 +12,8 @@ import { MdCancel } from "react-icons/md";
 import RecycleBin from "../assets/images/RecycleBin.png";
 import Circle from "../assets/images/Circle.png";
 import { useCardsDataContext } from "../pages/Context/CardsContext";
-
+import { useAuthorizationContext } from "../pages/Context/AuthorizationContext";
+import useRequest from "../hooks/useRequest";
 const CardDiv = styled.div`
   position: relative;
   display: flex;
@@ -423,6 +424,11 @@ const CardComponent = ({ CardObject, onDelete, language, index }) => {
   const modalRef = useRef(null);
   const { deleteCard, editCard } = useLocalStorageCards("languageCards", []);
   const { cards, updateCards, editCardContext } = useCardsDataContext();
+  const [userObject, setUserObject] = useState();
+  const {updateUser} = useRequest();
+  const {user} = useAuthorizationContext();
+
+  
 
   const handleRotate = (e) => {
     if (
@@ -461,7 +467,47 @@ const CardComponent = ({ CardObject, onDelete, language, index }) => {
     setInputValue(inputRef.current.value);
   };
 
+  // useEffect(() => {
+  //   if(user && userObject !== undefined) {
+  //     updateUser(userObject,userObject._uuid, 'editCard')
+
+  //   }
+  // }, [userObject])
+
+  useEffect(() => {
+    const updateUserAndSetCard = async () => {
+      try {
+        if (user && userObject !== undefined) {
+          await updateUser(userObject, userObject._uuid, 'editCard');
+        
+          setCard((prevCard) => {
+            const updatedCard =
+              side === "GEO"
+                ? { ...prevCard, georgian: inputValue }
+                : { ...prevCard, english: inputValue };
+            return updatedCard
+          });
+        }
+      } catch (error) {
+       
+        console.error("Failed to update user:", error);
+      }
+    };
+  
+    updateUserAndSetCard();
+  }, [userObject]);
   const handleFinishEditing = () => {
+    if(user) {
+    
+    // const copiedCard = JSON.parse(JSON.stringify(card));
+    const changedKeyValue = side === "GEO" ?  {georgian: inputValue } : {english: inputValue };
+    const updatedCards = user.cards.map((c) =>
+      c.id === card.id ? { ...c, ...changedKeyValue } : c
+    );
+    const copiedObject = JSON.parse(JSON.stringify(user));
+    // setUserObject(({...copiedObject, cards: [...filteredCards,{...copiedCard, ...changedKeyValue} ]}))
+    setUserObject(({...copiedObject, cards: updatedCards}))
+    } else {
     setCard((prevCard) => {
       const updatedCard =
         side === "GEO"
@@ -469,7 +515,7 @@ const CardComponent = ({ CardObject, onDelete, language, index }) => {
           : { ...prevCard, english: inputValue };
       editCardContext(CardObject, updatedCard);
       return updatedCard;
-    });
+    });}
     setEditSession(false);
   };
 

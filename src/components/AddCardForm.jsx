@@ -6,6 +6,8 @@ import { useTranslation } from "react-i18next";
 import { styled } from "styled-components";
 import useLocalStorageCards from "../hooks/useLocalStorage";
 import { useCardsDataContext } from "../pages/Context/CardsContext";
+import { useAuthorizationContext } from "../pages/Context/AuthorizationContext";
+import useRequest from "../hooks/useRequest";
 
 const P = styled.p`
   font-weight: 700;
@@ -28,13 +30,17 @@ const Input = styled.input`
 const AddCardForm = ({ modal, modalOpen, setModalOpen }) => {
   const { t } = useTranslation();
   const modalRef = useRef(null);
+  const API_KEY = 'WsdKue2LFxsqmdimIkCyvBgbFLHbcQkk8DjiHohkRccDPRcNdg';
+  const {setTrigger, user, setUser} = useAuthorizationContext();
+  const [userObject,setUserObject] = useState();
+  const {updateUser} = useRequest();
   const [formData, setFormData] = useState({
     id: "",
     english: "",
     georgian: "",
   });
 
-  console.log(formData.georgian.length);
+ 
   async function generateUniqueId() {
     const timestamp = new Date().getTime();
     const randomNum = Math.floor(Math.random() * 10);
@@ -53,15 +59,19 @@ const AddCardForm = ({ modal, modalOpen, setModalOpen }) => {
 
   const { addCardsContext } = useCardsDataContext();
 
-  const generateId = async () => {
-    try {
-      const uniqueId = await generateUniqueId();
-      setFormData((prevData) => ({ ...prevData, id: uniqueId }));
-    } catch (error) {
-      toast.error(error.message);
+  useEffect(() => {console.log(user)}, [user])
+  
+  useEffect(() => {
+    const handleAddCard = async () => {
+    if(user && userObject !== undefined)
+    {
+   await updateUser(userObject, userObject._uuid,'addCard');}
     }
-  };
 
+    handleAddCard();
+  }, [userObject])
+  
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     setValidationError({ firstInput: false, secondInput: false });
@@ -81,8 +91,17 @@ const AddCardForm = ({ modal, modalOpen, setModalOpen }) => {
       try {
         const id = await generateUniqueId();
         const updatedFormData = { ...formData, id };
-        addCardsContext(updatedFormData);
-        toast.success(t("cardsSucessfullyAdded"));
+        if(user) {
+        const copiedObject = JSON.parse(JSON.stringify(user));
+        setUserObject(({...copiedObject, cards:[...copiedObject.cards, updatedFormData]}))
+        
+        } else {
+         
+          addCardsContext(updatedFormData);
+          toast.success(t("cardsSucessfullyAdded"));
+        }
+        
+        
       } catch (error) {
         toast.error(error.message);
       } finally {
