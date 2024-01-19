@@ -57,7 +57,7 @@ const FooterData = () => {
       lists: [
         {
           id: 8,
-          path: "/longman/terms",
+          path: "/longman/terms-and-conditions",
           menuTitle: `${t("termsAndConditionsPage")}`,
         },
         {

@@ -120,5 +120,7 @@
   "faqPage": "FAQ",
   "pageNotFoundText": "გვერდი არ არის ნაპოვნი",
   "pageNotFoundDesc": "როგორც ჩანს, თქვენ მიერ მოთხოვნილი გვერდი ვერ მოიძებნა. გთხოვთ, შეამოწმოთ URL ის მისამართი.",
-  "pageNotFoundHomePage": "მთავარ გვერდზე დაბრუნება"
+  "pageNotFoundHomePage": "მთავარ გვერდზე დაბრუნება",
+
+  "loadingText": "იტვირთება..."
 }

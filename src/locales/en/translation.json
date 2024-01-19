@@ -123,5 +123,7 @@
   "faqPage": "FAQ",
   "pageNotFoundText": "Page Not Found",
   "pageNotFoundDesc": "Looks like the page you requested for could not be found. Please check the URL address.",
-  "pageNotFoundHomePage": "Back To Home Page"
+  "pageNotFoundHomePage": "Back To Home Page",
+
+  "loadingText": "Loading..."
 }
