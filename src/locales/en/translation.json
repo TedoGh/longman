@@ -53,7 +53,7 @@
   "next": "Next",
   "continue": "Continue",
   "leave": "Leave",
-  "sessionFinished": "Train Session Done",
+  "sessionFinished": "Test session is finished",
   "numOfQuestions": "Number of questions",
   "correct": "Correct",
   "wrong": "Wrong",
@@ -77,6 +77,19 @@
   "howToWorksCard2Desc": "Create your own flashcards and take a fun quiz",
   "howToWorksCard3": "Check the progress",
   "howToWorksCard3Desc": "After passing the test you have access to your progress",
+
+  "fieldRequired": "Field is required",
+  "minSymbolsRequired": "Minimum symbols required:",
+  "mailMissingSymbols": "Email should contain symbols: @ and .",
+  "mailAlreadyUsed": "Email address is already used",
+  "mailOrPasswordIncorect": "Email or Password is incorect",
+  "confirmPassword": "Confirm password",
+  "incorrectConfirm": "Rewritten password is not correct",
+  "SuccessfulRegistration": "You registered succesfully",
+  "cardSucessfullyDeleted": "Card deleted succesfully",
+  "cardSucessfullyEdited": "Card succesfully edited",
+  "resultAppliedToProgress": "Training result successfully added to progress data"
+
   "testimonialsText": "Testimonials",
 
   "faqSectionTitle": "What is FlashcardPro?",
@@ -126,4 +139,5 @@
   "pageNotFoundHomePage": "Back To Home Page",
 
   "loadingText": "Loading..."
+
 }

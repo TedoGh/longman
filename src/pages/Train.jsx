@@ -6,6 +6,7 @@ import GuessCard from "../components/guessCard";
 import React, { useState, useEffect, useRef } from "react";
 import { useCardsDataContext } from "./Context/CardsContext";
 import { toast } from "react-hot-toast";
+import { useAuthorizationContext } from "./Context/AuthorizationContext";
 
 const TrainContainer = styled.div`
   width: 100%;
@@ -182,14 +183,25 @@ const Train = () => {
   const [languageState, setLanguageState] = useState("GEO");
   const modalRef = useRef(null);
   const { cards } = useCardsDataContext();
+  const {user} = useAuthorizationContext();
+  const [examFinished, setExamFinished] = useState(false);
+  
 
   const handleClick = () => {
-    if (cards.length >= selectedNumber) {
+    if(user) {
+      if (user.cards.length >= selectedNumber) {
+        setActive(true);
+      } else {
+        toast.error(t("notEnaughCards"));
+      } 
+    }
+    else { if(cards.length >= selectedNumber) {
       setActive(true);
     } else {
       toast.error(t("notEnaughCards"));
     }
-  };
+  }
+};
 
   const changeColor = (number) => {
     setSelectedNumber(number === selectedNumber ? null : number);
@@ -206,6 +218,7 @@ const Train = () => {
 
   return (
     <TrainContainer>
+    {!examFinished && <>
       <TrainText>{t("trainPageTrainText")}</TrainText>
       <ClickText>{t("trainPageClickText")}</ClickText>
       <LanguageSwitchContainer>
@@ -241,17 +254,22 @@ const Train = () => {
       <StartTrainButton onClick={handleClick}>
         {t("trainPageStartTrainBNText")}
       </StartTrainButton>
-
+      </>}
       {active && (
+        
         <GuessCard
           active={active}
           setActive={setActive}
           cards={cards}
           selectedNumber={selectedNumber}
           languageState={languageState}
+          examFinished ={examFinished} 
+          setExamFinished = {setExamFinished}
+         
         />
       )}
-    </TrainContainer>
+      </TrainContainer>
+    
   );
 };
 

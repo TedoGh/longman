@@ -67,12 +67,14 @@ const AuthorizationBtns = ({ setShowMenu }) => {
         <SignInModal
           authorizationModal={authorizationModal}
           setAuthorizationModal={setAuthorizationModal}
+          handleClick={handleClick}
         />
       )}
       {authorizationModal === "signUp" && (
         <SignUpModal
           authorizationModal={authorizationModal}
           setAuthorizationModal={setAuthorizationModal}
+          handleClick={handleClick}
         />
       )}
     </Container>

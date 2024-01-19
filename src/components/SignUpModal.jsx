@@ -2,6 +2,9 @@ import React, { useState, useEffect, useRef } from "react";
 import { styled } from "styled-components";
 import LogoMain from "../assets/images/LogoMain.png";
 import { useTranslation } from "react-i18next";
+import { useForm } from "react-hook-form";
+import { useAuthorizationContext } from "../pages/Context/AuthorizationContext";
+import { toast } from "react-hot-toast";
 
 const P = styled.p`
   font-family: "Helvetica", sans-serif;
@@ -16,7 +19,9 @@ const ErrorText = styled.p`
   font-size: 15px;
   line-height: 17.25px;
   color: #e10000;
-  padding-top: 5px;
+  margin-bottom: 2px;
+  
+  
 `;
 
 const SignUpBtn = styled.button`
@@ -50,7 +55,11 @@ const TextDiv = styled.div`
 `;
 
 const Input = styled.input`
-  border: ${({ error }) => (error ? "1px solid red" : "")};
+  border: ${({ error }) => (error ? "1px solid #e10000" :  "1px solid #ACACAC")};
+
+      
+    
+  }
 `;
 
 const Img = styled.img`
@@ -59,58 +68,54 @@ const Img = styled.img`
   justify-self: flex-start;
 `;
 
-const SignUpModal = ({ setAuthorizationModal, authorizationModal }) => {
+const SignUpModal = ({ setAuthorizationModal, authorizationModal, handleClick }) => {
+  const info = {
+    Name: '',
+    Surname: '',
+    Email: '',
+    Password: '',
+    ConfirmPassword: '',
+    
+  }
   const { t } = useTranslation();
   const modalRef = useRef(null);
-  const [validationError, setValidationError] = useState({
-    nameInput: false,
-    surnameInput: false,
-    emailInput: false,
-    passwordInput: false,
+  const API_KEY = 'WsdKue2LFxsqmdimIkCyvBgbFLHbcQkk8DjiHohkRccDPRcNdg';
+  const editValues = { ...info };
+  const { register, handleSubmit, reset, getValues, formState } = useForm({
+    defaultValues: editValues,
   });
+  const {response,setTrigger} = useAuthorizationContext();
+  const { errors } = formState;
+  const [loading, setLoading] = useState(false);
 
-  const [formData, setFormData] = useState({
-    Name: "",
-    Surname: "",
-    Email: "",
-    Password: "",
-  });
+ 
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setValidationError({ nameInput: false, surnameInput: false });
+  console.log(errors);
 
-    if (formData.Email.trim().length < 1) {
-      setValidationError((prev) => ({ ...prev, nameInput: true }));
-    }
-
-    if (formData.Password.trim().length < 1) {
-      setValidationError((prev) => ({ ...prev, surnameInput: true }));
-    }
-    if (
-      formData.georgian.trim().length >= 1 &&
-      formData.english.trim().length >= 1
-    ) {
+  const onSubmit = async (data) => {
+    const { ConfirmPassword, ...dataWithoutConfirmPassword } = data;
+    
       try {
-        const response = await fetch(`${API}`, {
+        const response = await fetch('https://crudapi.co.uk/api/v1/Authorization', {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            'Authorization': `Bearer ${API_KEY}`,
+
+
           },
-          body: JSON.stringify(formData),
+          body: JSON.stringify([dataWithoutConfirmPassword]),
         });
 
         if (response.ok) {
-          await fetchCards();
-          setFormData({
-            Email: "",
-            Password: "",
-          });
+          setTrigger(true)
+          toast.success(t('SuccessfulRegistration'))
+          setAuthorizationModal('')
         } else {
           console.error("Failed to add card");
         }
@@ -118,15 +123,15 @@ const SignUpModal = ({ setAuthorizationModal, authorizationModal }) => {
         console.error(error);
       }
     }
-  };
+  
 
   const handleClickOutside = (e) => {
     if (modalRef.current && !modalRef.current.contains(e.target)) {
       setAuthorizationModal("");
-      console.log("outside");
+     
     }
 
-    console.log("inside");
+    
   };
 
   useEffect(() => {
@@ -147,46 +152,118 @@ const SignUpModal = ({ setAuthorizationModal, authorizationModal }) => {
       <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50  rounded-lg overflow-hidden">
         <form
           className="w-[455px] h-[538px] bg-[white] flex flex-col justify-start items-center gap-5 rounded-lg max-[768px]:w-[365px]"
-          onSubmit={handleSubmit}
+          onSubmit={handleSubmit(onSubmit)}
           ref={modalRef}
         >
           <Img src={LogoMain} alt="" />
           <div className="flex flex-row gap-3 max-[768px]:flex-col">
-            <input
+            <Input
               className="rounded-lg border-bgPlaceBorder border-solid border placeholder:text-bgPlaceBorder focus:outline-none focus:border-green w-[187px] h-[47px] p-2 max-[768px]:w-[330px]"
               type="text"
               placeholder={t("firstName")}
-              name="Name"
-              value={formData.Name}
+              disabled={loading}
+            defaultValue={info?.Name}
+            error={errors.Name}
+            narrow={window.innerWidth > 769 ? true : undefined}
+            {...register("Name", {
+              required: t('fieldRequired'),
+             
+            })}
+              
             />
-            <input
+            
+            <Input 
               className="rounded-lg border-bgPlaceBorder border-solid border placeholder:text-bgPlaceBorder focus:outline-none focus:border-green w-[187px] h-[47px] p-2 max-[768px]:w-[330px]"
               type="text"
               placeholder={t("surname")}
-              name="Surname"
-              value={formData.Surname}
+              disabled={loading}
+            defaultValue={info?.Surname}
+            error={errors.Surname}
+            narrow={window.innerWidth > 769 ? true : undefined}
+            {...register("Surname", {
+              required: t('fieldRequired')
+            })}
+              
             />
+            
           </div>
-          <input
+          <div>
+          {errors.Email?.message && errors.Email.type !== 'required' && <ErrorText>{errors.Email?.message}</ErrorText>}
+          <Input style={{position: 'relative'}}
             className="rounded-lg border-bgPlaceBorder border-solid border placeholder:text-bgPlaceBorder focus:outline-none focus:border-green w-[388px] h-[47px] p-2 max-[768px]:w-[330px]"
             type="text"
             placeholder={t("mail")}
-            name="Email"
-            value={formData.Email}
+            disabled={loading}
+            defaultValue={info?.Email}
+            error={errors.Email}
+            {...register("Email", {
+              required: t('fieldRequired'),
+              minLength: {
+                value: 10,
+                message: t('minSymbolsRequired') + '10',
+              },
+              validate: (value) => {
+                const containsAtAndDot = value.includes('@') && value.includes('.');
+                const isUsed = response.items?.find(user => user.Email === value)
+                if(!containsAtAndDot) {
+                  return t('mailMissingSymbols')
+                }
+                if(isUsed) {
+                  return t('mailAlreadyUsed')
+                }
+            }
+          }
+            )}
+            
           />
-          <input
+          </div>
+          <div>
+          {errors.Password?.message && errors.Password.type !== 'required' && <ErrorText>{errors.Password?.message}</ErrorText>}
+          <Input
             className="rounded-lg border-bgPlaceBorder border-solid border placeholder:text-bgPlaceBorder focus:outline-none focus:border-green w-[388px] h-[47px] p-2 max-[768px]:w-[330px]"
-            type="text"
+            type="password"
             placeholder={t("password")}
-            name="Password"
-            value={formData.Password}
+            disabled={loading}
+            defaultValue={info?.Password}
+            error={errors.Password}
+            {...register("Password", {
+              required: t('fieldRequired'),
+              minLength: {
+                value: 6,
+                message: t('minSymbolsRequired') + '6',
+              },
+              
+            })}
+           
           />
+          </div>
+          <div>
+            {errors.ConfirmPassword?.message && errors.ConfirmPassword.type !== 'required' && <ErrorText>{errors.ConfirmPassword?.message}</ErrorText>}
+           <Input
+            className="rounded-lg border-bgPlaceBorder border-solid border placeholder:text-bgPlaceBorder focus:outline-none focus:border-green w-[388px] h-[47px] p-2 max-[768px]:w-[330px]"
+            type="password"
+            placeholder={t("confirmPassword")}
+            disabled={loading}
+            defaultValue={info?.ConfirmPassword}
+            error={errors.ConfirmPassword}
+            {...register("ConfirmPassword", {
+              required: t('fieldRequired'),
+              validate: (value) => 
+              
+              {if(value !== getValues("Password"))
+             return  t('incorrectConfirm')}
+              
+            })}
+           
+          />
+         </div>
+          
           <SignUpBtn>{t("signUp")}</SignUpBtn>
           <TextDiv>
             <p>
               {t("registeredText")}{" "}
               <span>
-                <button>{t("login")}</button>
+                <button onClick={() => handleClick('signIn')}>{t("login")}</button>
               </span>
             </p>
           </TextDiv>
@@ -206,6 +283,6 @@ const SignUpModal = ({ setAuthorizationModal, authorizationModal }) => {
       </div>
     </div>
   );
-};
+          };
 
 export default SignUpModal;

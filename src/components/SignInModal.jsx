@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { styled } from "styled-components";
 import LogoMain from "../assets/images/LogoMain.png";
 import { useTranslation } from "react-i18next";
+import {useAuthorizationContext} from '../pages/Context/AuthorizationContext'
 
 const ErrorText = styled.p`
   font-family: "Helvetica", sans-serif;
@@ -10,6 +11,9 @@ const ErrorText = styled.p`
   line-height: 17.25px;
   color: #e10000;
   padding-top: 5px;
+  align-self: flex-start;
+  margin-left: 25px;
+ 
 `;
 
 const SignInBtn = styled.button`
@@ -25,7 +29,7 @@ const SignInBtn = styled.button`
 `;
 
 const Input = styled.input`
-  border: ${({ error }) => (error ? "1px solid red" : "")};
+  border: ${({ error }) => (error ? "1px solid red" : "1px solid #ACACAC")};
 `;
 
 const ForgotPasswordBtn = styled.button`
@@ -59,70 +63,48 @@ const TextDiv = styled.div`
   }
 `;
 
-const SignInModal = ({ setAuthorizationModal, authorizationModal }) => {
+const SignInModal = ({ setAuthorizationModal, authorizationModal, handleClick }) => {
   const { t } = useTranslation();
   const modalRef = useRef(null);
-  const [validationError, setValidationError] = useState({
-    emailInput: false,
-    passwordInput: false,
-  });
+  const {response, setUser, user} = useAuthorizationContext();
+  const [error, setError] = useState(false);
 
   const [formData, setFormData] = useState({
     Email: "",
     Password: "",
   });
 
+  
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setValidationError({ emailInput: false, passwordInput: false });
+  useEffect(() => {if(user)setAuthorizationModal('')},[user])
 
-    if (formData.Email.trim().length < 1) {
-      setValidationError((prev) => ({ ...prev, emailInput: true }));
-    }
-
-    if (formData.Password.trim().length < 1) {
-      setValidationError((prev) => ({ ...prev, passwordInput: true }));
-    }
-    if (
-      formData.georgian.trim().length >= 1 &&
-      formData.english.trim().length >= 1
-    ) {
-      try {
-        const response = await fetch(`${API}`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        });
-
-        if (response.ok) {
-          await fetchCards();
-          setFormData({
-            Email: "",
-            Password: "",
-          });
-        } else {
-          console.error("Failed to add card");
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    }
+  const handleSubmit = (e) => {
+   e.preventDefault();
+   setError(false);
+   const email = response.items.find(user => user?.Email === formData?.Email && user?.Password === formData?.Password)?.Email
+   const password = response.items.find(user => user?.Password === formData?.Password && user?.Email === formData?.Email)?.Password
+   if(email !== undefined && password !== undefined) {
+    const foundUser = response.items.find(user => user?.Email === formData?.Email);
+    setUser(foundUser);
+    
+   } else {
+    setError(true);
+   }
+    
   };
 
   const handleClickOutside = (e) => {
     if (modalRef.current && !modalRef.current.contains(e.target)) {
       setAuthorizationModal("");
-      console.log("outside");
+   
     }
 
-    console.log("inside");
+    
   };
 
   useEffect(() => {
@@ -142,7 +124,7 @@ const SignInModal = ({ setAuthorizationModal, authorizationModal }) => {
       <div className="w-screen h-screen fixed top-0 left-0 z-40 backdrop-filter backdrop-blur-sm"></div>
       <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50  rounded-lg overflow-hidden">
         <form
-          onSubmit={handleSubmit}
+          onSubmit={(e) => handleSubmit(e)}
           className="w-[435px] h-[480px] bg-[white] flex flex-col justify-start gap-6 items-center rounded-lg max-[768px]:w-[365px]"
           ref={modalRef}
         >
@@ -154,6 +136,7 @@ const SignInModal = ({ setAuthorizationModal, authorizationModal }) => {
             onChange={handleChange}
             name="Email"
             value={formData.Email}
+            error={error}
           />
           <Input
             className="rounded-lg border-bgPlaceBorder border-solid border placeholder:text-bgPlaceBorder focus:outline-none focus:border-green w-[389px] h-[52px] p-2 max-[768px]:w-[330px]"
@@ -162,14 +145,17 @@ const SignInModal = ({ setAuthorizationModal, authorizationModal }) => {
             onChange={handleChange}
             name="Password"
             value={formData.Password}
+            error={error}
           />
+          {error && <ErrorText>{t('mailOrPasswordIncorect')}</ErrorText>}
           <ForgotPasswordBtn>{t("forgotPassword")}</ForgotPasswordBtn>
           <SignInBtn>{t("login")}</SignInBtn>
           <TextDiv>
             <p>{t("notRegisteredText")}</p>
-            <button>{t("signUp")}</button>
+            <button onClick={() => handleClick("signUp")}>{t("signUp")}</button>
           </TextDiv>
         </form>
+
       </div>
     </div>
   );
