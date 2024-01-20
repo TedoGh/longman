@@ -1,7 +1,10 @@
+import { useTranslation } from "react-i18next";
 import React, { useState } from "react";
 import Pagination from "./Pagination";
 
 const ProgressHistoryList = () => {
+  const { t } = useTranslation();
+
   const dataList = [
     { id: 1, result: 67, resultTime: "09/09/2023" },
     { id: 2, result: 67, resultTime: "09/09/2023" },
@@ -29,13 +32,21 @@ const ProgressHistoryList = () => {
             }
             key={item.id}
           >
-            <div className="flex justify-between">
+            <div className="flex justify-between max-[1024px]:flex-col">
               <div>
-                <h3>თქვენი შედეგი :</h3>
-                <h2 className="mt-3 text-lg font-bold">{item.result}/100%</h2>
+                <h3>{t("yourResult")} :</h3>
+                <h2 className="mt-3 text-lg font-bold">{item.result} | 100%</h2>
+              </div>
+              <div>
+                <h3>{t("numberOfQuestionsSelected")} :</h3>
+                <h2 className="mt-3 text-lg font-bold">10</h2>
+              </div>
+              <div>
+                <h3>{t("numberOfSuccessfullyQuestions")} :</h3>
+                <h2 className="mt-3 text-lg font-bold">7</h2>
               </div>
               <div className="mr-14">
-                <h3>დრო :</h3>
+                <h3>{t("ResultTime")} :</h3>
                 <h2 className="mt-3 text-lg font-bold">{item.resultTime}</h2>
               </div>
             </div>

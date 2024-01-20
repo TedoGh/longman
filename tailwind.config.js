@@ -5,7 +5,6 @@ export default {
     extend: {},
     fontFamily: {
       helvetica: ["HelveticaNeueLTGEO"],
-      helveticaBold: ["HelveticaNeueLTGEO-bold"],
     },
     colors: {
       green: "#04AA6D",
