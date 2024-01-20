@@ -8,7 +8,8 @@ import useRequest from "../hooks/useRequest";
 
 const StyledModalContainer = styled.div`
   position: fixed;
-  top: 55%;
+  
+  top: 60%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 50;
@@ -23,8 +24,8 @@ const StyledModalContainer = styled.div`
 `;
 
 const StyledModalContent = styled.div`
-  width: 35%;
-  height: 50%;
+  width: 500px;
+  height: 500px;
   background: white;
   display: flex;
   flex-direction: column;
@@ -238,15 +239,15 @@ const StyledButtonContainer = styled.div`
     color: #fff;
     padding: 2.5;
     border-radius: 30px;
-    width: 193px;
-    height: 35px;
+    width: 143px;
+    height: 30px;
     cursor: pointer;
     font-size: 18px;
     font-weight: 400;
     line-height: 21px;
     letter-spacing: 0em;
     text-align: center;
-    margin-top: 40px;
+    margin-top: 30px;
 
     @media (max-width: 1024px) {
       padding: 2.5;
@@ -273,8 +274,8 @@ const StyledButtonContainer = styled.div`
   }
 
   & .backbtn {
-    width: 233px;
-    height: 48px;
+    width: 200px;
+    height: 44px;
     color: ${(props) => (props.questionIndex === 0 ? "#A3A3A3" : "#04AA6D")};
     background-color: white;
     border: ${(props) =>
@@ -282,8 +283,8 @@ const StyledButtonContainer = styled.div`
   }
 
   & .confirmbtn {
-    width: 233px;
-    height: 48px;
+    width: 200px;
+    height: 44px;
     color: white;
     background-color: ${(props) =>
       props.submited === false ? "#A4A4A4" : "#04AA6D"};

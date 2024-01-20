@@ -23,7 +23,7 @@ const App = () => {
   const { pathname } = location;
 
   useEffect(() => {
-    setIsLoading(true);
+    setIsLoading(false);
     setTimeout(() => {
       setIsLoading(false);
     }, 3500);

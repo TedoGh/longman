@@ -8,12 +8,14 @@ import Burger from "../assets/images/burger.svg";
 import { FaAngleRight } from "react-icons/fa";
 import HeaderData from "../data/HeaderData";
 import UserProfile from "./UserProfile";
+import { useAuthorizationContext } from "../pages/Context/AuthorizationContext";
 
 export default function Header() {
   const { t } = useTranslation();
   const location = useLocation();
   const [showMenu, setShowMenu] = useState(false);
   const menuRef = useRef(null);
+  const {user} = useAuthorizationContext();
 
   const toggleMenu = () => {
     setShowMenu(true);
@@ -100,10 +102,10 @@ export default function Header() {
             <div className="max-[1024px]:hidden">
               <LanguageSwitcher />
             </div>
-            <div style={{ display: "none" }}>
-              <AuthorizationBtns />
-            </div>
-            <UserProfile />
+           {!user && <div >
+              <AuthorizationBtns  />
+            </div>}
+            {user && <UserProfile />}
           </div>
           <div>
             {/* Hamburger */}

@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { FaAngleDown, FaUserCircle, FaSignOutAlt } from "react-icons/fa";
+import { useAuthorizationContext } from "../pages/Context/AuthorizationContext";
 
 const UserProfile = () => {
   const [showExit, setShowExit] = useState(false);
   const userProfileRef = useRef(null);
+  const {user, setUser} = useAuthorizationContext()
 
   const handleShowExit = () => {
     setShowExit((prevState) => !prevState);
@@ -51,7 +53,7 @@ const UserProfile = () => {
                 "text-[#E10000] bg-[#fff] border-solid border-2 border-[#f9f9f9] rounded-md p-4 absolute top-14 right-0 cursor-pointer animate__animated animate__fadeInDown"
               }
             >
-              <div className="flex items-center gap-2">
+              <div onClick={() => setUser()} className="flex items-center gap-2">
                 <FaSignOutAlt />
                 <span>გამოსვლა</span>
               </div>

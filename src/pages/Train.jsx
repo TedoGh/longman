@@ -136,10 +136,12 @@ const SwitchTrainButton = styled.button`
   background: url(${SwitchTrainImage});
   width: 23px;
   height: 24px;
+  margin-top: 5px;
 
   @media (max-width: 1024px) {
     width: 23px;
     height: 24px;
+    margin-top: 0;
   }
   @media (max-width: 767px) {
     width: 23px;
