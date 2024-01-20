@@ -135,6 +135,20 @@
   "pageNotFoundDesc": "როგორც ჩანს, თქვენ მიერ მოთხოვნილი გვერდი ვერ მოიძებნა. გთხოვთ, შეამოწმოთ URL ის მისამართი.",
   "pageNotFoundHomePage": "მთავარ გვერდზე დაბრუნება",
 
-  "loadingText": "იტვირთება..."
+  "loadingText": "იტვირთება...",
 
+  "helloText": "გამარჯობა",
+  "hello2Text": "მოგესალმებით",
+  "myProgressPageText1": "ამ გვერდზე ნაჩვენებია მომხმარებლის პროგრესი, რომელიც ნახლდება ყოველი გავლილი ვარჯიშის შემდეგ.",
+  "myProgressPageText2": "თუ თქვენ გსურთ პროგრესის გაუმჯობესება, ახლავე დაიწყეთ ტესტის გავლა.",
+  "startTrainText": "ვარჯიშის დაწყება",
+  "totalQuestions": "თქვენი პროგრესი!",
+  "totalCorrectAnswers": "არჩეული კითხვების ჯამი",
+  "yourProgressText": "სწორი პასუხების ჯამი",
+
+  "myResults": "ჩემი შედეგები",
+  "yourResult": "თქვენი შედეგი",
+  "numberOfQuestionsSelected": "არჩეული კითხვების რაოდენობა",
+  "numberOfSuccessfullyQuestions": "წარმატებით გაცემული კითხვების რაოდენობა",
+  "ResultTime": "დრო"
 }

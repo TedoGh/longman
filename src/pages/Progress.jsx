@@ -1,49 +1,66 @@
 import ProgressHistory from "../components/ProgressHistory";
+import SemiCircleProgressBar from "react-progressbar-semicircle";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function Progress() {
+  const { t } = useTranslation();
+
+  const percentage = "14.35";
+
   return (
     <div>
       <div className="max-w-[1200px] mx-auto">
-        <div>
+        <div className="px-5 lg:px-0">
           <h1 className="mt-8 text-darkBlue text-3xl font-bold">
-            ჩემი პროგრესი
+            {t("myProgressText")}
           </h1>
-          <div className="flex">
+          <div className="lg:flex grid grid-cols-1">
             <div className="w-full">
-              <div className="mt-14 h-[350px] p-12 border-2 border-[#DEE2E6] rounded-md">
-                <h1 className="text-2xl mb-5">გამარჯობა, მომხარებელო</h1>
-                <p className="mb-3 text-lg text-[#AFAFAF] w-[690px]">
-                  ამ გვერდზე ნაჩვენებია მომხმარებლის პროგრესი,რომელიც ნახლდება
-                  ყოველი გავლილი ვარჯიშის შემდეგ.
+              <div className="my-14 h-[530px] lg:h-[350px] p-12 border-2 border-[#DEE2E6] rounded-md">
+                <h1 className="text-2xl mb-5">{t("helloText")}, მომხარებელო</h1>
+                <p className="mb-3 text-lg text-[#AFAFAF] lg:w-[690px] w-full">
+                  {t("myProgressPageText1")}
                 </p>
-                <p className="mb-4 text-lg text-[#AFAFAF] w-[650px]">
-                  თუ თქვენ გსურთ პროგრესის გაუმჯობესება, ახლავე დაიტყეთ ტესტის
-                  გავლა.
+                <p className="mb-4 text-lg text-[#AFAFAF] lg:w-[650px] w-full">
+                  {t("myProgressPageText2")}
                 </p>
-                <button className="bg-[#1ACD81] hover:bg-[#0fa968] text-[#fff] font-bold rounded-[30px] w-[294px] h-[47px]  p-[10px] gap-[10px]">
-                  <Link to={"/longman/train"}>ვარჯიშის დაწყება</Link>
+                <button className="bg-[#1ACD81] hover:bg-[#0fa968] text-[#fff] font-bold rounded-[30px] w-[250px] lg:w-[294px] h-[47px]  p-[10px]">
+                  <Link to={"/longman/train"}>{t("startTrainText")}</Link>
                 </button>
               </div>
             </div>
             <div className="relative">
-              <div className="w-[400px] h-[448px] p-7 text-center absolute right-16 bg-[#fff] border-[4px] border-[#DEE2E6] rounded-md">
-                <h1 className="text-darkBlue text-2xl mb-4">მოგესალმებით!</h1>
-                <p className="text-[#A2A2A2] text-lg text-center mb-5">
-                  თქვენი ქულა!
-                </p>
-
-                <div className="flex justify-center">
-                  <div className="relative m-1">
-                    <div className="relative w-[180px] h-[90px] overflow-hidden">
-                      <div className="absolute rotate-[-223deg] top-0 left-0 w-[180px] h-[180px] rounded-[50%] border-[10px] border-[#f7f7f7] border-b-green border-r-green"></div>
+              <div className="flex justify-center">
+                <div className="w-full lg:w-[400px] h-[448px] p-7 text-center absolute lg:right-16 bg-[#fff] border-[4px] border-[#DEE2E6] rounded-md">
+                  <h1 className="text-darkBlue text-2xl mb-4">
+                    {" "}
+                    {t("hello2Text")}!
+                  </h1>
+                  <p className="text-[#A2A2A2] text-lg text-center mb-5">
+                    {t("totalQuestions")}
+                  </p>
+                  <div className="flex justify-center">
+                    <div>
+                      <SemiCircleProgressBar
+                        percentage={percentage}
+                        stroke={"#04AA6D"}
+                        background={"#F7F7F7"}
+                      />
+                      <h1 className="mt-[-50px] mr-8 text-darkBlue text-3xl font-bold mb-[40px]">
+                        {percentage}%
+                      </h1>
+                      <div>
+                        <p className="text-darkBlue text-center mb-5 w-[230px]">
+                          {t("totalCorrectAnswers")} :
+                          <span className="font-bold"> 447</span>
+                        </p>
+                        <p className="text-darkBlue text-center mb-5">
+                          {t("yourProgressText")} :
+                          <span className="font-bold"> 4725</span>
+                        </p>
+                      </div>
                     </div>
-                    <h1 className="mt-[-60px] text-darkBlue text-4xl font-bold">
-                      50<span className="text-lg font-normal">/100%</span>
-                    </h1>
-                    <p className="text-[#A2A2A2] text-base text-center mb-5">
-                      ქულები
-                    </p>
                   </div>
                 </div>
               </div>

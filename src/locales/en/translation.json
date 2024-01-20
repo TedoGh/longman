@@ -138,6 +138,20 @@
   "pageNotFoundDesc": "Looks like the page you requested for could not be found. Please check the URL address.",
   "pageNotFoundHomePage": "Back To Home Page",
 
-  "loadingText": "Loading..."
+  "loadingText": "Loading...",
 
+  "helloText": "Hello",
+  "hello2Text": "Welcome",
+  "myProgressPageText1": "This page shows the user's progress, which is updated after each completed exercise.",
+  "myProgressPageText2": "If you want to improve your progress, start taking the test now.",
+  "startTrainText": "Start training",
+  "totalQuestions": "Your Progress!",
+  "totalCorrectAnswers": "Total number of selected questions",
+  "yourProgressText": "Total correct answers",
+
+  "myResults": "My Results",
+  "yourResult": "Your Result",
+  "numberOfQuestionsSelected": "Number of questions selected",
+  "numberOfSuccessfullyQuestions": "The number of successfully issued questions",
+  "ResultTime": "Time"
 }

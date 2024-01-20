@@ -30,17 +30,16 @@ const Input = styled.input`
 const AddCardForm = ({ modal, modalOpen, setModalOpen }) => {
   const { t } = useTranslation();
   const modalRef = useRef(null);
-  const API_KEY = 'WsdKue2LFxsqmdimIkCyvBgbFLHbcQkk8DjiHohkRccDPRcNdg';
-  const {setTrigger, user, setUser} = useAuthorizationContext();
-  const [userObject,setUserObject] = useState();
-  const {updateUser} = useRequest();
+  const API_KEY = "WsdKue2LFxsqmdimIkCyvBgbFLHbcQkk8DjiHohkRccDPRcNdg";
+  const { setTrigger, user, setUser } = useAuthorizationContext();
+  const [userObject, setUserObject] = useState();
+  const { updateUser } = useRequest();
   const [formData, setFormData] = useState({
     id: "",
     english: "",
     georgian: "",
   });
 
- 
   async function generateUniqueId() {
     const timestamp = new Date().getTime();
     const randomNum = Math.floor(Math.random() * 10);
@@ -59,19 +58,20 @@ const AddCardForm = ({ modal, modalOpen, setModalOpen }) => {
 
   const { addCardsContext } = useCardsDataContext();
 
-  useEffect(() => {console.log(user)}, [user])
-  
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
+
   useEffect(() => {
     const handleAddCard = async () => {
-    if(user && userObject !== undefined)
-    {
-   await updateUser(userObject, userObject._uuid,'addCard');}
-    }
+      if (user && userObject !== undefined) {
+        await updateUser(userObject, userObject._uuid, "addCard");
+      }
+    };
 
     handleAddCard();
-  }, [userObject])
-  
-  
+  }, [userObject]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setValidationError({ firstInput: false, secondInput: false });
@@ -91,17 +91,16 @@ const AddCardForm = ({ modal, modalOpen, setModalOpen }) => {
       try {
         const id = await generateUniqueId();
         const updatedFormData = { ...formData, id };
-        if(user) {
-        const copiedObject = JSON.parse(JSON.stringify(user));
-        setUserObject(({...copiedObject, cards:[...copiedObject.cards, updatedFormData]}))
-        
+        if (user) {
+          const copiedObject = JSON.parse(JSON.stringify(user));
+          setUserObject({
+            ...copiedObject,
+            cards: [...copiedObject.cards, updatedFormData],
+          });
         } else {
-         
           addCardsContext(updatedFormData);
           toast.success(t("cardsSucessfullyAdded"));
         }
-        
-        
       } catch (error) {
         toast.error(error.message);
       } finally {
@@ -131,7 +130,7 @@ const AddCardForm = ({ modal, modalOpen, setModalOpen }) => {
     : "flex justify-center mt-6 mb-10";
 
   const formClass = modal
-    ? "w-[365px] sm:w-[555px] h-[469px] bg-[white] flex flex-col justify-center items-center gap-12 rounded-lg"
+    ? "w-[365px] sm:w-[555px] h-[469px] bg-[white] flex flex-col justify-center items-center gap-12 rounded-lg animate__animated animate__fadeInDown"
     : "w-[365px] sm:w-[555px] h-[469px] bg-lightBlue flex flex-col justify-center items-center gap-12 rounded-lg";
 
   const inputClass = modal
