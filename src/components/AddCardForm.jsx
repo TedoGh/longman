@@ -8,6 +8,7 @@ import useLocalStorageCards from "../hooks/useLocalStorage";
 import { useCardsDataContext } from "../pages/Context/CardsContext";
 import { useAuthorizationContext } from "../pages/Context/AuthorizationContext";
 import useRequest from "../hooks/useRequest";
+import { TailSpin } from "react-loader-spinner";
 
 const P = styled.p`
   font-weight: 700;
@@ -27,16 +28,22 @@ const Input = styled.input`
   border: ${({ error }) => (error ? "1px solid red" : "")};
 `;
 
+const LoadingDiv = styled.div`
+position: absolute;
+top: 70px;
+
+`
+
 const AddCardForm = ({ modal, modalOpen, setModalOpen }) => {
   const { t } = useTranslation();
   const modalRef = useRef(null);
   const API_KEY = "WsdKue2LFxsqmdimIkCyvBgbFLHbcQkk8DjiHohkRccDPRcNdg";
-  const { setTrigger, user, setUser } = useAuthorizationContext();
+  const { setTrigger, user, setUser, loading } = useAuthorizationContext();
   const [userObject, setUserObject] = useState();
   const { updateUser } = useRequest();
   const [formData, setFormData] = useState({
     id: "",
-    english: "",
+    foreign: "",
     georgian: "",
   });
 
@@ -80,13 +87,13 @@ const AddCardForm = ({ modal, modalOpen, setModalOpen }) => {
       setValidationError((prev) => ({ ...prev, firstInput: true }));
     }
 
-    if (formData.english.trim().length < 1) {
+    if (formData.foreign.trim().length < 1) {
       setValidationError((prev) => ({ ...prev, secondInput: true }));
     }
 
     if (
       formData.georgian.trim().length >= 1 &&
-      formData.english.trim().length >= 1
+      formData.foreign.trim().length >= 1
     ) {
       try {
         const id = await generateUniqueId();
@@ -95,7 +102,7 @@ const AddCardForm = ({ modal, modalOpen, setModalOpen }) => {
           const copiedObject = JSON.parse(JSON.stringify(user));
           setUserObject({
             ...copiedObject,
-            cards: [...copiedObject.cards, updatedFormData],
+            cards: copiedObject.cards ?  [...copiedObject.cards, updatedFormData] : [updatedFormData],
           });
         } else {
           addCardsContext(updatedFormData);
@@ -104,7 +111,7 @@ const AddCardForm = ({ modal, modalOpen, setModalOpen }) => {
       } catch (error) {
         toast.error(error.message);
       } finally {
-        setFormData((prev) => ({ ...prev, georgian: "", english: "" }));
+        setFormData((prev) => ({ ...prev, georgian: "", foreign: "" }));
       }
     }
   };
@@ -148,14 +155,22 @@ const AddCardForm = ({ modal, modalOpen, setModalOpen }) => {
   return (
     <div>
       {modal && <div className={overlayClass}></div>}
-
+      
       <div className={containerClass}>
+      {loading && <LoadingDiv><TailSpin
+      visible={true}
+      width="120"
+      height="120"
+      color="#04AA6D"
+      ariaLabel="tail-spin-loading"
+      radius="1" /></LoadingDiv> }
         <form
           onSubmit={(e) => handleSubmit(e)}
           className={formClass}
           ref={modalRef}
         >
           {modal && <P>{t("createCardText")}</P>}
+          
           <div>
             <Input
               error={validationError.firstInput}
@@ -174,8 +189,8 @@ const AddCardForm = ({ modal, modalOpen, setModalOpen }) => {
             <Input
               error={validationError.secondInput}
               type="text"
-              name="english"
-              value={formData.english}
+              name="foreign"
+              value={formData.foreign}
               onChange={handleChange}
               placeholder={t("addCardPlaceEngText")}
               className={inputClass}

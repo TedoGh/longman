@@ -211,9 +211,9 @@ const Train = () => {
 
   const languageSwitch = () => {
     if (languageState === "GEO") {
-      setLanguageState("ENG");
+      setLanguageState("FRGN");
     }
-    if (languageState === "ENG") {
+    if (languageState === "FRGN") {
       setLanguageState("GEO");
     }
   };
@@ -225,11 +225,11 @@ const Train = () => {
       <ClickText>{t("trainPageClickText")}</ClickText>
       <LanguageSwitchContainer>
         <LanguageText isActive={languageState === "GEO"}>
-          {t("trainPageGeoLangText")}
+          {t("georgianLng")}
         </LanguageText>
         <SwitchTrainButton onClick={languageSwitch} />
-        <LanguageText isActive={languageState === "ENG"}>
-          {t("trainPageEngLangText")}
+        <LanguageText isActive={languageState === "FRGN"}>
+          {t("foreignLng")}
         </LanguageText>
       </LanguageSwitchContainer>
 

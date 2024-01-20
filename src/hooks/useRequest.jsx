@@ -6,10 +6,11 @@ import { useAuthorizationContext } from '../pages/Context/AuthorizationContext';
 const useRequest = () => {
   const API_KEY = 'WsdKue2LFxsqmdimIkCyvBgbFLHbcQkk8DjiHohkRccDPRcNdg';
   const {t} = useTranslation();
-  const {user, setUser} = useAuthorizationContext();
+  const {user, setUser,setLoading} = useAuthorizationContext();
   
   const updateUser = async (body, id,message) => {
     try {
+      setLoading(true);
       const request = await fetch(`https://crudapi.co.uk/api/v1/Authorization/${id}`, {
         method: "PUT",
         headers: {
@@ -41,6 +42,9 @@ const useRequest = () => {
     } catch (error) {
       toast.error((error.message));
       console.log(error.message)
+    }
+    finally{
+      setLoading(false)
     }
   }
 
