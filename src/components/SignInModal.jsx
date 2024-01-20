@@ -130,7 +130,7 @@ const SignInModal = ({
       <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50  rounded-lg overflow-hidden">
         <form
           onSubmit={(e) => handleSubmit(e)}
-          className="w-[435px] h-[480px] bg-[white] flex flex-col justify-start gap-6 items-center rounded-lg max-[768px]:w-[365px]"
+          className="w-[435px] h-[480px] bg-[white] flex flex-col justify-start gap-6 items-center rounded-lg max-[768px]:w-[365px] animate__animated animate__fadeInDown"
           ref={modalRef}
         >
           <Img src={LogoMain} alt="" />
