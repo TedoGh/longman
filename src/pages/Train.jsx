@@ -133,7 +133,7 @@ const StartTrainButton = styled.button`
 `;
 
 const SwitchTrainButton = styled.button`
-  background: url(${SwitchTrainImage});
+  /* background: url(${SwitchTrainImage}); */
   width: 23px;
   height: 24px;
   margin-top: 5px;
@@ -185,25 +185,24 @@ const Train = () => {
   const [languageState, setLanguageState] = useState("GEO");
   const modalRef = useRef(null);
   const { cards } = useCardsDataContext();
-  const {user} = useAuthorizationContext();
+  const { user } = useAuthorizationContext();
   const [examFinished, setExamFinished] = useState(false);
-  
 
   const handleClick = () => {
-    if(user) {
+    if (user) {
       if (user.cards.length >= selectedNumber) {
         setActive(true);
       } else {
         toast.error(t("notEnaughCards"));
-      } 
-    }
-    else { if(cards.length >= selectedNumber) {
-      setActive(true);
+      }
     } else {
-      toast.error(t("notEnaughCards"));
+      if (cards.length >= selectedNumber) {
+        setActive(true);
+      } else {
+        toast.error(t("notEnaughCards"));
+      }
     }
-  }
-};
+  };
 
   const changeColor = (number) => {
     setSelectedNumber(number === selectedNumber ? null : number);
@@ -220,58 +219,59 @@ const Train = () => {
 
   return (
     <TrainContainer>
-    {!examFinished && <>
-      <TrainText>{t("trainPageTrainText")}</TrainText>
-      <ClickText>{t("trainPageClickText")}</ClickText>
-      <LanguageSwitchContainer>
-        <LanguageText isActive={languageState === "GEO"}>
-          {t("georgianLng")}
-        </LanguageText>
-        <SwitchTrainButton onClick={languageSwitch} />
-        <LanguageText isActive={languageState === "FRGN"}>
-          {t("foreignLng")}
-        </LanguageText>
-      </LanguageSwitchContainer>
+      {!examFinished && (
+        <>
+          <TrainText>{t("trainPageTrainText")}</TrainText>
+          <ClickText>{t("trainPageClickText")}</ClickText>
+          <LanguageSwitchContainer>
+            <LanguageText isActive={languageState === "GEO"}>
+              {t("georgianLng")}
+            </LanguageText>
+            <SwitchTrainButton onClick={languageSwitch}>
+              <img src={SwitchTrainImage} alt="" />
+            </SwitchTrainButton>
+            <LanguageText isActive={languageState === "FRGN"}>
+              {t("foreignLng")}
+            </LanguageText>
+          </LanguageSwitchContainer>
 
-      <GridContainer>
-        <NumberButton
-          isSelected={selectedNumber === 10}
-          onClick={() => changeColor(10)}
-        >
-          10
-        </NumberButton>
-        <NumberButton
-          isSelected={selectedNumber === 20}
-          onClick={() => changeColor(20)}
-        >
-          20
-        </NumberButton>
-        <NumberButton
-          isSelected={selectedNumber === 30}
-          onClick={() => changeColor(30)}
-        >
-          30
-        </NumberButton>
-      </GridContainer>
-      <StartTrainButton onClick={handleClick}>
-        {t("trainPageStartTrainBNText")}
-      </StartTrainButton>
-      </>}
+          <GridContainer>
+            <NumberButton
+              isSelected={selectedNumber === 10}
+              onClick={() => changeColor(10)}
+            >
+              10
+            </NumberButton>
+            <NumberButton
+              isSelected={selectedNumber === 20}
+              onClick={() => changeColor(20)}
+            >
+              20
+            </NumberButton>
+            <NumberButton
+              isSelected={selectedNumber === 30}
+              onClick={() => changeColor(30)}
+            >
+              30
+            </NumberButton>
+          </GridContainer>
+          <StartTrainButton onClick={handleClick}>
+            {t("trainPageStartTrainBNText")}
+          </StartTrainButton>
+        </>
+      )}
       {active && (
-        
         <GuessCard
           active={active}
           setActive={setActive}
           cards={cards}
           selectedNumber={selectedNumber}
           languageState={languageState}
-          examFinished ={examFinished} 
-          setExamFinished = {setExamFinished}
-         
+          examFinished={examFinished}
+          setExamFinished={setExamFinished}
         />
       )}
-      </TrainContainer>
-    
+    </TrainContainer>
   );
 };
 

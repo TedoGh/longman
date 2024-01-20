@@ -141,7 +141,7 @@ const SignUpModal = ({
       <div className="w-screen h-screen fixed top-0 left-0 z-40 backdrop-filter backdrop-blur-sm"></div>
       <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50  rounded-lg overflow-hidden">
         <form
-          className="w-[455px] h-[610px] bg-[white] flex flex-col justify-start items-center gap-5 rounded-lg max-[768px]:w-[365px] max-[768px]:mt-16"
+          className="w-[455px] h-[610px] bg-[white] flex flex-col justify-start items-center gap-5 rounded-lg max-[768px]:w-[365px] mt-16 animate__animated animate__fadeInDown"
           onSubmit={handleSubmit(onSubmit)}
           ref={modalRef}
         >

@@ -29,7 +29,7 @@ const ProgressHistoryList = () => {
           return (
             <div
               className={
-                index % 2 == 0
+                index % 2 == 1
                   ? "bg-[#F0F0F0] p-8 rounded-md mb-12 w-full"
                   : "p-8 rounded-md mb-12 w-full"
               }
