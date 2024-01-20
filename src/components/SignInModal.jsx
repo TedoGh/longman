@@ -2,10 +2,9 @@ import React, { useState, useRef, useEffect } from "react";
 import { styled } from "styled-components";
 import LogoMain from "../assets/images/LogoMain.png";
 import { useTranslation } from "react-i18next";
-import {useAuthorizationContext} from '../pages/Context/AuthorizationContext'
+import { useAuthorizationContext } from "../pages/Context/AuthorizationContext";
 
 const ErrorText = styled.p`
-  font-family: "Helvetica", sans-serif;
   font-weight: 400;
   font-size: 15px;
   line-height: 17.25px;
@@ -13,7 +12,6 @@ const ErrorText = styled.p`
   padding-top: 5px;
   align-self: flex-start;
   margin-left: 25px;
- 
 `;
 
 const SignInBtn = styled.button`
@@ -63,10 +61,14 @@ const TextDiv = styled.div`
   }
 `;
 
-const SignInModal = ({ setAuthorizationModal, authorizationModal, handleClick }) => {
+const SignInModal = ({
+  setAuthorizationModal,
+  authorizationModal,
+  handleClick,
+}) => {
   const { t } = useTranslation();
   const modalRef = useRef(null);
-  const {response, setUser, user} = useAuthorizationContext();
+  const { response, setUser, user } = useAuthorizationContext();
   const [error, setError] = useState(false);
 
   const [formData, setFormData] = useState({
@@ -74,37 +76,40 @@ const SignInModal = ({ setAuthorizationModal, authorizationModal, handleClick })
     Password: "",
   });
 
-  
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  useEffect(() => {if(user)setAuthorizationModal('')},[user])
+  useEffect(() => {
+    if (user) setAuthorizationModal("");
+  }, [user]);
 
   const handleSubmit = (e) => {
-   e.preventDefault();
-   setError(false);
-   const email = response.items.find(user => user?.Email === formData?.Email && user?.Password === formData?.Password)?.Email
-   const password = response.items.find(user => user?.Password === formData?.Password && user?.Email === formData?.Email)?.Password
-   if(email !== undefined && password !== undefined) {
-    const foundUser = response.items.find(user => user?.Email === formData?.Email);
-    setUser(foundUser);
-    
-   } else {
-    setError(true);
-   }
-    
+    e.preventDefault();
+    setError(false);
+    const email = response.items.find(
+      (user) =>
+        user?.Email === formData?.Email && user?.Password === formData?.Password
+    )?.Email;
+    const password = response.items.find(
+      (user) =>
+        user?.Password === formData?.Password && user?.Email === formData?.Email
+    )?.Password;
+    if (email !== undefined && password !== undefined) {
+      const foundUser = response.items.find(
+        (user) => user?.Email === formData?.Email
+      );
+      setUser(foundUser);
+    } else {
+      setError(true);
+    }
   };
 
   const handleClickOutside = (e) => {
     if (modalRef.current && !modalRef.current.contains(e.target)) {
       setAuthorizationModal("");
-   
     }
-
-    
   };
 
   useEffect(() => {
@@ -147,7 +152,7 @@ const SignInModal = ({ setAuthorizationModal, authorizationModal, handleClick })
             value={formData.Password}
             error={error}
           />
-          {error && <ErrorText>{t('mailOrPasswordIncorect')}</ErrorText>}
+          {error && <ErrorText>{t("mailOrPasswordIncorect")}</ErrorText>}
           <ForgotPasswordBtn>{t("forgotPassword")}</ForgotPasswordBtn>
           <SignInBtn>{t("login")}</SignInBtn>
           <TextDiv>
@@ -155,7 +160,6 @@ const SignInModal = ({ setAuthorizationModal, authorizationModal, handleClick })
             <button onClick={() => handleClick("signUp")}>{t("signUp")}</button>
           </TextDiv>
         </form>
-
       </div>
     </div>
   );

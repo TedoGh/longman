@@ -309,28 +309,25 @@ const P = styled.p`
 `;
 
 const LanguageSwitcher = styled.div`
-display: flex;
-flex-direction: row;
-gap: 150px; 
-margin-top: 34px;
-margin-bottom: 70px;
+  display: flex;
+  flex-direction: row;
+  gap: 150px;
+  margin-top: 34px;
+  margin-bottom: 70px;
 
-@media(max-width: 1024px) {
-gap: 100px; 
-margin-top: 32px;
-margin-bottom: 30px;
-}
+  @media (max-width: 1024px) {
+    gap: 100px;
+    margin-top: 32px;
+    margin-bottom: 30px;
+  }
 
-@media(max-width: 767px) {
-gap: 80px; 
-margin-top: 30px;
-margin-bottom: 20px; 
-}
-}
-`
+  @media (max-width: 767px) {
+    gap: 80px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+  }
+`;
 const LanguageButton = styled.button`
-
-  font-family: Helvetica;
   font-size: 24px;
   font-weight: 700;
   line-height: 28px;
@@ -338,24 +335,24 @@ const LanguageButton = styled.button`
     return props.active ? "#04AA6D" : "#FFF4A3";
   }};
 
-  @media(max-width: 1024px) {
+  @media (max-width: 1024px) {
     font-size: 20px;
     line-height: 26px;
   }
-  
-  @media(max-width: 767px) {
-  font-size: 18px;
-  line-height: 24px;
+
+  @media (max-width: 767px) {
+    font-size: 18px;
+    line-height: 24px;
   }
-`
+`;
 
 const LoadingDiv = styled.div`
-position: fixed;
-top: 50%;
-`
+  position: fixed;
+  top: 50%;
+`;
 export default function AllCards() {
   const { cards, updateCardsContext } = useCardsDataContext();
-  const {user,loading} = useAuthorizationContext();
+  const { user, loading } = useAuthorizationContext();
   const [userObject, setUserObject] = useState();
   const { t } = useTranslation();
   const dividedCardsArr = [];
@@ -364,23 +361,25 @@ export default function AllCards() {
   const columns =
     inputValue === ""
       ? Math.ceil(user ? user.cards?.length / 5 : cards?.length / 5)
-      : Math.ceil(user ? user.cards.filter(
-        (card) =>
-          card.georgian.toLowerCase().startsWith(inputValue) ||
-          card.foreign.toLowerCase().startsWith(inputValue)
-      )?.length / 5 :
-          cards.filter(
-            (card) =>
-              card.georgian.toLowerCase().startsWith(inputValue) ||
-              card.foreign.toLowerCase().startsWith(inputValue)
-          ).length / 5
+      : Math.ceil(
+          user
+            ? user.cards.filter(
+                (card) =>
+                  card.georgian.toLowerCase().startsWith(inputValue) ||
+                  card.foreign.toLowerCase().startsWith(inputValue)
+              )?.length / 5
+            : cards.filter(
+                (card) =>
+                  card.georgian.toLowerCase().startsWith(inputValue) ||
+                  card.foreign.toLowerCase().startsWith(inputValue)
+              ).length / 5
         );
   const [searchParams, setSearchParams] = useSearchParams();
   const [cardsOnCurrentPage, setCardsOnCurrentPage] = useState([]);
   const [language, setLanguage] = useState("FRGN");
   const [pages, setPages] = useState();
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-  const {updateUser} = useRequest();
+  const { updateUser } = useRequest();
   let currentPage = searchParams.get("page")
     ? Number(searchParams.get("page"))
     : 1;
@@ -400,21 +399,20 @@ export default function AllCards() {
     setInputValue(searchRef.current.value.toLowerCase());
   };
 
-  useEffect(()=>{
-    if(userObject !== undefined && user) {
-      updateUser(userObject,userObject._uuid,'deleteCard')
+  useEffect(() => {
+    if (userObject !== undefined && user) {
+      updateUser(userObject, userObject._uuid, "deleteCard");
     }
-  },[userObject])
+  }, [userObject]);
 
   const handleDeleteCard = async (card) => {
-    if(user) {
+    if (user) {
       const copiedObject = JSON.parse(JSON.stringify(user));
-      const filteredCards = user.cards.filter(c => card.id !== c.id )
-      setUserObject(({...copiedObject, cards: filteredCards}))
-          
+      const filteredCards = user.cards.filter((c) => card.id !== c.id);
+      setUserObject({ ...copiedObject, cards: filteredCards });
     } else {
-    const newCards = cards.filter((c) => c.id !== card.id);
-    updateCardsContext(newCards);
+      const newCards = cards.filter((c) => c.id !== card.id);
+      updateCardsContext(newCards);
     }
   };
 
@@ -430,41 +428,46 @@ export default function AllCards() {
     };
   }, [window.innerWidth]);
 
- 
   useEffect(() => {
-    
     for (let i = 1; i <= columns; i++) {
       if (inputValue === "") {
-        const array = user ? user.cards.slice((i - 1) * 5, i * 5) : cards.slice((i - 1) * 5, i * 5);
+        const array = user
+          ? user.cards.slice((i - 1) * 5, i * 5)
+          : cards.slice((i - 1) * 5, i * 5);
         dividedCardsArr.push(array);
       }
       if (inputValue !== "") {
         if (language === "GEO") {
-          const array = user ? user.cards
-          .filter((card) =>
-            card.georgian.toLowerCase().startsWith(inputValue)
-          )
-          .slice((i - 1) * 5, i * 5)
-         :  cards
-            .filter((card) =>
-              card.georgian.toLowerCase().startsWith(inputValue)
-            )
-            .slice((i - 1) * 5, i * 5);
+          const array = user
+            ? user.cards
+                .filter((card) =>
+                  card.georgian.toLowerCase().startsWith(inputValue)
+                )
+                .slice((i - 1) * 5, i * 5)
+            : cards
+                .filter((card) =>
+                  card.georgian.toLowerCase().startsWith(inputValue)
+                )
+                .slice((i - 1) * 5, i * 5);
           dividedCardsArr.push(array);
         }
         if (language === "FRGN") {
-          const array = user ?  user.cards
-          .filter((card) => card.foreign.toLowerCase().startsWith(inputValue))
-          .slice((i - 1) * 5, i * 5) : cards
-            .filter((card) => card.foreign.toLowerCase().startsWith(inputValue))
-            .slice((i - 1) * 5, i * 5);
+          const array = user
+            ? user.cards
+                .filter((card) =>
+                  card.foreign.toLowerCase().startsWith(inputValue)
+                )
+                .slice((i - 1) * 5, i * 5)
+            : cards
+                .filter((card) =>
+                  card.foreign.toLowerCase().startsWith(inputValue)
+                )
+                .slice((i - 1) * 5, i * 5);
           dividedCardsArr.push(array);
         }
       }
     }
 
-    
-   
     if (screenWidth > 1024) {
       setPages(Math.ceil(columns / 3));
       setCardsOnCurrentPage(
@@ -483,14 +486,7 @@ export default function AllCards() {
         dividedCardsArr.slice((currentPage - 1) * 1, currentPage * 1)
       );
     }
-
-    
-  
   }, [inputValue, cards, currentPage, screenWidth, user]);
-
-  
-
- 
 
   useEffect(() => {
     if (currentPage > pages) {
@@ -511,7 +507,7 @@ export default function AllCards() {
     setSearchParams(searchParams);
   };
 
-  console.log(language)
+  console.log(language);
 
   return (
     <div>
@@ -529,24 +525,35 @@ export default function AllCards() {
             />
           </SearchDiv>
           <LanguageSwitcher>
-          <LanguageButton active={language == 'GEO'} onClick={() => setLanguage(t("GEO"))}>
-            {t('georgianLng')}
-          </LanguageButton>
-          <LanguageButton active={language == 'FRGN'}  onClick={() => setLanguage(t("FRGN"))}>
-          {t('foreignLng')}
-          </LanguageButton>
+            <LanguageButton
+              active={language == "GEO"}
+              onClick={() => setLanguage(t("GEO"))}
+            >
+              {t("georgianLng")}
+            </LanguageButton>
+            <LanguageButton
+              active={language == "FRGN"}
+              onClick={() => setLanguage(t("FRGN"))}
+            >
+              {t("foreignLng")}
+            </LanguageButton>
           </LanguageSwitcher>
           {cardsOnCurrentPage?.length === 0 && inputValue !== "" && (
             <p className="notFound">{t("cardsNotFound")}</p>
           )}
         </SecondaryDiv>
-        {loading && <LoadingDiv><TailSpin
-      visible={true}
-      width="120"
-      height="120"
-      color="#04AA6D"
-      ariaLabel="tail-spin-loading"
-      radius="1" /></LoadingDiv> }
+        {loading && (
+          <LoadingDiv>
+            <TailSpin
+              visible={true}
+              width="120"
+              height="120"
+              color="#04AA6D"
+              ariaLabel="tail-spin-loading"
+              radius="1"
+            />
+          </LoadingDiv>
+        )}
         <CardsDiv cardsOnCurrentPage={cardsOnCurrentPage}>
           {cardsOnCurrentPage.map((innerArray, index) => (
             <CardColumnDiv key={index}>
@@ -573,13 +580,13 @@ export default function AllCards() {
             pages={pages}
           />
         )}
-        {((user && user.cards?.length === 0) ) && (
+        {user && user.cards?.length === 0 && (
           <div>
             <div> </div>
             <P>{t("cardsNotAdded")}</P>
           </div>
         )}
-        {((!user && cards?.length === 0) ) && (
+        {!user && cards?.length === 0 && (
           <div>
             <div> </div>
             <P>{t("cardsNotAdded")}</P>

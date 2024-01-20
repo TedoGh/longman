@@ -155,7 +155,6 @@
   "numberOfSuccessfullyQuestions": "The number of successfully issued questions",
   "ResultTime": "Time",
 
-
   "testimonialsUserRate1": "Flashcards changed my language learning experience. The interactive approach made it enjoyable and I'm enjoying my new language skills.",
   "testimonialsUserRate2": "Learning a new language has always been a difficult task for me, but after I started learning with flash cards, the process became much more enjoyable and efficient. I highly recommend it to anyone who is starting to learn a new language.",
   "testimonialsUserRate3": "Flashcards are my language learning tool. Now, I impress myself with how quickly I learn new words.",
@@ -166,6 +165,6 @@
 
   "georgianLng": "Georgian language",
   "foreignLng": "Foreign language",
-  "progressNotAvailable": "პროგრესის სანახავად, ვარჯიშის მინიმუმ ერთი სესიის ჩატარებაა საჭირო"
-
+  "progressNotAvailable": "Take the test to see your progress",
+  "logOut": "Exit"
 }
