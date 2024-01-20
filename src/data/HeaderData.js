@@ -11,26 +11,21 @@ const HeaderData = () => {
     },
     {
       id: 2,
-      name: `${t("aboutText")}`,
-      path: "/longman/about",
-    },
-    {
-      id: 3,
       name: `${t("addCardText")}`,
       path: "/longman/addcard",
     },
     {
-      id: 4,
+      id: 3,
       name: `${t("allCardsText")}`,
       path: "/longman/cards",
     },
     {
-      id: 5,
+      id: 4,
       name: `${t("trainText")}`,
       path: "/longman/train",
     },
     {
-      id: 6,
+      id: 5,
       name: `${t("myProgressText")}`,
       path: "/longman/progress",
     },

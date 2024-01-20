@@ -153,5 +153,11 @@
   "yourResult": "Your Result",
   "numberOfQuestionsSelected": "Number of questions selected",
   "numberOfSuccessfullyQuestions": "The number of successfully issued questions",
-  "ResultTime": "Time"
+  "ResultTime": "Time",
+
+  "testimonialsUserRate1": "Flashcards changed my language learning experience. The interactive approach made it enjoyable and I'm enjoying my new language skills.",
+  "testimonialsUserRate2": "Learning a new language has always been a difficult task for me, but after I started learning with flash cards, the process became much more enjoyable and efficient. I highly recommend it to anyone who is starting to learn a new language.",
+  "testimonialsUserRate3": "Flashcards are my language learning tool. Now, I impress myself with how quickly I learn new words.",
+  "testimonialsUserRate4": "Your website covers everything needed to help a person start learning from scratch. Tracking my daily progress keeps me motivated.",
+  "testimonialsUserRate5": "Your site fits perfectly into my busy schedule. Friendly and easy to use, it's exactly what I needed."
 }

@@ -7,6 +7,8 @@ import "swiper/css/pagination";
 
 import { Autoplay, Pagination } from "swiper/modules";
 
+import TestimonialsData from "../data/TestimonialsData";
+
 const Testimonials = () => {
   const { t } = useTranslation();
 
@@ -46,125 +48,34 @@ const Testimonials = () => {
                 },
               }}
             >
-              <SwiperSlide>
-                <div className="max-w-[340px] mx-auto bg-[#F5F5F5] rounded-xl">
-                  <div className="p-4">
-                    <div className="flex items-center">
-                      <div className="flex justify-center items-center gap-3">
-                        <div className="w-[60px] h-[60px] flex justify-center items-center">
-                          <img
-                            src="https://bootstrapmade.com/demo/templates/Arsha/assets/img/team/team-2.jpg"
-                            className="rounded-[50%] "
-                          />
+              {TestimonialsData().map((item) => {
+                return (
+                  <SwiperSlide key={item.id}>
+                    <div className="max-w-[340px] mx-auto bg-[#F5F5F5] rounded-xl">
+                      <div className="p-4">
+                        <div className="flex items-center">
+                          <div className="flex justify-center items-center gap-3">
+                            <div className="w-[60px] h-[60px] flex justify-center items-center">
+                              <img
+                                src={item.userImg}
+                                className="rounded-[50%]"
+                              />
+                            </div>
+                            <div>
+                              <h1 className="text-lg font-bold">
+                                {item.UserName}
+                              </h1>
+                            </div>
+                          </div>
                         </div>
-                        <div>
-                          <h1 className="text-lg font-bold">ნინო კ.</h1>
-                        </div>
+                        <p className="mt-[28px] max-w-[294px] mx-auto">
+                          {item.UserRate}
+                        </p>
                       </div>
                     </div>
-                    <p className="mt-[28px] max-w-[294px] mx-auto">
-                      Incredible progress! flashcards made learning French a
-                      breeze. Engaging and effective—highly recommended!
-                    </p>
-                  </div>
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="max-w-[340px] mx-auto bg-[#F5F5F5] rounded-xl">
-                  <div className="p-4">
-                    <div className="flex items-center">
-                      <div className="flex justify-center items-center gap-3">
-                        <div className="w-[60px] h-[60px] flex justify-center items-center">
-                          <img
-                            src="https://bootstrapmade.com/demo/templates/Arsha/assets/img/team/team-1.jpg"
-                            className="rounded-[50%] "
-                          />
-                        </div>
-                        <div>
-                          <h1 className="text-lg font-bold">Alex P.</h1>
-                        </div>
-                      </div>
-                    </div>
-                    <p className="mt-[28px] max-w-[294px] mx-auto">
-                      Life-changing! Your Website fits into my busy schedule
-                      perfectly. Mobile-friendly and customizable
-                      lessons—exactly what I needed!
-                    </p>
-                  </div>
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="max-w-[340px] mx-auto bg-[#F5F5F5] rounded-xl">
-                  <div className="p-4">
-                    <div className="flex items-center">
-                      <div className="flex justify-center items-center gap-3">
-                        <div className="w-[60px] h-[60px] flex justify-center items-center">
-                          <img
-                            src="https://bootstrapmade.com/demo/templates/Arsha/assets/img/team/team-3.jpg"
-                            className="rounded-[50%] "
-                          />
-                        </div>
-                        <div>
-                          <h1 className="text-lg font-bold">William A.</h1>
-                        </div>
-                      </div>
-                    </div>
-                    <p className="mt-[28px] max-w-[294px] mx-auto">
-                      Versatile and effective. Your Website covers everything
-                      from basics to advanced. Progress tracking keeps me
-                      motivated. A game-changer!
-                    </p>
-                  </div>
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="max-w-[340px] mx-auto bg-[#F5F5F5] rounded-xl">
-                  <div className="p-4">
-                    <div className="flex items-center">
-                      <div className="flex justify-center items-center gap-3">
-                        <div className="w-[60px] h-[60px] flex justify-center items-center">
-                          <img
-                            src="https://bootstrapmade.com/demo/templates/Arsha/assets/img/team/team-4.jpg"
-                            className="rounded-[50%] "
-                          />
-                        </div>
-                        <div>
-                          <h1 className="text-lg font-bold">Emily L.</h1>
-                        </div>
-                      </div>
-                    </div>
-                    <p className="mt-[28px] max-w-[294px] mx-auto">
-                      Fun learning! Your Website's quizzes and games turned
-                      language learning into an enjoyable experience. My skills
-                      improved significantly!
-                    </p>
-                  </div>
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="max-w-[340px] mx-auto bg-[#F5F5F5] rounded-xl">
-                  <div className="p-4">
-                    <div className="flex items-center">
-                      <div className="flex justify-center items-center gap-3">
-                        <div className="w-[60px] h-[60px] flex justify-center items-center">
-                          <img
-                            src="https://i.imgur.com/w2CKRB9.jpg"
-                            className="rounded-[50%] "
-                          />
-                        </div>
-                        <div>
-                          <h1 className="text-lg font-bold">Carlos G.</h1>
-                        </div>
-                      </div>
-                    </div>
-                    <p className="mt-[28px] max-w-[294px] mx-auto">
-                      Your Website offers a variety of languages with a
-                      user-friendly interface. Learning is accessible and
-                      enjoyable—recommended to all language enthusiasts!"
-                    </p>
-                  </div>
-                </div>
-              </SwiperSlide>
+                  </SwiperSlide>
+                );
+              })}
             </Swiper>
             <div className="swiper-pagination"></div>
           </div>
