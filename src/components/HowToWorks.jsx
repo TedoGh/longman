@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import HowToWorksData from "../data/HowToWorksData";
 
 const HowToWorks = () => {
   const { t } = useTranslation();
@@ -11,45 +12,26 @@ const HowToWorks = () => {
             {t("howToWorks")}
           </h1>
           <div className="my-16 grid grid-cols-3 justify-between max-[1024px]:grid-cols-2 gap-5 max-[768px]:grid-cols-1">
-            <div className="max-w-[340px] mx-auto text-center border-solid border-2 border-[#D9EEE1] rounded-xl">
-              <div className="m-7">
-                <div className="flex justify-center">
-                  <div className="w-[100px] h-[100px] rounded-[55px] bg-[#D9EEE1] flex justify-center items-center">
-                    <img src="https://svgshare.com/i/11GH.svg" />
+            {HowToWorksData().map((item) => {
+              return (
+                <div
+                  className="max-w-[340px] mx-auto text-center border-solid border-2 border-[#D9EEE1] rounded-xl"
+                  key={item.id}
+                >
+                  <div className="m-7">
+                    <div className="flex justify-center">
+                      <div className="w-[100px] h-[100px] rounded-[55px] bg-[#D9EEE1] flex justify-center items-center">
+                        <img src={item.imgUrl} />
+                      </div>
+                    </div>
+                    <h1 className="mt-6 mb-8 text-darkBlue  text-2xl font-bold">
+                      {item.title}
+                    </h1>
+                    <p className="text-lg">{item.description}</p>
                   </div>
                 </div>
-                <h1 className="mt-6 mb-8 text-darkBlue  text-2xl font-bold">
-                  {t("howToWorksCard1")}
-                </h1>
-                <p className="text-lg">{t("howToWorksCard1Desc")}</p>
-              </div>
-            </div>
-            <div className="max-w-[340px] mx-auto text-center border-solid border-2 border-[#D9EEE1] rounded-xl">
-              <div className="m-7">
-                <div className="flex justify-center">
-                  <div className="w-[100px] h-[100px] rounded-[55px] bg-[#D9EEE1] flex justify-center items-center">
-                    <img src="https://svgshare.com/i/11GZ.svg" />
-                  </div>
-                </div>
-                <h1 className="mt-6 mb-8 text-darkBlue text-2xl font-bold">
-                  {t("howToWorksCard2")}
-                </h1>
-                <p className="text-lg">{t("howToWorksCard2Desc")}</p>
-              </div>
-            </div>
-            <div className="max-w-[340px] mx-auto text-center border-solid border-2 border-[#D9EEE1] rounded-xl">
-              <div className="m-7">
-                <div className="flex justify-center">
-                  <div className="w-[100px] h-[100px] rounded-[55px] bg-[#D9EEE1] flex justify-center items-center">
-                    <img src="https://svgshare.com/i/11HM.svg" />
-                  </div>
-                </div>
-                <h1 className="mt-6 mb-8 text-darkBlue text-2xl font-bold">
-                  {t("howToWorksCard3")}
-                </h1>
-                <p className="text-lg">{t("howToWorksCard3Desc")}</p>
-              </div>
-            </div>
+              );
+            })}
           </div>
         </div>
       </div>

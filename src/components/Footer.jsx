@@ -13,6 +13,8 @@ export default function Footer() {
   const location = useLocation();
   const [showMobile, setShowMobile] = useState(false);
 
+  const FooterRouterData = FooterData();
+
   const handleShowFooter = (id) => {
     setShowMobile((prevId) => (prevId === id ? true : id));
   };
@@ -37,7 +39,7 @@ export default function Footer() {
               </div>
             </div>
             <div className="flex gap-24 mt-8">
-              {FooterData().map((item) => {
+              {FooterRouterData.map((item) => {
                 return (
                   <div key={item.id}>
                     <div>
@@ -61,7 +63,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="p-4 lg:hidden">
-          {FooterData().map((item) => {
+          {FooterRouterData.map((item) => {
             return (
               <div className="mb-7" key={item.id}>
                 <div
