@@ -37,7 +37,7 @@ const Slider = styled.div`
   z-index: 1;
 `;
 
-const AuthorizationBtns = ({ setShowMenu }) => {
+const AuthorizationBtns = () => {
   const [activeButton, setActiveButton] = useState("signUp");
   const [authorizationModal, setAuthorizationModal] = useState();
 

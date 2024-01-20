@@ -8,7 +8,7 @@ import useRequest from "../hooks/useRequest";
 
 const StyledModalContainer = styled.div`
   position: fixed;
-  
+
   top: 60%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -320,7 +320,6 @@ const ResultContainer = styled.div`
   align-items: center;
   justify-content: center;
   & h2 {
-    font-family: Helvetica;
     font-size: 42px;
     font-weight: 700;
     line-height: 48px;
@@ -332,7 +331,6 @@ const ResultContainer = styled.div`
   }
 
   & p {
-    font-family: Helvetica;
     font-size: 24px;
     font-weight: 700;
     line-height: 28px;
@@ -343,7 +341,6 @@ const ResultContainer = styled.div`
   }
 
   & button {
-    font-family: Helvetica;
     font-size: 18px;
     font-weight: 400;
     line-height: 21px;
@@ -460,13 +457,13 @@ const GuessCard = ({
   function handleRecordResult() {
     const currentDate = new Date();
     const formattedDate = formatDate(currentDate);
-    const percentage = (correctAnswers / selectedNumber * 100).toFixed(0)
+    const percentage = ((correctAnswers / selectedNumber) * 100).toFixed(0);
     setLastSessionResult({
       date: formattedDate,
       correct: correctAnswers,
       wrong: wrongAnswers,
       total: selectedNumber,
-      percentage: `${percentage}%`
+      percentage: `${percentage}%`,
     });
   }
 
@@ -736,13 +733,13 @@ const GuessCard = ({
         <ResultContainer>
           <h2>{t("sessionFinished")}</h2>
           <p>
-            {t("numOfQuestions")}:{selectedNumber}
+            {t("numOfQuestions")} : {selectedNumber}
           </p>
           <p className="correct">
-            {t("correct")}:{correctAnswers}
+            {t("correct")} : {correctAnswers}
           </p>
           <p>
-            {t("wrong")}:{wrongAnswers}
+            {t("wrong")} : {wrongAnswers}
           </p>
           <button onClick={handleFinishExam}>{t("finish")}</button>
         </ResultContainer>
