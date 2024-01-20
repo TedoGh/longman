@@ -12,7 +12,7 @@ import { useAuthorizationContext } from "./Context/AuthorizationContext";
 import useRequest from "../hooks/useRequest";
 
 const MainDiv = styled.div`
-  height: 1077px;
+  height: 1160px;
   background-color: #282a35;
   position: relative;
   display: flex;
@@ -306,6 +306,47 @@ const P = styled.p`
     line-height: 20px;
   }
 `;
+
+const LanguageSwitcher = styled.div`
+display: flex;
+flex-direction: row;
+gap: 150px; 
+margin-top: 34px;
+margin-bottom: 70px;
+
+@media(max-width: 1024px) {
+gap: 100px; 
+margin-top: 32px;
+margin-bottom: 30px;
+}
+
+@media(max-width: 767px) {
+gap: 80px; 
+margin-top: 30px;
+margin-bottom: 20px; 
+}
+}
+`
+const LanguageButton = styled.button`
+
+  font-family: Helvetica;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 28px;
+  color: ${(props) => {
+    return props.active ? "#04AA6D" : "#FFF4A3";
+  }};
+
+  @media(max-width: 1024px) {
+    font-size: 20px;
+    line-height: 26px;
+  }
+  
+  @media(max-width: 767px) {
+  font-size: 18px;
+  line-height: 24px;
+  }
+`
 export default function AllCards() {
   const { cards, updateCardsContext } = useCardsDataContext();
   const {user} = useAuthorizationContext();
@@ -464,6 +505,8 @@ export default function AllCards() {
     setSearchParams(searchParams);
   };
 
+  console.log(language)
+
   return (
     <div>
       <MainDiv>
@@ -479,9 +522,14 @@ export default function AllCards() {
               onChange={handleInputChange}
             />
           </SearchDiv>
-          <button onClick={handleLanguageChange}>
-            {language} {t("mainLanguage")}
-          </button>
+          <LanguageSwitcher>
+          <LanguageButton active={language == 'GEO'} onClick={() => setLanguage(t("GEO"))}>
+            GEO
+          </LanguageButton>
+          <LanguageButton active={language == 'ENG'}  onClick={() => setLanguage(t("ENG"))}>
+            ENG
+          </LanguageButton>
+          </LanguageSwitcher>
           {cardsOnCurrentPage.length === 0 && inputValue !== "" && (
             <p className="notFound">{t("cardsNotFound")}</p>
           )}
