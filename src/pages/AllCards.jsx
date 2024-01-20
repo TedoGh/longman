@@ -10,6 +10,7 @@ import { useEffect } from "react";
 import { useCardsDataContext } from "./Context/CardsContext";
 import { useAuthorizationContext } from "./Context/AuthorizationContext";
 import useRequest from "../hooks/useRequest";
+import { TailSpin } from "react-loader-spinner";
 
 const MainDiv = styled.div`
   height: 1160px;
@@ -175,7 +176,7 @@ const CardsDiv = styled.div`
   display: flex;
   flex-direction: row;
   align-self: ${(props) => {
-    return props.cardsOnCurrentPage.length > 2 ? "center" : "flex-start";
+    return props.cardsOnCurrentPage?.length > 2 ? "center" : "flex-start";
   }};
   justify-content: flex-start;
   gap: 160px;
@@ -291,7 +292,7 @@ const P = styled.p`
   letter-spacing: 0em;
   text-align: left;
   color: #b6b6b9;
-  margin-top: 260px;
+  margin-top: 100px;
   @media (max-width: 1024px) {
     margin-top: 209px;
     font-size: 14px;
@@ -347,9 +348,14 @@ const LanguageButton = styled.button`
   line-height: 24px;
   }
 `
+
+const LoadingDiv = styled.div`
+position: fixed;
+top: 50%;
+`
 export default function AllCards() {
   const { cards, updateCardsContext } = useCardsDataContext();
-  const {user} = useAuthorizationContext();
+  const {user,loading} = useAuthorizationContext();
   const [userObject, setUserObject] = useState();
   const { t } = useTranslation();
   const dividedCardsArr = [];
@@ -361,17 +367,17 @@ export default function AllCards() {
       : Math.ceil(user ? user.cards.filter(
         (card) =>
           card.georgian.toLowerCase().startsWith(inputValue) ||
-          card.english.toLowerCase().startsWith(inputValue)
-      ).length / 5 :
+          card.foreign.toLowerCase().startsWith(inputValue)
+      )?.length / 5 :
           cards.filter(
             (card) =>
               card.georgian.toLowerCase().startsWith(inputValue) ||
-              card.english.toLowerCase().startsWith(inputValue)
+              card.foreign.toLowerCase().startsWith(inputValue)
           ).length / 5
         );
   const [searchParams, setSearchParams] = useSearchParams();
   const [cardsOnCurrentPage, setCardsOnCurrentPage] = useState([]);
-  const [language, setLanguage] = useState("ENG");
+  const [language, setLanguage] = useState("FRGN");
   const [pages, setPages] = useState();
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const {updateUser} = useRequest();
@@ -380,11 +386,11 @@ export default function AllCards() {
     : 1;
 
   const handleLanguageChange = () => {
-    if (language === "ENG") {
+    if (language === "FRGN") {
       setLanguage(t("GEO"));
     }
     if (language === "GEO") {
-      setLanguage(t("ENG"));
+      setLanguage(t("FRGN"));
     }
   };
 
@@ -446,11 +452,11 @@ export default function AllCards() {
             .slice((i - 1) * 5, i * 5);
           dividedCardsArr.push(array);
         }
-        if (language === "ENG") {
+        if (language === "FRGN") {
           const array = user ?  user.cards
-          .filter((card) => card.english.toLowerCase().startsWith(inputValue))
+          .filter((card) => card.foreign.toLowerCase().startsWith(inputValue))
           .slice((i - 1) * 5, i * 5) : cards
-            .filter((card) => card.english.toLowerCase().startsWith(inputValue))
+            .filter((card) => card.foreign.toLowerCase().startsWith(inputValue))
             .slice((i - 1) * 5, i * 5);
           dividedCardsArr.push(array);
         }
@@ -524,16 +530,23 @@ export default function AllCards() {
           </SearchDiv>
           <LanguageSwitcher>
           <LanguageButton active={language == 'GEO'} onClick={() => setLanguage(t("GEO"))}>
-            GEO
+            {t('georgianLng')}
           </LanguageButton>
-          <LanguageButton active={language == 'ENG'}  onClick={() => setLanguage(t("ENG"))}>
-            ENG
+          <LanguageButton active={language == 'FRGN'}  onClick={() => setLanguage(t("FRGN"))}>
+          {t('foreignLng')}
           </LanguageButton>
           </LanguageSwitcher>
-          {cardsOnCurrentPage.length === 0 && inputValue !== "" && (
+          {cardsOnCurrentPage?.length === 0 && inputValue !== "" && (
             <p className="notFound">{t("cardsNotFound")}</p>
           )}
         </SecondaryDiv>
+        {loading && <LoadingDiv><TailSpin
+      visible={true}
+      width="120"
+      height="120"
+      color="#04AA6D"
+      ariaLabel="tail-spin-loading"
+      radius="1" /></LoadingDiv> }
         <CardsDiv cardsOnCurrentPage={cardsOnCurrentPage}>
           {cardsOnCurrentPage.map((innerArray, index) => (
             <CardColumnDiv key={index}>
@@ -560,7 +573,13 @@ export default function AllCards() {
             pages={pages}
           />
         )}
-        {cards.length === 0 && (
+        {((user && user.cards?.length === 0) ) && (
+          <div>
+            <div> </div>
+            <P>{t("cardsNotAdded")}</P>
+          </div>
+        )}
+        {((!user && cards?.length === 0) ) && (
           <div>
             <div> </div>
             <P>{t("cardsNotAdded")}</P>

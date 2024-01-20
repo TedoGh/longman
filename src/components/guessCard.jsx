@@ -460,11 +460,13 @@ const GuessCard = ({
   function handleRecordResult() {
     const currentDate = new Date();
     const formattedDate = formatDate(currentDate);
+    const percentage = (correctAnswers / selectedNumber * 100).toFixed(0)
     setLastSessionResult({
       date: formattedDate,
       correct: correctAnswers,
       wrong: wrongAnswers,
       total: selectedNumber,
+      percentage: `${percentage}%`
     });
   }
 
@@ -529,14 +531,14 @@ const GuessCard = ({
 
       if (languageState === "GEO") {
         questionObj.question = card?.georgian;
-        questionObj.correct = card?.english;
+        questionObj.correct = card?.foreign;
 
         for (let i = 0; i < 4; i++) {
-          questionObj.options[i] = arrayWithCorrectAnswer[i]?.english;
+          questionObj.options[i] = arrayWithCorrectAnswer[i]?.foreign;
         }
       }
       if (languageState === "ENG") {
-        questionObj.question = card?.english;
+        questionObj.question = card?.foreign;
         questionObj.correct = card?.georgian;
         for (let i = 0; i < 4; i++) {
           questionObj.options[i] = arrayWithCorrectAnswer[i]?.georgian;

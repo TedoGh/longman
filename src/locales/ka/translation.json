@@ -10,7 +10,7 @@
   "startText": "დამატება",
   "addCardBNText": "შექმენით ქარდი",
   "addCardPlaceGeoText": "დაწერეთ სიტყვა ქართულად...",
-  "addCardPlaceEngText": "დაწერეთ სიტყვა ინგლისურად...",
+  "addCardPlaceEngText": "დაწერეთ სიტყვა უცხო ენაზე...",
   "footerRights": "ყველა უფლება დაცულია",
   "trainPageTrainText": "ივარჯიშეთ",
   "trainPageClickText": "დააწკაპე ქარდს და ისწავლე ახალი სიტყვები!",
@@ -150,5 +150,11 @@
   "yourResult": "თქვენი შედეგი",
   "numberOfQuestionsSelected": "არჩეული კითხვების რაოდენობა",
   "numberOfSuccessfullyQuestions": "წარმატებით გაცემული კითხვების რაოდენობა",
-  "ResultTime": "დრო"
+  "ResultTime": "დრო",
+
+  "AuthorizationRequired": "პროგრესის სანახავად გაიარეთ ავტორიზაცია",
+  "georgianLng": "ქართული",
+  "foreignLng": "უცხოური",
+  "progressNotAvailable": "Start training to track your progress"
+
 }

@@ -18,6 +18,7 @@ export const AuthorizationProvider = ({ children }) => {
   const [user,setUser] = useState();
   const [response, setResponse] = useState();
   const [trigger, setTrigger] = useState(false);
+  const [loading, setLoading] = useState();
   const API_KEY = 'WsdKue2LFxsqmdimIkCyvBgbFLHbcQkk8DjiHohkRccDPRcNdg';
 
   // Function to update cards and trigger a re-render
@@ -46,7 +47,7 @@ export const AuthorizationProvider = ({ children }) => {
 
   
   const contextValue = {
-   loggedIn, setLoggedIn,response,setUser,setTrigger, user
+   loggedIn, setLoggedIn,response,setUser,setTrigger, user, loading, setLoading
   };
 
   return <AuthorizationContext.Provider value={contextValue}>{children}</AuthorizationContext.Provider>;

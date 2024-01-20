@@ -10,7 +10,7 @@
   "startText": "Get started",
   "addCardBNText": "Add Card",
   "addCardPlaceGeoText": "Type in georgian...",
-  "addCardPlaceEngText": "Type in english...",
+  "addCardPlaceEngText": "Type in foreign language...",
   "footerRights": "All rights reserved",
   "trainPageTrainText": "It's Time to Train",
   "trainPageClickText": "Click to cards and learn new words.",
@@ -153,5 +153,10 @@
   "yourResult": "Your Result",
   "numberOfQuestionsSelected": "Number of questions selected",
   "numberOfSuccessfullyQuestions": "The number of successfully issued questions",
-  "ResultTime": "Time"
+  "ResultTime": "Time",
+  "AuthorizationRequired": "Sign in or Sign Up to track your progress",
+
+  "georgianLng": "Georgian language",
+  "foreignLng": "Foreign language",
+  "progressNotAvailable": "პროგრესის სანახავად, ვარჯიშის მინიმუმ ერთი სესიის ჩატარებაა საჭირო"
 }

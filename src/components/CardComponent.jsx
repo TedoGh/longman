@@ -414,7 +414,7 @@ const CardComponent = ({ CardObject, onDelete, language, index }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [editSession, setEditSession] = useState(false);
   const [inputValue, setInputValue] = useState(
-    side === "ENG" ? CardObject.english : CardObject.georgian
+    side === "FRGN" ? CardObject.foreign : CardObject.georgian
   );
   const [card, setCard] = useState(CardObject);
   const [deletePermission, setDeletePermission] = useState(false);
@@ -436,10 +436,10 @@ const CardComponent = ({ CardObject, onDelete, language, index }) => {
       !menuDivRef.current?.contains(e.target) &&
       !editSession
     ) {
-      if (side === "ENG") {
+      if (side === "FRGN") {
         setSide("GEO");
       } else {
-        setSide("ENG");
+        setSide("FRGN");
       }
       setMainSide((prev) => !prev);
     }
@@ -484,7 +484,7 @@ const CardComponent = ({ CardObject, onDelete, language, index }) => {
             const updatedCard =
               side === "GEO"
                 ? { ...prevCard, georgian: inputValue }
-                : { ...prevCard, english: inputValue };
+                : { ...prevCard, foreign: inputValue };
             return updatedCard
           });
         }
@@ -500,7 +500,7 @@ const CardComponent = ({ CardObject, onDelete, language, index }) => {
     if(user) {
     
     // const copiedCard = JSON.parse(JSON.stringify(card));
-    const changedKeyValue = side === "GEO" ?  {georgian: inputValue } : {english: inputValue };
+    const changedKeyValue = side === "GEO" ?  {georgian: inputValue } : {foreign: inputValue };
     const updatedCards = user.cards.map((c) =>
       c.id === card.id ? { ...c, ...changedKeyValue } : c
     );
@@ -512,7 +512,7 @@ const CardComponent = ({ CardObject, onDelete, language, index }) => {
       const updatedCard =
         side === "GEO"
           ? { ...prevCard, georgian: inputValue }
-          : { ...prevCard, english: inputValue };
+          : { ...prevCard, foreign: inputValue };
       editCardContext(CardObject, updatedCard);
       return updatedCard;
     });}
@@ -529,7 +529,7 @@ const CardComponent = ({ CardObject, onDelete, language, index }) => {
   };
 
   useEffect(() => {
-    setInputValue(side === "ENG" ? card.english : card.georgian);
+    setInputValue(side === "FRGN" ? card.foreign : card.georgian);
   }, [side]);
 
   useEffect(() => {
@@ -588,7 +588,7 @@ const CardComponent = ({ CardObject, onDelete, language, index }) => {
             </button>
           </MenuDiv>
         )}
-        {!editSession && <p>{side === "ENG" ? card.english : card.georgian}</p>}
+        {!editSession && <p>{side === "FRGN" ? card.foreign : card.georgian}</p>}
         {editSession && (
           <EditDiv mainSide={mainSide}>
             <input

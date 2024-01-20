@@ -3,6 +3,7 @@ import ProgressHistoryList from "./ProgressHistoryList";
 
 const ProgressHistory = () => {
   const { t } = useTranslation();
+ 
 
   return (
     <div className="lg:mt-[180px] mt-[475px] mb-14 px-4 lg:px-0">

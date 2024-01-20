@@ -2,14 +2,38 @@ import ProgressHistory from "../components/ProgressHistory";
 import SemiCircleProgressBar from "react-progressbar-semicircle";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { useAuthorizationContext } from "./Context/AuthorizationContext";
+import { useEffect, useState } from "react";
 
 export default function Progress() {
   const { t } = useTranslation();
+  const {user} = useAuthorizationContext();
+  const [result, setResult] = useState();
+ 
 
-  const percentage = "14.35";
+  useEffect(()=>{
+    if(user && user.trainingData) {
+      let totalQuestions = 0
+      let totalCorrectAnswers = 0
+      user?.trainingData.forEach(data => totalQuestions = totalQuestions + data.total)
+      user?.trainingData.forEach(data => totalCorrectAnswers = totalCorrectAnswers + data.correct)
+      const resultPercentage = (totalCorrectAnswers / totalQuestions * 100 ).toFixed(0)
+      console.log(totalQuestions);
+      console.log(totalCorrectAnswers);
+      console.log(resultPercentage);
+      setResult({
+        totalCorrectAnswers: totalCorrectAnswers,
+        totalQuestions: totalQuestions,
+        resultPercentageDigit: resultPercentage,
+        resultPercentage: `${resultPercentage}%`
+      })
+    }
+  },[user])
+
 
   return (
     <div>
+    {user && user.trainingData && <div>
       <div className="max-w-[1200px] mx-auto">
         <div className="px-5 lg:px-0">
           <h1 className="mt-8 text-darkBlue text-3xl font-bold">
@@ -18,7 +42,7 @@ export default function Progress() {
           <div className="lg:flex grid grid-cols-1">
             <div className="w-full">
               <div className="my-14 h-[530px] lg:h-[350px] p-12 border-2 border-[#DEE2E6] rounded-md">
-                <h1 className="text-2xl mb-5">{t("helloText")}, მომხარებელო</h1>
+                <h1 className="text-2xl mb-5">{t("helloText")}, {user.Name} {user.Surname}</h1>
                 <p className="mb-3 text-lg text-[#AFAFAF] lg:w-[690px] w-full">
                   {t("myProgressPageText1")}
                 </p>
@@ -43,21 +67,21 @@ export default function Progress() {
                   <div className="flex justify-center">
                     <div>
                       <SemiCircleProgressBar
-                        percentage={percentage}
+                        percentage={result?.resultPercentageDigit}
                         stroke={"#04AA6D"}
                         background={"#F7F7F7"}
                       />
                       <h1 className="mt-[-50px] mr-8 text-darkBlue text-3xl font-bold mb-[40px]">
-                        {percentage}%
+                        {result?.resultPercentage}
                       </h1>
                       <div>
                         <p className="text-darkBlue text-center mb-5 w-[230px]">
                           {t("totalCorrectAnswers")} :
-                          <span className="font-bold"> 447</span>
+                          <span className="font-bold"> {result?.totalQuestions} </span>
                         </p>
                         <p className="text-darkBlue text-center mb-5">
                           {t("yourProgressText")} :
-                          <span className="font-bold"> 4725</span>
+                          <span className="font-bold"> {result?.totalCorrectAnswers} </span>
                         </p>
                       </div>
                     </div>
@@ -69,6 +93,15 @@ export default function Progress() {
         </div>
         <ProgressHistory />
       </div>
+    </div>}
+    {!user && <div>
+      <h1> {t('AuthorizationRequired')} </h1>
+      <button>{t('login')}</button>
+    </div>}
+    {user && !user.trainingData && <div>
+      <h1> {t('progressNotAvailable')} </h1>
+      <button>ნავიგაცია ვარჯიშის ფეიჯზე</button>
+    </div>}
     </div>
   );
 }
