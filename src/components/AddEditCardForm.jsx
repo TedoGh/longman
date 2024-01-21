@@ -28,20 +28,22 @@ const Input = styled.input`
 
 const LoadingDiv = styled.div`
   position: absolute;
-  top: 70px;
+  top: ${({ card }) => (card ? "0px" : "150px;")};
 `;
 
-const AddCardForm = ({ modal, modalOpen, setModalOpen }) => {
+const AddEditCardForm = ({ modal, modalOpen, setModalOpen, card, setCard, CardObject}) => {
   const { t } = useTranslation();
   const modalRef = useRef(null);
   const { setTrigger, user, setUser, loading } = useAuthorizationContext();
   const [userObject, setUserObject] = useState();
   const { updateUser } = useRequest();
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState(card ? {...card} :{
     id: "",
     foreign: "",
     georgian: "",
   });
+
+ 
   async function generateUniqueId() {
     const timestamp = new Date().getTime();
     const randomNum = Math.floor(Math.random() * 10);
@@ -50,7 +52,11 @@ const AddCardForm = ({ modal, modalOpen, setModalOpen }) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    if(card) {
+      setFormData((prevData) => ({ ...prevData, [name]: value }));
+    }else {
     setFormData({ ...formData, [name]: value });
+    }
   };
 
   const [validationError, setValidationError] = useState({
@@ -58,9 +64,30 @@ const AddCardForm = ({ modal, modalOpen, setModalOpen }) => {
     secondInput: false,
   });
 
-  const { addCardsContext } = useCardsDataContext();
+  const { addCardsContext, editCardContext } = useCardsDataContext();
 
   useEffect(() => {
+    if(user && card) {
+      const updateUserAndSetCard = async () => {
+        try {
+          if (user && userObject !== undefined) {
+            await updateUser(userObject, userObject._uuid, 'editCard');
+          
+           await setCard((prevCard) => {
+              const updatedCard = formData
+              return updatedCard
+            });
+
+           await setModalOpen(false);
+            
+          }
+        } catch (error) {
+          console.error("Failed to update user:", error);
+        } 
+      };
+    
+      updateUserAndSetCard();
+    } else {
     const handleAddCard = async () => {
       if (user && userObject !== undefined) {
         await updateUser(userObject, userObject._uuid, "addCard");
@@ -68,6 +95,7 @@ const AddCardForm = ({ modal, modalOpen, setModalOpen }) => {
     };
 
     handleAddCard();
+  }
   }, [userObject]);
 
   const handleSubmit = async (e) => {
@@ -86,10 +114,29 @@ const AddCardForm = ({ modal, modalOpen, setModalOpen }) => {
       formData.georgian.trim().length >= 1 &&
       formData.foreign.trim().length >= 1
     ) {
+      
+        if(user && card) {
+          const updatedCards = user.cards.map((c) =>
+            c.id === card.id ? { ...c, ...formData } : c
+          );
+          const copiedObject = JSON.parse(JSON.stringify(user));
+          setUserObject(({...copiedObject, cards: updatedCards}))
+          }
+           if(!user && card) {
+          setCard((prevCard) => {
+            const updatedCard = formData
+            editCardContext(CardObject, updatedCard);
+            return updatedCard;
+          })
+          toast.success(t("cardSucessfullyEdited"));
+          setModalOpen(false)
+          }
+      
+
       try {
         const id = await generateUniqueId();
         const updatedFormData = { ...formData, id };
-        if (user) {
+        if (user && !card) {
           const copiedObject = JSON.parse(JSON.stringify(user));
           setUserObject({
             ...copiedObject,
@@ -97,7 +144,8 @@ const AddCardForm = ({ modal, modalOpen, setModalOpen }) => {
               ? [...copiedObject.cards, updatedFormData]
               : [updatedFormData],
           });
-        } else {
+          
+        } if (!user && !card) {
           addCardsContext(updatedFormData);
           toast.success(t("cardsSucessfullyAdded"));
         }
@@ -108,6 +156,13 @@ const AddCardForm = ({ modal, modalOpen, setModalOpen }) => {
       }
     }
   };
+
+  const handleFinishEditing = () => {
+   
+    setEditSession(false);
+  };
+
+  
 
   const handleClickOutside = (e) => {
     if (!modalRef.current.contains(e.target)) setModalOpen(false);
@@ -155,11 +210,11 @@ const AddCardForm = ({ modal, modalOpen, setModalOpen }) => {
 
       <div className={containerClass}>
         {loading && (
-          <LoadingDiv>
+          <LoadingDiv card = {card}>
             <TailSpin
               visible={true}
-              width="120"
-              height="120"
+              width="200"
+              height="200"
               color="#04AA6D"
               ariaLabel="tail-spin-loading"
               radius="1"
@@ -171,7 +226,7 @@ const AddCardForm = ({ modal, modalOpen, setModalOpen }) => {
           className={formClass}
           ref={modalRef}
         >
-          {modal && <P>{t("createCardText")}</P>}
+          {modal && <P>{card ? t("editCard") : t("createCardText")}</P>}
 
           <div>
             <Input
@@ -202,7 +257,7 @@ const AddCardForm = ({ modal, modalOpen, setModalOpen }) => {
             )}
           </div>
           <button type="submit" className={buttonClass}>
-            {t("addCardBNText")}
+            {card ? t("edit") : t("addCardBNText")}
           </button>
         </form>
       </div>
@@ -210,4 +265,4 @@ const AddCardForm = ({ modal, modalOpen, setModalOpen }) => {
   );
 };
 
-export default AddCardForm;
+export default AddEditCardForm;

@@ -87,7 +87,7 @@
   "incorrectConfirm": "Rewritten password is not correct",
   "SuccessfulRegistration": "You registered succesfully",
   "cardSucessfullyDeleted": "Card deleted succesfully",
-  "cardSucessfullyEdited": "Card succesfully edited",
+  "cardSucessfullyEdited": "Card has been succesfully edited",
   "resultAppliedToProgress": "Training result successfully added to progress data",
 
   "testimonialsText": "Testimonials",
@@ -166,5 +166,9 @@
   "georgianLng": "Georgian language",
   "foreignLng": "Foreign language",
   "progressNotAvailable": "Take the test to see your progress",
-  "logOut": "Exit"
+  "logOut": "Exit",
+
+  "editCard": "Edit Card"
+  
+  
 }

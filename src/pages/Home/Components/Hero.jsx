@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import HeroImg from "../../../assets/images/hero.png";
-import AddCardForm from "../../../components/AddCardForm";
+import AddEditCardForm from "../../../components/AddEditCardForm";
 
 const Hero = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -33,7 +33,7 @@ const Hero = () => {
         </div>
       </div>
       {modalOpen && (
-        <AddCardForm
+        <AddEditCardForm
           modalOpen={modalOpen}
           setModalOpen={setModalOpen}
           modal={true}

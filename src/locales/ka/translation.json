@@ -162,5 +162,7 @@
   "georgianLng": "ქართული",
   "foreignLng": "უცხოური",
   "progressNotAvailable": "გაიარეთ ტესტი რომ გამოჩნდეს თქვენი პროგრესი",
-  "logOut": "გამოსვლა"
+  "logOut": "გამოსვლა",
+  "editCard": "ბარათის რედაქტირება"
+  
 }

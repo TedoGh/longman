@@ -14,6 +14,8 @@ import Circle from "../../../assets/images/Circle.png";
 import { useCardsDataContext } from "../../../Context/CardsContext";
 import { useAuthorizationContext } from "../../../Context/AuthorizationContext";
 import useRequest from "../../../hooks/useRequest";
+import AddEditCardForm from "../../../components/AddEditCardForm";
+
 const CardDiv = styled.div`
   position: relative;
   display: flex;
@@ -157,76 +159,7 @@ const MenuDiv = styled.div`
   }
 `;
 
-const EditDiv = styled.div`
-  position: relative;
-  & input {
-    position: absolute;
-    top: -40px;
-    left: -134px;
-    height: 40px;
-    width: 265px;
-    background-color: ${({ mainSide }) => (mainSide ? "#04AA6D" : "#FFF4A3")};
-    color: ${({ mainSide }) => (mainSide ? "#FFFFFF" : "#282A35")};
-    border: none;
-    padding-left: 100px;
-    font-size: 18px;
-    letter-spacing: 2px;
-  }
 
-  & button {
-    position: absolute;
-    top: 5px;
-    font-size: 30px;
-  }
-
-  & div {
-    position: relative;
-  }
-
-  & .cancelBtn {
-    position: absolute;
-    left: 40px;
-  }
-
-  & .editBtn {
-    left: 40px;
-  }
-
-  @media (max-width: 1024px) {
-    & input {
-      position: absolute;
-      top: -40px;
-      left: -134px;
-      height: 40px;
-      width: 265px;
-      background-color: ${({ mainSide }) => (mainSide ? "#04AA6D" : "#FFF4A3")};
-      color: ${({ mainSide }) => (mainSide ? "#FFFFFF" : "#282A35")};
-      border: none;
-      padding-left: 100px;
-      font-size: 18px;
-      letter-spacing: 2px;
-    }
-
-    & button {
-      position: absolute;
-      top: 5px;
-      font-size: 30px;
-    }
-
-    & div {
-      position: relative;
-    }
-
-    & .cancelBtn {
-      position: absolute;
-      left: 40px;
-    }
-
-    & .editBtn {
-      left: 40px;
-    }
-  }
-`;
 
 const ModalDiv = styled.div`
   & .mainDiv {
@@ -413,14 +346,10 @@ const CardComponent = ({ CardObject, onDelete, language, index }) => {
   const [mainSide, setMainSide] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
   const [editSession, setEditSession] = useState(false);
-  const [inputValue, setInputValue] = useState(
-    side === "FRGN" ? CardObject.foreign : CardObject.georgian
-  );
   const [card, setCard] = useState(CardObject);
   const [deletePermission, setDeletePermission] = useState(false);
   const menuBtnRef = useRef(null);
   const menuDivRef = useRef(null);
-  const inputRef = useRef(null);
   const modalRef = useRef(null);
   const { deleteCard, editCard } = useLocalStorageCards("languageCards", []);
   const { cards, updateCards, editCardContext } = useCardsDataContext();
@@ -463,74 +392,21 @@ const CardComponent = ({ CardObject, onDelete, language, index }) => {
     setMenuOpen(false);
   };
 
-  const handleInputChange = () => {
-    setInputValue(inputRef.current.value);
-  };
+ 
 
-  // useEffect(() => {
-  //   if(user && userObject !== undefined) {
-  //     updateUser(userObject,userObject._uuid, 'editCard')
-
-  //   }
-  // }, [userObject])
-
-  useEffect(() => {
-    const updateUserAndSetCard = async () => {
-      try {
-        if (user && userObject !== undefined) {
-          await updateUser(userObject, userObject._uuid, 'editCard');
-        
-          setCard((prevCard) => {
-            const updatedCard =
-              side === "GEO"
-                ? { ...prevCard, georgian: inputValue }
-                : { ...prevCard, foreign: inputValue };
-            return updatedCard
-          });
-        }
-      } catch (error) {
-       
-        console.error("Failed to update user:", error);
-      }
-    };
   
-    updateUserAndSetCard();
-  }, [userObject]);
-  const handleFinishEditing = () => {
-    if(user) {
-    
-    // const copiedCard = JSON.parse(JSON.stringify(card));
-    const changedKeyValue = side === "GEO" ?  {georgian: inputValue } : {foreign: inputValue };
-    const updatedCards = user.cards.map((c) =>
-      c.id === card.id ? { ...c, ...changedKeyValue } : c
-    );
-    const copiedObject = JSON.parse(JSON.stringify(user));
-    // setUserObject(({...copiedObject, cards: [...filteredCards,{...copiedCard, ...changedKeyValue} ]}))
-    setUserObject(({...copiedObject, cards: updatedCards}))
-    } else {
-    setCard((prevCard) => {
-      const updatedCard =
-        side === "GEO"
-          ? { ...prevCard, georgian: inputValue }
-          : { ...prevCard, foreign: inputValue };
-      editCardContext(CardObject, updatedCard);
-      return updatedCard;
-    });}
-    setEditSession(false);
-  };
 
-  const cancelEditing = () => {
-    setEditSession(false);
-  };
+  
+
+
+  
 
   const handleClickOnDelete = () => {
     setMenuOpen(false);
     setDeletePermission(true);
   };
 
-  useEffect(() => {
-    setInputValue(side === "FRGN" ? card.foreign : card.georgian);
-  }, [side]);
+ 
 
   useEffect(() => {
     if (menuOpen) {
@@ -547,11 +423,7 @@ const CardComponent = ({ CardObject, onDelete, language, index }) => {
     setDeletePermission(false);
   };
 
-  useEffect(() => {
-    if (editSession && inputRef.current) {
-      inputRef.current.focus();
-    }
-  }, [editSession]);
+ 
 
   useEffect(() => {
     if (deletePermission) {
@@ -566,6 +438,7 @@ const CardComponent = ({ CardObject, onDelete, language, index }) => {
     setSide(language);
   }, [language]);
 
+  console.log(card)
   return (
     <div>
       <CardDiv onClick={(e) => handleRotate(e)} mainSide={mainSide}>
@@ -589,23 +462,7 @@ const CardComponent = ({ CardObject, onDelete, language, index }) => {
           </MenuDiv>
         )}
         {!editSession && <p>{side === "FRGN" ? card.foreign : card.georgian}</p>}
-        {editSession && (
-          <EditDiv mainSide={mainSide}>
-            <input
-              ref={inputRef}
-              value={inputValue}
-              onChange={handleInputChange}
-            />
-            <div>
-              <button className="cancelBtn" onClick={cancelEditing}>
-                <MdCancel />
-              </button>
-              <button className="checkBtn" onClick={handleFinishEditing}>
-                <FaCheck />
-              </button>
-            </div>
-          </EditDiv>
-        )}
+       
       </CardDiv>
 
       {deletePermission && (
@@ -630,6 +487,9 @@ const CardComponent = ({ CardObject, onDelete, language, index }) => {
           </div>
         </ModalDiv>
       )}
+       {editSession && (
+          <AddEditCardForm modal={true} modalOpen={editSession} setModalOpen={setEditSession} card = {card} setCard = {setCard} CardObject = {CardObject} />
+        )}
     </div>
   );
 };

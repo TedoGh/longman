@@ -1,10 +1,10 @@
 
-import AddCardForm from "../../components/AddCardForm";
+import AddEditCardForm from "../../components/AddEditCardForm";
 
 export default function AddCard() {
   return (
     <div>
-      <AddCardForm modal={false} />
+      <AddEditCardForm modal={false} />
     </div>
   );
 }
