@@ -3,8 +3,8 @@ import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 import ConfirmationModal from "./ConfirmationModal";
 import { AiOutlineClose } from "react-icons/ai";
-import { useAuthorizationContext } from "../locales/ka/Context/AuthorizationContext";
-import useRequest from "../../hooks/useRequest";
+import { useAuthorizationContext } from "../../../Context/AuthorizationContext";
+import useRequest from "../../../hooks/useRequest";
 
 const StyledModalContainer = styled.div`
   position: fixed;

@@ -8,7 +8,7 @@ import Burger from "../assets/images/burger.svg";
 import { FaAngleRight } from "react-icons/fa";
 import HeaderData from "../data/HeaderData";
 import UserProfile from "./UserProfile";
-import { useAuthorizationContext } from "../locales/ka/Context/AuthorizationContext";
+import { useAuthorizationContext } from "../Context/AuthorizationContext";
 
 export default function Header() {
   const { t } = useTranslation();

@@ -1,6 +1,6 @@
 import React from "react";
-import AlertCircle from "../../src/assets/images/AlertCircle.png";
-import AlertIcon from "../../src/assets/images/AlertIcon.png";
+import AlertCircle from "../../../../src/assets/images/AlertCircle.png";
+import AlertIcon from "../../../../src/assets/images/AlertIcon.png";
 import { styled } from "styled-components";
 import { useTranslation } from "react-i18next";
 const MainDiv = styled.div`

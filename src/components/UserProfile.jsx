@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { FaAngleDown, FaUserCircle, FaSignOutAlt } from "react-icons/fa";
-import { useAuthorizationContext } from "../locales/ka/Context/AuthorizationContext";
+import { useAuthorizationContext } from "../Context/AuthorizationContext";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 

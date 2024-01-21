@@ -7,7 +7,7 @@ import "swiper/css/pagination";
 
 import { Autoplay, Pagination } from "swiper/modules";
 
-import TestimonialsData from "../../data/TestimonialsData";
+import TestimonialsData from "../../../data/TestimonialsData";
 
 const Testimonials = () => {
   const { t } = useTranslation();

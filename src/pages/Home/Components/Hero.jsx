@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import HeroImg from "../assets/images/hero.png";
-import AddCardForm from "../../components/AddCardForm";
+import HeroImg from "../../../assets/images/hero.png";
+import AddCardForm from "../../../components/AddCardForm";
 
 const Hero = () => {
   const [modalOpen, setModalOpen] = useState(false);

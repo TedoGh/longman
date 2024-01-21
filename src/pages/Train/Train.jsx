@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import { useTranslation } from "react-i18next";
-import SwitchTrainImage from "../assets/images/switchTrain.svg";
-import TrainImg from "../assets/images/train-page.png";
-import GuessCard from "./guessCard";
+import SwitchTrainImage from "../../assets/images/switchTrain.svg";
+import TrainImg from "../../assets/images/train-page.png";
+import GuessCard from "./Components/guessCard";
 import React, { useState, useEffect, useRef } from "react";
-import { useCardsDataContext } from "../locales/ka/Context/CardsContext";
+import { useCardsDataContext } from "../../Context/CardsContext";
 import { toast } from "react-hot-toast";
-import { useAuthorizationContext } from "../locales/ka/Context/AuthorizationContext";
+import { useAuthorizationContext } from "../../Context/AuthorizationContext";
 
 const TrainContainer = styled.div`
   width: 100%;

@@ -3,8 +3,8 @@ import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "animate.css";
 import "./i18n";
-import { CardsDataProvider } from "./pages/Context/CardsContext.jsx";
-import { AuthorizationProvider } from "./pages/Context/AuthorizationContext.jsx";
+import { CardsDataProvider } from "./Context/CardsContext.jsx";
+import { AuthorizationProvider } from "./Context/AuthorizationContext.jsx";
 import { Toaster } from "react-hot-toast";
 import { BrowserRouter } from "react-router-dom";
 
