@@ -108,6 +108,7 @@ export default function Progress() {
           </div>
         </div>
       )}
+
       {!user && <NotLoggedUser />}
       {user && !user.trainingData && <ProgressNotAvailable />}
     </div>
