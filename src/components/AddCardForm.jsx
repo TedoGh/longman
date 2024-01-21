@@ -27,10 +27,9 @@ const Input = styled.input`
 `;
 
 const LoadingDiv = styled.div`
-position: absolute;
-top: 70px;
-
-`
+  position: absolute;
+  top: 70px;
+`;
 
 const AddCardForm = ({ modal, modalOpen, setModalOpen }) => {
   const { t } = useTranslation();
@@ -43,7 +42,6 @@ const AddCardForm = ({ modal, modalOpen, setModalOpen }) => {
     foreign: "",
     georgian: "",
   });
-
   async function generateUniqueId() {
     const timestamp = new Date().getTime();
     const randomNum = Math.floor(Math.random() * 10);
@@ -61,8 +59,6 @@ const AddCardForm = ({ modal, modalOpen, setModalOpen }) => {
   });
 
   const { addCardsContext } = useCardsDataContext();
-
-
 
   useEffect(() => {
     const handleAddCard = async () => {
@@ -97,7 +93,9 @@ const AddCardForm = ({ modal, modalOpen, setModalOpen }) => {
           const copiedObject = JSON.parse(JSON.stringify(user));
           setUserObject({
             ...copiedObject,
-            cards: copiedObject.cards ?  [...copiedObject.cards, updatedFormData] : [updatedFormData],
+            cards: copiedObject.cards
+              ? [...copiedObject.cards, updatedFormData]
+              : [updatedFormData],
           });
         } else {
           addCardsContext(updatedFormData);
@@ -140,7 +138,11 @@ const AddCardForm = ({ modal, modalOpen, setModalOpen }) => {
     : "rounded-lg border-bgPlaceBorder border-solid border placeholder:text-bgPlaceBorder focus:outline-none focus:border-green w-[340px] sm:w-[466px] h-[67px] p-2";
 
   const buttonClass = modal
-    ? "p-2 rounded-[24px] w-[302px] sm:w-[466px] h-[49px] bg-bgPlaceBorder text-[white]"
+    ? formData.foreign.length > 1 || formData.georgian.length > 1
+      ? "p-2 rounded-[24px] w-[302px] sm:w-[466px] h-[49px] bg-green text-[white]"
+      : "p-2 rounded-[24px] w-[302px] sm:w-[466px] h-[49px] bg-bgPlaceBorder text-[white]"
+    : formData.foreign.length > 1 || formData.georgian.length > 1
+    ? "p-2 rounded-[24px] w-[302px] sm:w-[466px] h-[49px] bg-green text-[white]"
     : "p-2 rounded-[24px] w-[302px] sm:w-[466px] h-[49px] bg-bgPlaceBorder text-[white]";
 
   const overlayClass = modal
@@ -150,22 +152,27 @@ const AddCardForm = ({ modal, modalOpen, setModalOpen }) => {
   return (
     <div>
       {modal && <div className={overlayClass}></div>}
-      
+
       <div className={containerClass}>
-      {loading && <LoadingDiv><TailSpin
-      visible={true}
-      width="120"
-      height="120"
-      color="#04AA6D"
-      ariaLabel="tail-spin-loading"
-      radius="1" /></LoadingDiv> }
+        {loading && (
+          <LoadingDiv>
+            <TailSpin
+              visible={true}
+              width="120"
+              height="120"
+              color="#04AA6D"
+              ariaLabel="tail-spin-loading"
+              radius="1"
+            />
+          </LoadingDiv>
+        )}
         <form
           onSubmit={(e) => handleSubmit(e)}
           className={formClass}
           ref={modalRef}
         >
           {modal && <P>{t("createCardText")}</P>}
-          
+
           <div>
             <Input
               error={validationError.firstInput}
