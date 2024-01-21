@@ -3,6 +3,7 @@ import { styled } from "styled-components";
 import LogoMain from "../assets/images/LogoMain.png";
 import { useTranslation } from "react-i18next";
 import { useAuthorizationContext } from "../Context/AuthorizationContext";
+import { useNavigate } from "react-router-dom";
 
 const ErrorText = styled.p`
   font-weight: 400;
@@ -70,6 +71,7 @@ const SignInModal = ({
   const modalRef = useRef(null);
   const { response, setUser, user } = useAuthorizationContext();
   const [error, setError] = useState(false);
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     Email: "",
@@ -101,6 +103,7 @@ const SignInModal = ({
         (user) => user?.Email === formData?.Email
       );
       setUser(foundUser);
+      navigate("/longman")
     } else {
       setError(true);
     }
