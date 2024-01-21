@@ -1,9 +1,7 @@
-import Header from "../../components/Header";
 import { useTranslation } from "react-i18next";
 import CardComponent from "./Components/CardComponent";
 import AllCardsPagination from "./Components/AllCardsPagination";
 import { styled } from "styled-components";
-import { CiSearch } from "react-icons/ci";
 import { useSearchParams } from "react-router-dom";
 import { useState, useRef } from "react";
 import { useEffect } from "react";
@@ -11,6 +9,8 @@ import { useCardsDataContext } from "../../Context/CardsContext";
 import { useAuthorizationContext } from "../../Context/AuthorizationContext";
 import useRequest from "../../hooks/useRequest";
 import { TailSpin } from "react-loader-spinner";
+import FunctionalPart from "./Components/FunctionalPart";
+import Cards from "./Components/Cards";
 
 const MainDiv = styled.div`
   height: 1160px;
@@ -29,211 +29,10 @@ const MainDiv = styled.div`
   }
 `;
 
-const SecondaryDiv = styled.div`
-  padding-top: 31px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 
-  & h1 {
-    font-size: 42px;
-    font-weight: 700;
-    line-height: 48.3px;
-    color: #ffffff;
-    margin-bottom: 17px;
-  }
 
-  & p {
-    font-size: 24px;
-    font-weight: 700;
-    line-height: 28px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: #fff4a3;
-    margin-bottom: 30px;
-  }
-  @media (max-width: 1024px) {
-    padding-top: 57px;
-    line-height: 27.6px;
-    & h1 {
-      font-size: 24px;
-      font-weight: 700;
-      line-height: 27.6px;
-    }
-    & p {
-      font-size: 14px;
-      line-height: 16px;
-      margin-bottom: 36px;
-    }
-  }
 
-  & .notFound {
-    margin-top: 100px;
-  }
 
-  @media (max-width: 767px) {
-    padding-top: 83px;
-
-    & h1 {
-      font-size: 30px;
-      font-weight: 700;
-      line-height: 34.6px;
-      margin-bottom: 26px;
-    }
-    & p {
-      font-size: 14px;
-      line-height: 16px;
-      margin-bottom: 37px;
-    }
-  }
-
-  & .notFound {
-    margin-top: 209px;
-  }
-`;
-
-const SearchDiv = styled.div`
-  display: flex;
-  flex-direction: row;
-  width: 498px;
-  height: 54px;
-  padding: 15px, 23px, 15px, 23px;
-  padding-left: 15px;
-  border-radius: 30px;
-  gap: 8px;
-  background-color: #23252e;
-
-  & input {
-    padding-top: 5px;
-    border: none;
-    background-color: #23252e;
-    height: 35px;
-    width: 90%;
-    outline: none;
-    color: white;
-    font-size: 24px;
-    margin-top: 5px;
-  }
-
-  &:focus-within {
-    border: 2px solid #fff;
-  }
-
-  & .searchIcon {
-    color: white;
-    font-size: 24px;
-    margin-top: 13px;
-  }
-
-  @media (max-width: 1024px) {
-    width: 431px;
-    height: 46px;
-    border-radius: 26px;
-
-    border-radius: 25.96px;
-    gap: 6.92px;
-    padding-left: 20px;
-
-    & input {
-      font-weight: 400;
-      line-height: 18px;
-      letter-spacing: 0em;
-      text-align: left;
-      font-size: 16px;
-      padding-bottom: 2px;
-    }
-
-    & .searchIcon {
-      font-size: 20px;
-    }
-  }
-
-  @media (max-width: 767px) {
-    width: 356px;
-    height: 46px;
-    border-radius: 21px;
-
-    gap: 6px;
-    padding-left: 10px;
-
-    & input {
-      font-weight: 400;
-      line-height: 16px;
-      letter-spacing: 0em;
-      text-align: left;
-      font-size: 14px;
-      padding-bottom: 10px;
-    }
-
-    & .searchIcon {
-      align-self: flex-start;
-      font-size: 14px;
-    }
-  }
-`;
-
-const CardsDiv = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-self: ${(props) => {
-    return props.cardsOnCurrentPage?.length > 2 ? "center" : "flex-start";
-  }};
-  justify-content: flex-start;
-  gap: 160px;
-  margin-top: 43px;
-  margin-left: 100px;
-  margin-right: 100px;
-
-  @media (max-width: 1241px) {
-    gap: 100px;
-  }
-
-  @media (max-width: 1241px) {
-    gap: 90px;
-  }
-
-  @media (max-width: 1124px) {
-    gap: 80px;
-  }
-
-  @media (max-width: 1077px) {
-    gap: 70px;
-  }
-
-  @media (max-width: 1024px) {
-    gap: 200px;
-    margin-top: 60px;
-    align-self: center;
-  }
-
-  @media (max-width: 1000px) {
-    gap: 150px;
-  }
-
-  @media (max-width: 1000px) {
-    gap: 120px;
-  }
-
-  @media (max-width: 885px) {
-    gap: 90px;
-  }
-
-  @media (max-width: 845px) {
-    gap: 70px;
-  }
-  @media (max-width: 767px) {
-    align-self: center;
-  }
-`;
-
-const CardColumnDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 50px;
-  @media (max-width: 1024px) {
-    gap: 30px;
-  }
-`;
 
 const EmptyDiv = styled.div`
   position: absolute;
@@ -308,43 +107,7 @@ const P = styled.p`
   }
 `;
 
-const LanguageSwitcher = styled.div`
-  display: flex;
-  flex-direction: row;
-  gap: 150px;
-  margin-top: 34px;
-  margin-bottom: 70px;
 
-  @media (max-width: 1024px) {
-    gap: 100px;
-    margin-top: 32px;
-    margin-bottom: 30px;
-  }
-
-  @media (max-width: 767px) {
-    gap: 80px;
-    margin-top: 30px;
-    margin-bottom: 20px;
-  }
-`;
-const LanguageButton = styled.button`
-  font-size: 24px;
-  font-weight: 700;
-  line-height: 28px;
-  color: ${(props) => {
-    return props.active ? "#04AA6D" : "#FFF4A3";
-  }};
-
-  @media (max-width: 1024px) {
-    font-size: 20px;
-    line-height: 26px;
-  }
-
-  @media (max-width: 767px) {
-    font-size: 18px;
-    line-height: 24px;
-  }
-`;
 
 const LoadingDiv = styled.div`
   position: fixed;
@@ -358,6 +121,7 @@ export default function AllCards() {
   const dividedCardsArr = [];
   const searchRef = useRef(null);
   const [inputValue, setInputValue] = useState("");
+  // user ისეტება login-ის დროს, თუ არ გვყავს user, მაშინ ყველგან ვიყენებთ localstorage-დან წამოღებულ ქარდებს
   const columns =
     inputValue === ""
       ? Math.ceil(user ? user.cards?.length / 5 : cards?.length / 5)
@@ -374,6 +138,7 @@ export default function AllCards() {
                   card.foreign.toLowerCase().startsWith(inputValue)
               ).length / 5
         );
+  // 5 ზე გაყოფით ვიგებ რამდენი სვეტია სულ ქარდების, რადგან თითოეულ სვეტში მაქსიმუმ 5 ქარდია      
   const [searchParams, setSearchParams] = useSearchParams();
   const [cardsOnCurrentPage, setCardsOnCurrentPage] = useState([]);
   const [language, setLanguage] = useState("FRGN");
@@ -384,14 +149,7 @@ export default function AllCards() {
     ? Number(searchParams.get("page"))
     : 1;
 
-  const handleLanguageChange = () => {
-    if (language === "FRGN") {
-      setLanguage(t("GEO"));
-    }
-    if (language === "GEO") {
-      setLanguage(t("FRGN"));
-    }
-  };
+  
 
   const handleInputChange = () => {
     searchParams.set("page", "1");
@@ -428,6 +186,8 @@ export default function AllCards() {
     };
   }, [window.innerWidth]);
 
+  // იქმნება ქარდების ხუთეული მასივები, და შემდეგ იმისდა მიხედვით რომელ გვერდზე ვართ ვირჩევთ ამ ხუთეულების სამეულს
+  // screenwidth-ზე რესპონსივის გამოა დამოკიდებული
   useEffect(() => {
     for (let i = 1; i <= columns; i++) {
       if (inputValue === "") {
@@ -510,36 +270,7 @@ export default function AllCards() {
   return (
     <div>
       <MainDiv>
-        <SecondaryDiv>
-          <h1>{t("allCardsText")}</h1>
-          <p>{t("allCardsPressCardText")}</p>
-          <SearchDiv>
-            <CiSearch className="searchIcon" />
-            <input
-              placeholder={t("searchCard")}
-              type="text"
-              ref={searchRef}
-              onChange={handleInputChange}
-            />
-          </SearchDiv>
-          <LanguageSwitcher>
-            <LanguageButton
-              active={language == "GEO"}
-              onClick={() => setLanguage(t("GEO"))}
-            >
-              {t("georgianLng")}
-            </LanguageButton>
-            <LanguageButton
-              active={language == "FRGN"}
-              onClick={() => setLanguage(t("FRGN"))}
-            >
-              {t("foreignLng")}
-            </LanguageButton>
-          </LanguageSwitcher>
-          {cardsOnCurrentPage?.length === 0 && inputValue !== "" && (
-            <p className="notFound">{t("cardsNotFound")}</p>
-          )}
-        </SecondaryDiv>
+        <FunctionalPart language={language} setLanguage = {setLanguage} cardsOnCurrentPage = {cardsOnCurrentPage} inputValue = {inputValue} searchRef = {searchRef} handleInputChange ={ handleInputChange} />
         {loading && (
           <LoadingDiv>
             <TailSpin
@@ -552,22 +283,8 @@ export default function AllCards() {
             />
           </LoadingDiv>
         )}
-        <CardsDiv cardsOnCurrentPage={cardsOnCurrentPage}>
-          {cardsOnCurrentPage.map((innerArray, index) => (
-            <CardColumnDiv key={index}>
-              {innerArray.map((card) => (
-                <CardComponent
-                  index={index}
-                  key={card.id}
-                  CardObject={card}
-                  onDelete={() => handleDeleteCard(card)}
-                  language={language}
-                />
-              ))}
-            </CardColumnDiv>
-          ))}
-        </CardsDiv>
-
+        
+          <Cards cardsOnCurrentPage = {cardsOnCurrentPage} handleDeleteCard = {handleDeleteCard} language = {language} />
         {pages > 0 && (
           <AllCardsPagination
             searchParams={searchParams}
@@ -584,7 +301,7 @@ export default function AllCards() {
             <P>{t("cardsNotAdded")}</P>
           </div>
         )}
-        {!user && !cards && (
+        {!user && cards.length === 0 && (
           <div>
             <div> </div>
             <P>{t("cardsNotAdded")}</P>

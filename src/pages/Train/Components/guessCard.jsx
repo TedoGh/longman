@@ -479,6 +479,11 @@ const GuessCard = ({
     }
   }, [active]);
 
+  // იქმნება უნიკალური ინდექსების მასივი, ეს ინდექსები რენდომად არის აღებული
+  // ქარდების/კითხვების მასივიდან არის რენდომ ინდექსებით ამოღებული სიტყვები ისე,
+  // რომ სამი მათგანი იყოს კითხვისგან განსხვავებული ქარდი/სავარაუდო პასუხი, და ერთი სწორი პასუხი
+  //ყველა ქარდისთვის იქმენა ობიექტი, რომელშიც არის სწორი პასუხი, სავარაუდო კითხვები, არის თუ არა ის კითხვა submitted და ა.შ
+
   useEffect(() => {
     let indexArr = [];
     const questions = [];
@@ -576,7 +581,7 @@ const GuessCard = ({
       setUserObject({
         ...copiedObject,
         trainingData: copiedObject.trainingData
-          ? [...copiedObject.trainingData, lastSessionResult]
+          ? [lastSessionResult, ...copiedObject.trainingData]
           : [lastSessionResult],
       });
     }
