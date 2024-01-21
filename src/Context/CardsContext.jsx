@@ -1,8 +1,11 @@
-
-
-import React, { createContext, useContext, useState, useCallback, useEffect } from 'react';
-import useLocalStorageCards from '../hooks/useLocalStorage';
-
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useCallback,
+  useEffect,
+} from "react";
+import useLocalStorageCards from "../hooks/useLocalStorage";
 
 const CardsDataContext = createContext();
 
@@ -12,23 +15,26 @@ const CardsDataContext = createContext();
 export const useCardsDataContext = () => {
   const context = useContext(CardsDataContext);
   if (!context) {
-    throw new Error('useCardsDataContext must be used within a CardsDataProvider');
+    throw new Error(
+      "useCardsDataContext must be used within a CardsDataProvider"
+    );
   }
   return context;
 };
 
-
 export const CardsDataProvider = ({ children }) => {
- 
-  const { cards: initialCards, updateCards, addCard, editCard} = useLocalStorageCards('languageCards', []);
+  const {
+    cards: initialCards,
+    updateCards,
+    addCard,
+    editCard,
+  } = useLocalStorageCards("languageCards", []);
   const [cards, setCards] = useState(initialCards);
 
-  
   const updateCardsContext = useCallback(
     (newCards) => {
-      
       updateCards(newCards);
-      
+
       setCards(newCards);
     },
     [updateCards]
@@ -36,39 +42,40 @@ export const CardsDataProvider = ({ children }) => {
 
   const addCardsContext = useCallback(
     (newCard) => {
-      
       addCard(newCard);
-      
+
       setCards((prevCards) => [...prevCards, newCard]);
     },
     [addCard]
   );
 
   const editCardContext = useCallback(
-    (card,newItem) => {
-      const newArray = cards.map((item, i) => (item.id === card.id ? newItem : item));
-      
-      editCard(card,newItem);
-      
+    (card, newItem) => {
+      const newArray = cards.map((item, i) =>
+        item.id === card.id ? newItem : item
+      );
+
+      editCard(card, newItem);
+
       setCards(newArray);
     },
     [updateCards]
   );
 
-
-  
   useEffect(() => {
     setCards(initialCards);
-    console.log('effect')
   }, [initialCards]);
 
-  
   const contextValue = {
     cards,
     updateCardsContext,
     addCardsContext,
-    editCardContext
+    editCardContext,
   };
 
-  return <CardsDataContext.Provider value={contextValue}>{children}</CardsDataContext.Provider>;
+  return (
+    <CardsDataContext.Provider value={contextValue}>
+      {children}
+    </CardsDataContext.Provider>
+  );
 };

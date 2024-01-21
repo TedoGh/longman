@@ -31,19 +31,29 @@ const LoadingDiv = styled.div`
   top: ${({ card }) => (card ? "0px" : "150px;")};
 `;
 
-const AddEditCardForm = ({ modal, modalOpen, setModalOpen, card, setCard, CardObject}) => {
+const AddEditCardForm = ({
+  modal,
+  modalOpen,
+  setModalOpen,
+  card,
+  setCard,
+  CardObject,
+}) => {
   const { t } = useTranslation();
   const modalRef = useRef(null);
   const { setTrigger, user, setUser, loading } = useAuthorizationContext();
   const [userObject, setUserObject] = useState();
   const { updateUser } = useRequest();
-  const [formData, setFormData] = useState(card ? {...card} :{
-    id: "",
-    foreign: "",
-    georgian: "",
-  });
+  const [formData, setFormData] = useState(
+    card
+      ? { ...card }
+      : {
+          id: "",
+          foreign: "",
+          georgian: "",
+        }
+  );
 
- 
   async function generateUniqueId() {
     const timestamp = new Date().getTime();
     const randomNum = Math.floor(Math.random() * 10);
@@ -52,10 +62,10 @@ const AddEditCardForm = ({ modal, modalOpen, setModalOpen, card, setCard, CardOb
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if(card) {
+    if (card) {
       setFormData((prevData) => ({ ...prevData, [name]: value }));
-    }else {
-    setFormData({ ...formData, [name]: value });
+    } else {
+      setFormData({ ...formData, [name]: value });
     }
   };
 
@@ -67,35 +77,34 @@ const AddEditCardForm = ({ modal, modalOpen, setModalOpen, card, setCard, CardOb
   const { addCardsContext, editCardContext } = useCardsDataContext();
 
   useEffect(() => {
-    if(user && card) {
+    if (user && card) {
       const updateUserAndSetCard = async () => {
         try {
           if (user && userObject !== undefined) {
-            await updateUser(userObject, userObject._uuid, 'editCard');
-          
-           await setCard((prevCard) => {
-              const updatedCard = formData
-              return updatedCard
+            await updateUser(userObject, userObject._uuid, "editCard");
+
+            await setCard((prevCard) => {
+              const updatedCard = formData;
+              return updatedCard;
             });
 
-           await setModalOpen(false);
-            
+            await setModalOpen(false);
           }
         } catch (error) {
           console.error("Failed to update user:", error);
-        } 
+        }
       };
-    
+
       updateUserAndSetCard();
     } else {
-    const handleAddCard = async () => {
-      if (user && userObject !== undefined) {
-        await updateUser(userObject, userObject._uuid, "addCard");
-      }
-    };
+      const handleAddCard = async () => {
+        if (user && userObject !== undefined) {
+          await updateUser(userObject, userObject._uuid, "addCard");
+        }
+      };
 
-    handleAddCard();
-  }
+      handleAddCard();
+    }
   }, [userObject]);
 
   const handleSubmit = async (e) => {
@@ -114,24 +123,22 @@ const AddEditCardForm = ({ modal, modalOpen, setModalOpen, card, setCard, CardOb
       formData.georgian.trim().length >= 1 &&
       formData.foreign.trim().length >= 1
     ) {
-      
-        if(user && card) {
-          const updatedCards = user.cards.map((c) =>
-            c.id === card.id ? { ...c, ...formData } : c
-          );
-          const copiedObject = JSON.parse(JSON.stringify(user));
-          setUserObject(({...copiedObject, cards: updatedCards}))
-          }
-           if(!user && card) {
-          setCard((prevCard) => {
-            const updatedCard = formData
-            editCardContext(CardObject, updatedCard);
-            return updatedCard;
-          })
-          toast.success(t("cardSucessfullyEdited"));
-          setModalOpen(false)
-          }
-      
+      if (user && card) {
+        const updatedCards = user.cards.map((c) =>
+          c.id === card.id ? { ...c, ...formData } : c
+        );
+        const copiedObject = JSON.parse(JSON.stringify(user));
+        setUserObject({ ...copiedObject, cards: updatedCards });
+      }
+      if (!user && card) {
+        setCard((prevCard) => {
+          const updatedCard = formData;
+          editCardContext(CardObject, updatedCard);
+          return updatedCard;
+        });
+        toast.success(t("cardSucessfullyEdited"));
+        setModalOpen(false);
+      }
 
       try {
         const id = await generateUniqueId();
@@ -144,8 +151,8 @@ const AddEditCardForm = ({ modal, modalOpen, setModalOpen, card, setCard, CardOb
               ? [...copiedObject.cards, updatedFormData]
               : [updatedFormData],
           });
-          
-        } if (!user && !card) {
+        }
+        if (!user && !card) {
           addCardsContext(updatedFormData);
           toast.success(t("cardsSucessfullyAdded"));
         }
@@ -158,11 +165,8 @@ const AddEditCardForm = ({ modal, modalOpen, setModalOpen, card, setCard, CardOb
   };
 
   const handleFinishEditing = () => {
-   
     setEditSession(false);
   };
-
-  
 
   const handleClickOutside = (e) => {
     if (!modalRef.current.contains(e.target)) setModalOpen(false);
@@ -193,10 +197,10 @@ const AddEditCardForm = ({ modal, modalOpen, setModalOpen, card, setCard, CardOb
     : "rounded-lg border-bgPlaceBorder border-solid border placeholder:text-bgPlaceBorder focus:outline-none focus:border-green w-[340px] sm:w-[466px] h-[67px] p-2";
 
   const buttonClass = modal
-    ? formData.foreign.length > 1 || formData.georgian.length > 1
+    ? formData.foreign.length > 0 || formData.georgian.length > 0
       ? "p-2 rounded-[24px] w-[302px] sm:w-[466px] h-[49px] bg-green text-[white]"
       : "p-2 rounded-[24px] w-[302px] sm:w-[466px] h-[49px] bg-bgPlaceBorder text-[white]"
-    : formData.foreign.length > 1 || formData.georgian.length > 1
+    : formData.foreign.length > 0 || formData.georgian.length > 0
     ? "p-2 rounded-[24px] w-[302px] sm:w-[466px] h-[49px] bg-green text-[white]"
     : "p-2 rounded-[24px] w-[302px] sm:w-[466px] h-[49px] bg-bgPlaceBorder text-[white]";
 
@@ -210,7 +214,7 @@ const AddEditCardForm = ({ modal, modalOpen, setModalOpen, card, setCard, CardOb
 
       <div className={containerClass}>
         {loading && (
-          <LoadingDiv card = {card}>
+          <LoadingDiv card={card}>
             <TailSpin
               visible={true}
               width="200"

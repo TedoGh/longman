@@ -29,11 +29,6 @@ const MainDiv = styled.div`
   }
 `;
 
-
-
-
-
-
 const EmptyDiv = styled.div`
   position: absolute;
   display: flex;
@@ -107,8 +102,6 @@ const P = styled.p`
   }
 `;
 
-
-
 const LoadingDiv = styled.div`
   position: fixed;
   top: 50%;
@@ -138,7 +131,7 @@ export default function AllCards() {
                   card.foreign.toLowerCase().startsWith(inputValue)
               ).length / 5
         );
-  // 5 ზე გაყოფით ვიგებ რამდენი სვეტია სულ ქარდების, რადგან თითოეულ სვეტში მაქსიმუმ 5 ქარდია      
+  // 5 ზე გაყოფით ვიგებ რამდენი სვეტია სულ ქარდების, რადგან თითოეულ სვეტში მაქსიმუმ 5 ქარდია
   const [searchParams, setSearchParams] = useSearchParams();
   const [cardsOnCurrentPage, setCardsOnCurrentPage] = useState([]);
   const [language, setLanguage] = useState("FRGN");
@@ -148,8 +141,6 @@ export default function AllCards() {
   let currentPage = searchParams.get("page")
     ? Number(searchParams.get("page"))
     : 1;
-
-  
 
   const handleInputChange = () => {
     searchParams.set("page", "1");
@@ -180,7 +171,6 @@ export default function AllCards() {
 
   useEffect(() => {
     window.addEventListener("resize", handleResize);
-    console.log(screenWidth);
     return () => {
       window.removeEventListener("resize", handleResize);
     };
@@ -199,7 +189,8 @@ export default function AllCards() {
       if (inputValue !== "") {
         if (language === "GEO") {
           const array = user
-            ? user.cards?.filter((card) =>
+            ? user.cards
+                ?.filter((card) =>
                   card.georgian.toLowerCase().startsWith(inputValue)
                 )
                 .slice((i - 1) * 5, i * 5)
@@ -212,7 +203,8 @@ export default function AllCards() {
         }
         if (language === "FRGN") {
           const array = user
-            ? user.cards?.filter((card) =>
+            ? user.cards
+                ?.filter((card) =>
                   card.foreign.toLowerCase().startsWith(inputValue)
                 )
                 .slice((i - 1) * 5, i * 5)
@@ -265,12 +257,17 @@ export default function AllCards() {
     setSearchParams(searchParams);
   };
 
-  
-
   return (
     <div>
       <MainDiv>
-        <FunctionalPart language={language} setLanguage = {setLanguage} cardsOnCurrentPage = {cardsOnCurrentPage} inputValue = {inputValue} searchRef = {searchRef} handleInputChange ={ handleInputChange} />
+        <FunctionalPart
+          language={language}
+          setLanguage={setLanguage}
+          cardsOnCurrentPage={cardsOnCurrentPage}
+          inputValue={inputValue}
+          searchRef={searchRef}
+          handleInputChange={handleInputChange}
+        />
         {loading && (
           <LoadingDiv>
             <TailSpin
@@ -283,8 +280,12 @@ export default function AllCards() {
             />
           </LoadingDiv>
         )}
-        
-          <Cards cardsOnCurrentPage = {cardsOnCurrentPage} handleDeleteCard = {handleDeleteCard} language = {language} />
+
+        <Cards
+          cardsOnCurrentPage={cardsOnCurrentPage}
+          handleDeleteCard={handleDeleteCard}
+          language={language}
+        />
         {pages > 0 && (
           <AllCardsPagination
             searchParams={searchParams}

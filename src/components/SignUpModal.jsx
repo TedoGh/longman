@@ -88,8 +88,6 @@ const SignUpModal = ({
     setFormData({ ...formData, [name]: value });
   };
 
-  console.log(errors);
-
   const onSubmit = async (data) => {
     const { ConfirmPassword, ...dataWithoutConfirmPassword } = data;
 

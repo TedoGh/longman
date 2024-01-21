@@ -496,7 +496,6 @@ const GuessCard = ({
         i = i - 1;
       }
     }
-    console.log(indexArr);
 
     indexArr.forEach((i) =>
       questionCards.push(user ? user.cards[i] : cards[i])

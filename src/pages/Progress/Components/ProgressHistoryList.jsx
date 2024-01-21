@@ -7,15 +7,6 @@ const ProgressHistoryList = () => {
   const { t } = useTranslation();
   const { user } = useAuthorizationContext();
 
-  const dataList = [
-    { id: 1, result: 67, resultTime: "09/09/2023" },
-    { id: 2, result: 67, resultTime: "09/09/2023" },
-    { id: 3, result: 67, resultTime: "09/09/2023" },
-    { id: 4, result: 67, resultTime: "09/09/2023" },
-    { id: 5, result: 67, resultTime: "09/09/2023" },
-    { id: 6, result: 67, resultTime: "09/09/2023" },
-  ];
-
   const itemsPerPage = 3;
   const [currentPage, setCurrentPage] = useState(1);
   const startIndex = (currentPage - 1) * itemsPerPage;

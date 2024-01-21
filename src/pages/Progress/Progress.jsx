@@ -26,9 +26,6 @@ export default function Progress() {
         (totalCorrectAnswers / totalQuestions) *
         100
       ).toFixed(0);
-      console.log(totalQuestions);
-      console.log(totalCorrectAnswers);
-      console.log(resultPercentage);
       setResult({
         totalCorrectAnswers: totalCorrectAnswers,
         totalQuestions: totalQuestions,

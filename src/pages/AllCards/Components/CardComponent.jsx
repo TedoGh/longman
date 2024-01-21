@@ -159,8 +159,6 @@ const MenuDiv = styled.div`
   }
 `;
 
-
-
 const ModalDiv = styled.div`
   & .mainDiv {
     position: absolute;
@@ -354,10 +352,8 @@ const CardComponent = ({ CardObject, onDelete, language, index }) => {
   const { deleteCard, editCard } = useLocalStorageCards("languageCards", []);
   const { cards, updateCards, editCardContext } = useCardsDataContext();
   const [userObject, setUserObject] = useState();
-  const {updateUser} = useRequest();
-  const {user} = useAuthorizationContext();
-
-  
+  const { updateUser } = useRequest();
+  const { user } = useAuthorizationContext();
 
   const handleRotate = (e) => {
     if (
@@ -376,7 +372,6 @@ const CardComponent = ({ CardObject, onDelete, language, index }) => {
 
   const handleClickMenu = (e) => {
     if (menuBtnRef.current.contains(e.target)) setMenuOpen((prev) => !prev);
-    console.log(index);
   };
 
   const handleClickOutsideMenu = (e) => {
@@ -392,21 +387,10 @@ const CardComponent = ({ CardObject, onDelete, language, index }) => {
     setMenuOpen(false);
   };
 
- 
-
-  
-
-  
-
-
-  
-
   const handleClickOnDelete = () => {
     setMenuOpen(false);
     setDeletePermission(true);
   };
-
- 
 
   useEffect(() => {
     if (menuOpen) {
@@ -423,8 +407,6 @@ const CardComponent = ({ CardObject, onDelete, language, index }) => {
     setDeletePermission(false);
   };
 
- 
-
   useEffect(() => {
     if (deletePermission) {
       document.addEventListener("mousedown", handleClickOutsideModal);
@@ -438,7 +420,6 @@ const CardComponent = ({ CardObject, onDelete, language, index }) => {
     setSide(language);
   }, [language]);
 
-  console.log(card)
   return (
     <div>
       <CardDiv onClick={(e) => handleRotate(e)} mainSide={mainSide}>
@@ -461,8 +442,9 @@ const CardComponent = ({ CardObject, onDelete, language, index }) => {
             </button>
           </MenuDiv>
         )}
-        {!editSession && <p>{side === "FRGN" ? card.foreign : card.georgian}</p>}
-       
+        {!editSession && (
+          <p>{side === "FRGN" ? card.foreign : card.georgian}</p>
+        )}
       </CardDiv>
 
       {deletePermission && (
@@ -487,9 +469,16 @@ const CardComponent = ({ CardObject, onDelete, language, index }) => {
           </div>
         </ModalDiv>
       )}
-       {editSession && (
-          <AddEditCardForm modal={true} modalOpen={editSession} setModalOpen={setEditSession} card = {card} setCard = {setCard} CardObject = {CardObject} />
-        )}
+      {editSession && (
+        <AddEditCardForm
+          modal={true}
+          modalOpen={editSession}
+          setModalOpen={setEditSession}
+          card={card}
+          setCard={setCard}
+          CardObject={CardObject}
+        />
+      )}
     </div>
   );
 };
