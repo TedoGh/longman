@@ -1,10 +1,8 @@
 import React from "react";
 import { useState, useRef, useEffect } from "react";
-import { set } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { useTranslation } from "react-i18next";
 import { styled } from "styled-components";
-import useLocalStorageCards from "../hooks/useLocalStorage";
 import { useCardsDataContext } from "../Context/CardsContext";
 import { useAuthorizationContext } from "../Context/AuthorizationContext";
 import useRequest from "../hooks/useRequest";
@@ -37,7 +35,6 @@ top: 70px;
 const AddCardForm = ({ modal, modalOpen, setModalOpen }) => {
   const { t } = useTranslation();
   const modalRef = useRef(null);
-  const API_KEY = "WsdKue2LFxsqmdimIkCyvBgbFLHbcQkk8DjiHohkRccDPRcNdg";
   const { setTrigger, user, setUser, loading } = useAuthorizationContext();
   const [userObject, setUserObject] = useState();
   const { updateUser } = useRequest();
@@ -65,9 +62,7 @@ const AddCardForm = ({ modal, modalOpen, setModalOpen }) => {
 
   const { addCardsContext } = useCardsDataContext();
 
-  useEffect(() => {
-    console.log(user);
-  }, [user]);
+
 
   useEffect(() => {
     const handleAddCard = async () => {

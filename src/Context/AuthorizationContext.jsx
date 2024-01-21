@@ -3,7 +3,7 @@ import React, { createContext, useContext, useState, useCallback, useEffect } fr
 
 const AuthorizationContext = createContext();
 
-// Custom hook to use the context
+
 export const useAuthorizationContext = () => {
   const context = useContext(AuthorizationContext);
   if (!context) {
@@ -12,7 +12,7 @@ export const useAuthorizationContext = () => {
   return context;
 };
 
-// Provider component to wrap your app and provide the context
+
 export const AuthorizationProvider = ({ children }) => {
   const [loggedIn, setLoggedIn] = useState();  
   const [user,setUser] = useState();
@@ -21,7 +21,9 @@ export const AuthorizationProvider = ({ children }) => {
   const [loading, setLoading] = useState();
   const API_KEY = 'WsdKue2LFxsqmdimIkCyvBgbFLHbcQkk8DjiHohkRccDPRcNdg';
 
-  // Function to update cards and trigger a re-render
+  //trigger state იცვლება signup-ში
+  //რადგან იუზერის დამატებასთან ერთად თავიდან გვჭირდება არსებული იუზერების სია წამოვიღოთ
+  
   useEffect(() => {
     fetch("https://crudapi.co.uk/api/v1/Authorization", {
       method: "GET",
