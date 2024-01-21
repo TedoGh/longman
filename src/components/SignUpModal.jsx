@@ -3,7 +3,7 @@ import { styled } from "styled-components";
 import LogoMain from "../assets/images/LogoMain.png";
 import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
-import { useAuthorizationContext } from "../pages/Context/AuthorizationContext";
+import { useAuthorizationContext } from "../Context/AuthorizationContext";
 import { toast } from "react-hot-toast";
 
 const P = styled.p`

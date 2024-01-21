@@ -1,7 +1,7 @@
 // CardsDataContext.js
 
 import React, { createContext, useContext, useState, useCallback, useEffect } from 'react';
-import useLocalStorageCards from '../../hooks/useLocalStorage';
+import useLocalStorageCards from '../hooks/useLocalStorage';
 
 // Create context
 const CardsDataContext = createContext();

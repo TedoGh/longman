@@ -5,8 +5,8 @@ import { toast } from "react-hot-toast";
 import { useTranslation } from "react-i18next";
 import { styled } from "styled-components";
 import useLocalStorageCards from "../hooks/useLocalStorage";
-import { useCardsDataContext } from "../pages/Context/CardsContext";
-import { useAuthorizationContext } from "../pages/Context/AuthorizationContext";
+import { useCardsDataContext } from "../Context/CardsContext";
+import { useAuthorizationContext } from "../Context/AuthorizationContext";
 import useRequest from "../hooks/useRequest";
 import { TailSpin } from "react-loader-spinner";
 

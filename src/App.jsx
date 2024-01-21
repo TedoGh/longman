@@ -2,18 +2,18 @@ import "./App.css";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import Homepage from "./pages/Homepage";
-import About from "./pages/About";
-import AddCard from "./pages/AddCard";
-import AllCards from "./pages/AllCards";
-import Train from "./pages/Train";
-import Progress from "./pages/Progress";
-import PageNotFound from "./pages/PageNotFound";
+import Homepage from "./pages/Home/Homepage";
+import About from "./pages/About/About";
+import AddCard from "./pages/AddCard/AddCard";
+import AllCards from "./pages/AllCards/AllCards";
+import Train from "./pages/Train/Train";
+import Progress from "./pages/Progress/Progress";
+import PageNotFound from "./pages/PageNotFound/PageNotFound";
 import Loading from "./components/Loading";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import Faq from "./pages/Faq";
-import TermsAndConditions from "./pages/TermsAndConditions";
+import Faq from "./pages/Faq/Faq";
+import TermsAndConditions from "./pages/TermsAndConditions/TermsAndConditions";
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(false);

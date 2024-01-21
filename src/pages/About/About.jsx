@@ -1,4 +1,4 @@
-import AboutImg from "../assets/images/about-page.png";
+import AboutImg from "../../assets/images/about-page.png";
 import { useTranslation } from "react-i18next";
 
 export default function About() {

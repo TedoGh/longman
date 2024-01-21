@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import React, { useState } from "react";
-import Pagination from "./Pagination";
-import { useAuthorizationContext } from "../pages/Context/AuthorizationContext";
+import Pagination from "../../../components/Pagination";
+import { useAuthorizationContext } from "../../../Context/AuthorizationContext";
 
 const ProgressHistoryList = () => {
   const { t } = useTranslation();
