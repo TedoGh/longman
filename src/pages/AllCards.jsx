@@ -363,7 +363,7 @@ export default function AllCards() {
       ? Math.ceil(user ? user.cards?.length / 5 : cards?.length / 5)
       : Math.ceil(
           user
-            ? user.cards.filter(
+            ? user.cards?.filter(
                 (card) =>
                   card.georgian.toLowerCase().startsWith(inputValue) ||
                   card.foreign.toLowerCase().startsWith(inputValue)
@@ -408,7 +408,7 @@ export default function AllCards() {
   const handleDeleteCard = async (card) => {
     if (user) {
       const copiedObject = JSON.parse(JSON.stringify(user));
-      const filteredCards = user.cards.filter((c) => card.id !== c.id);
+      const filteredCards = user.cards?.filter((c) => card.id !== c.id);
       setUserObject({ ...copiedObject, cards: filteredCards });
     } else {
       const newCards = cards.filter((c) => c.id !== card.id);
@@ -432,15 +432,14 @@ export default function AllCards() {
     for (let i = 1; i <= columns; i++) {
       if (inputValue === "") {
         const array = user
-          ? user.cards.slice((i - 1) * 5, i * 5)
+          ? user.cards?.slice((i - 1) * 5, i * 5)
           : cards.slice((i - 1) * 5, i * 5);
         dividedCardsArr.push(array);
       }
       if (inputValue !== "") {
         if (language === "GEO") {
           const array = user
-            ? user.cards
-                .filter((card) =>
+            ? user.cards?.filter((card) =>
                   card.georgian.toLowerCase().startsWith(inputValue)
                 )
                 .slice((i - 1) * 5, i * 5)
@@ -453,8 +452,7 @@ export default function AllCards() {
         }
         if (language === "FRGN") {
           const array = user
-            ? user.cards
-                .filter((card) =>
+            ? user.cards?.filter((card) =>
                   card.foreign.toLowerCase().startsWith(inputValue)
                 )
                 .slice((i - 1) * 5, i * 5)
@@ -507,7 +505,7 @@ export default function AllCards() {
     setSearchParams(searchParams);
   };
 
-  console.log(language);
+  
 
   return (
     <div>
@@ -586,7 +584,7 @@ export default function AllCards() {
             <P>{t("cardsNotAdded")}</P>
           </div>
         )}
-        {!user && cards?.length === 0 && (
+        {!user && cards && (
           <div>
             <div> </div>
             <P>{t("cardsNotAdded")}</P>
