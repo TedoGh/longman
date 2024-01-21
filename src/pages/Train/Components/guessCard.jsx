@@ -446,12 +446,13 @@ const GuessCard = ({
     const year = date.getFullYear();
     const hours = addLeadingZero(date.getHours());
     const minutes = addLeadingZero(date.getMinutes());
+    const seconds = addLeadingZero(date.getSeconds());
 
-    return `${day}/${month}/${year} ${hours}:${minutes}`;
+    return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
   }
 
-  function addLeadingZero(value) {
-    return value < 10 ? `0${value}` : value;
+  function addLeadingZero(number) {
+    return number < 10 ? `0${number}` : number;
   }
 
   function handleRecordResult() {
