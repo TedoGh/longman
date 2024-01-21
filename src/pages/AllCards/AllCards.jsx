@@ -1,15 +1,15 @@
-import Header from "../components/Header";
+import Header from "../../components/Header";
 import { useTranslation } from "react-i18next";
-import CardComponent from "../components/CardComponent";
-import AllCardsPagination from "../components/AllCardsPagination";
+import CardComponent from "./CardComponent";
+import AllCardsPagination from "./AllCardsPagination";
 import { styled } from "styled-components";
 import { CiSearch } from "react-icons/ci";
 import { useSearchParams } from "react-router-dom";
 import { useState, useRef } from "react";
 import { useEffect } from "react";
-import { useCardsDataContext } from "./Context/CardsContext";
-import { useAuthorizationContext } from "./Context/AuthorizationContext";
-import useRequest from "../hooks/useRequest";
+import { useCardsDataContext } from "../locales/ka/Context/CardsContext";
+import { useAuthorizationContext } from "../locales/ka/Context/AuthorizationContext";
+import useRequest from "../../hooks/useRequest";
 import { TailSpin } from "react-loader-spinner";
 
 const MainDiv = styled.div`

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
-import { useAuthorizationContext } from '../pages/Context/AuthorizationContext';
+import { useAuthorizationContext } from '../locales/ka/Context/AuthorizationContext';
 
 const useRequest = () => {
   const API_KEY = 'WsdKue2LFxsqmdimIkCyvBgbFLHbcQkk8DjiHohkRccDPRcNdg';

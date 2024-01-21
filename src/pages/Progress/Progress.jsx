@@ -1,11 +1,11 @@
-import ProgressHistory from "../components/ProgressHistory";
+import ProgressHistory from "./ProgressHistory";
 import SemiCircleProgressBar from "react-progressbar-semicircle";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { useAuthorizationContext } from "./Context/AuthorizationContext";
+import { useAuthorizationContext } from "../locales/ka/Context/AuthorizationContext";
 import { useEffect, useState } from "react";
-import NotLoggedUser from "../components/NotLoggedUser";
-import ProgressNotAvailable from "../components/ProgressNotAvailable";
+import NotLoggedUser from "../../components/NotLoggedUser";
+import ProgressNotAvailable from "./ProgressNotAvailable";
 
 export default function Progress() {
   const { t } = useTranslation();

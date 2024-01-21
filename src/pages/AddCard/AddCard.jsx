@@ -1,4 +1,4 @@
-import AddCardForm from "../components/AddCardForm";
+import AddCardForm from "../../components/AddCardForm";
 
 export default function AddCard() {
   return (

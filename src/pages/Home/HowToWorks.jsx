@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import HowToWorksData from "../data/HowToWorksData";
+import HowToWorksData from "../../data/HowToWorksData";
 
 const HowToWorks = () => {
   const { t } = useTranslation();

@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { styled } from "styled-components";
 import LogoMain from "../assets/images/LogoMain.png";
 import { useTranslation } from "react-i18next";
-import { useAuthorizationContext } from "../pages/Context/AuthorizationContext";
+import { useAuthorizationContext } from "../locales/ka/Context/AuthorizationContext";
 
 const ErrorText = styled.p`
   font-weight: 400;
