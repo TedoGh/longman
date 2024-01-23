@@ -539,7 +539,7 @@ const GuessCard = ({
           questionObj.options[i] = arrayWithCorrectAnswer[i]?.foreign;
         }
       }
-      if (languageState === "ENG") {
+      if (languageState === "FRGN") {
         questionObj.question = card?.foreign;
         questionObj.correct = card?.georgian;
         for (let i = 0; i < 4; i++) {
